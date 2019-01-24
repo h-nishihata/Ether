@@ -9,6 +9,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 	public Image receivingImage;
 	private Color normalColor;
 	public Color highlightColor = Color.yellow;
+    public int latestSpriteNum;
 	
 	public void OnEnable ()
 	{
@@ -24,8 +25,11 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 			return;
 		
 		Sprite dropSprite = GetDropSprite (data);
-		if (dropSprite != null)
-			receivingImage.overrideSprite = dropSprite;
+        if (dropSprite != null)
+        {
+            receivingImage.overrideSprite = dropSprite;
+            RecordLatestSprite(dropSprite);
+        }
 	}
 
 	public void OnPointerEnter(PointerEventData data)
@@ -62,4 +66,20 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 		
 		return srcImage.sprite;
 	}
+
+    public void RecordLatestSprite(Sprite currentSprite)
+    {
+        switch (currentSprite.name)
+        {
+            case  "Icon1":
+                latestSpriteNum = 1;
+                break;
+            case "Icon2":
+                latestSpriteNum = 2;
+                break;
+            case "Icon3":
+                latestSpriteNum = 3;
+                break;
+        }
+    }
 }
