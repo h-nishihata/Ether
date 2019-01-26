@@ -11,6 +11,8 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 	private Dictionary<int,GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
 	private Dictionary<int, RectTransform> m_DraggingPlanes = new Dictionary<int, RectTransform>();
 
+    private Vector3 onDragSize = new Vector3(0.25f, 0.25f, 0.25f);
+
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		var canvas = FindInParents<Canvas>(gameObject);
@@ -25,6 +27,7 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 		m_DraggingIcons[eventData.pointerId].transform.SetAsLastSibling();
 		
 		var image = m_DraggingIcons[eventData.pointerId].AddComponent<Image>();
+        image.transform.localScale = onDragSize;
 		// The icon will be under the cursor.
 		// We want it to be ignored by the event system.
 		var group = m_DraggingIcons[eventData.pointerId].AddComponent<CanvasGroup>();

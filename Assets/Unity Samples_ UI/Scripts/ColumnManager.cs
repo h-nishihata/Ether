@@ -23,7 +23,6 @@ public class ColumnManager : MonoBehaviour
     public void ChangeNumElements()
     {
         var num = (int)mainSlider.value;
-        //Debug.Log("value: " + num);
         for (int i = 0; i < elements.Length; i++)
         {
             if (i < num) elements[i].SetActive(true); else elements[i].SetActive(false);
@@ -37,13 +36,8 @@ public class ColumnManager : MonoBehaviour
             if(elements[i].activeSelf)
             {
                 Debug.Log(i + ": " + dropMes[i].latestSpriteNum);
-                //PlayerPrefs.SetInt("", );
+                // save values
             }
         }
-    }
-
-    private void OnApplicationQuit()
-    {
-        //PlayerPrefs.Save();
     }
 }
