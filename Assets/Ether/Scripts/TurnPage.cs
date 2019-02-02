@@ -35,8 +35,7 @@ public class TurnPage : MonoBehaviour
             {
                 this.currentPage++;
                 this.moveAnimation = this.rectTransform
-                    .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, 1.0f)
-                    .SetEase(Ease.OutBounce)
+                    .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, 0.5f)
                     .Play();
             });
 
@@ -49,8 +48,31 @@ public class TurnPage : MonoBehaviour
             {
                 this.currentPage--;
                 this.moveAnimation = this.rectTransform
-                    .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, 1.0f)
-                    .SetEase(Ease.OutBounce)
+                    .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, 0.5f)
+                    .Play();
+            });
+
+        // last page
+        this.swipeGesture
+            .OnSwipeLeft
+            .Where(_ => currentPage == pageCount) // これ以上は進めない
+            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Subscribe(_ =>
+            {
+                this.moveAnimation = this.rectTransform
+                    .DOShakeAnchorPos(0.5f, Vector3.right * 200, 10)
+                    .Play();
+            });
+
+        // 1st page
+        this.swipeGesture
+            .OnSwipeRight
+            .Where(_ => currentPage == 1) // これ以上は戻れない
+            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Subscribe(_ =>
+            {
+                this.moveAnimation = this.rectTransform
+                    .DOShakeAnchorPos(0.5f, Vector3.left * 200, 10)
                     .Play();
             });
     }
