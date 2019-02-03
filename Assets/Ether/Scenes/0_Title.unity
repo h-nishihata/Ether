@@ -276,7 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35d9bc754c0e4444b1becdbcac6f287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleTexture: {fileID: 0}
+  TitleTexture: {fileID: 2800000, guid: b362ee4b9a700426cba1b36f37ad822b, type: 3}
+  version: Version_0.2.0
 --- !u!1 &646224962
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1239067620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1641834187
 MonoBehaviour:
   m_ObjectHideFlags: 0

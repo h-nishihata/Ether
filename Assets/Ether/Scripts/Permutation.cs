@@ -5,31 +5,64 @@ using System.Collections.Generic;
 
 public class Permutation : MonoBehaviour
 {
+    private List<string> result;
+    private List<string> AB;
+    private List<string> ABC;
+    private List<string> ABCD;
+    private List<string> ABCDE;
+    private List<string> ABCDEF;
+    private int numParticles = 3;
 
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-
-        List<string> result = new List<string>();
-        List<string> ABCD = new List<string>() { "2", "3", "4", "5" };
-        permutation(ABCD, result);
-
-
+        result = new List<string>();
+        AB = new List<string>() { "2", "3"};
+        ABC = new List<string>() { "2", "3", "4"};
+        ABCD = new List<string>() { "2", "3", "4", "5" };
+        ABCDE = new List<string>() { "2", "3", "4", "5", "6" };
+        ABCDEF = new List<string>() { "2", "3", "4", "5", "6", "7" };
     }
 
-    void permutation(List<string> ABCD, List<string> result)
+    public void OnValueChanged(int dropDownValue)
     {
-        int count = ABCD.Count;
+        numParticles = dropDownValue;
+    }
+
+    public void GeneratePatterns()
+    {
+        switch (numParticles)
+        {
+            case 0:
+                permutation(AB, result);
+                break;
+            case 1:
+                permutation(ABC, result);
+                break;
+            case 2:
+                permutation(ABCD, result);
+                break;
+            case 3:
+                permutation(ABCDE, result);
+                break;
+            case 4:
+                permutation(ABCDEF, result);
+                break;
+        }
+    }
+
+    private void permutation(List<string> list, List<string> result)
+    {
+        int count = list.Count;
 
         for (int i = 0; i < count; i++)
         {
-            result.Add(ABCD[i]);
-            ABCD.RemoveAt(i);
+            result.Add(list[i]);
+            list.RemoveAt(i);
 
             if (count >= 2)
             {
-                permutation(ABCD, result);
-                ABCD.Insert(i, result[result.Count - 1]);
+                permutation(list, result);
+                list.Insert(i, result[result.Count - 1]);
                 result.RemoveAt(result.Count - 1);
             }
 
@@ -37,12 +70,9 @@ public class Permutation : MonoBehaviour
             {
                 string[] tmp = result.ToArray();
                 Debug.Log(string.Join(",", tmp));
-                ABCD.Insert(i, result[result.Count - 1]);
+                list.Insert(i, result[result.Count - 1]);
                 result.RemoveAt(result.Count - 1);
             }
-
-
         }
-
     }
 }
