@@ -11,7 +11,7 @@ public class Permutation : MonoBehaviour
     private List<string> ABCD;
     private List<string> ABCDE;
     private List<string> ABCDEF;
-    private int numParticles = 3;
+    private int numParticles = 0;
 
     private void Start()
     {
@@ -32,19 +32,19 @@ public class Permutation : MonoBehaviour
     {
         switch (numParticles)
         {
-            case 0:
+            case 0: // 4 particles (2! = 2 patterns)
                 permutation(AB, result);
                 break;
-            case 1:
+            case 1: // 5 particles (3! = 6 patterns)
                 permutation(ABC, result);
                 break;
-            case 2:
+            case 2: // 6 particles (4! = 24 patterns)
                 permutation(ABCD, result);
                 break;
-            case 3:
+            case 3: // 7 particles (5! = 120 patterns)
                 permutation(ABCDE, result);
                 break;
-            case 4:
+            case 4: // 8 particles (6! = 720 patterns)
                 permutation(ABCDEF, result);
                 break;
         }
