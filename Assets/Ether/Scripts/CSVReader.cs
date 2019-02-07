@@ -6,7 +6,8 @@ public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     private List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
-
+    public GameObject[] pages;
+    private TurnPage pageSwitcher;
 
     void Awake()
     {
@@ -21,14 +22,32 @@ public class CSVReader : MonoBehaviour
         }
 
         // csvDatas[行][列]を指定して値を自由に取り出せる.
-         //Debug.Log(csvData[0][1]);
+        //Debug.Log(csvData[0][1]);
+
+        pageSwitcher = transform.GetComponent<TurnPage>();
     }
 
     void Start()
     {
-        Debug.Log("pages: " + Data.Instance.numPages);
-        Debug.Log("boxes: " + Data.Instance.numBoxes);
-        var initLine = Data.Instance.csvInitLine;
-        Debug.Log(csvData[initLine][0]);
+        var numPages = Data.Instance.numPages;
+        var numLine = Data.Instance.csvInitLine;
+        //Debug.Log("pages: " + numPages);
+        //Debug.Log("boxes: " + numBoxes);
+        //Debug.Log(csvData[numLine][0]);
+
+        GeneratePatterns(numPages, numLine);
+        pageSwitcher.pageCount = numPages; //ページの端の位置を伝える.
+    }
+
+    void GeneratePatterns(int activePages, int initLine)
+    {
+        for (int i = 0; i < pages.Length; i++)
+        {
+            pages[i].SetActive(false);
+        }
+        for (int i = 0; i < activePages; i++)
+        {
+            pages[i].SetActive(true);
+        }
     }
 }

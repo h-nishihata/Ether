@@ -11,7 +11,7 @@ public class TurnPage : MonoBehaviour
     private RectTransform rectTransform;
     private SwipeGesture swipeGesture;
     private Tween moveAnimation;
-    private int pageCount;
+    public int pageCount;
     private int currentPage = 1;
 
     void Awake()
@@ -24,7 +24,7 @@ public class TurnPage : MonoBehaviour
     {
         this.rectTransform = this.GetComponent<RectTransform>();
         this.swipeGesture = this.GetComponent<SwipeGesture>();
-        this.pageCount = this.transform.childCount;
+        //this.pageCount = this.transform.childCount;
 
         // next
         this.swipeGesture
