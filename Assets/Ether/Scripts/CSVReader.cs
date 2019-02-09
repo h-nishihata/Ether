@@ -5,9 +5,11 @@ using System.IO;
 public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
-    private List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
+    public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
     public GameObject[] pages;
     private TurnPage pageSwitcher;
+    public Sprite[] sourceImages;
+
 
     void Awake()
     {
@@ -30,16 +32,15 @@ public class CSVReader : MonoBehaviour
     void Start()
     {
         var numPages = Data.Instance.numPages;
-        var numLine = Data.Instance.csvInitLine;
         //Debug.Log("pages: " + numPages);
         //Debug.Log("boxes: " + numBoxes);
         //Debug.Log(csvData[numLine][0]);
 
-        GeneratePatterns(numPages, numLine);
+        GeneratePatterns(numPages);
         pageSwitcher.pageCount = numPages; //ページの端の位置を伝える.
     }
 
-    void GeneratePatterns(int activePages, int initLine)
+    void GeneratePatterns(int activePages)
     {
         for (int i = 0; i < pages.Length; i++)
         {
@@ -49,5 +50,6 @@ public class CSVReader : MonoBehaviour
         {
             pages[i].SetActive(true);
         }
+        //各ページに，自分が何ページ目かをintで渡すよろし.
     }
 }

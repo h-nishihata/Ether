@@ -68,7 +68,7 @@ public class TurnPage : MonoBehaviour
         this.swipeGesture
             .OnSwipeRight
             .Where(_ => currentPage == 1) // これ以上は戻れない
-            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Where(_ => moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
             .Subscribe(_ =>
             {
                 this.moveAnimation = this.rectTransform
