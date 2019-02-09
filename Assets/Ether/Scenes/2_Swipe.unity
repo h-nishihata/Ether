@@ -235,6 +235,7 @@ MonoBehaviour:
   - {fileID: 537234779}
   - {fileID: 249916639}
   - {fileID: 1044987221}
+  number: {fileID: 82207376}
   pageID: 0
 --- !u!1 &68007017
 GameObject:
@@ -380,7 +381,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: 
 --- !u!222 &82207379
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -607,7 +608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: 
 --- !u!222 &162002650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -755,7 +756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: 
 --- !u!222 &175290749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1056,7 +1057,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: 
 --- !u!222 &402871822
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1936,6 +1937,7 @@ MonoBehaviour:
   - {fileID: 1237458025}
   - {fileID: 1615786289}
   - {fileID: 480691088}
+  number: {fileID: 175290746}
   pageID: 0
 --- !u!1 &1029369653
 GameObject:
@@ -2060,6 +2062,7 @@ MonoBehaviour:
   - {fileID: 2043219271}
   - {fileID: 1297660771}
   - {fileID: 155521171}
+  number: {fileID: 1320584378}
   pageID: 0
 --- !u!1 &1043132133
 GameObject:
@@ -2332,6 +2335,7 @@ MonoBehaviour:
   - {fileID: 1667518353}
   - {fileID: 1581063536}
   - {fileID: 551714826}
+  number: {fileID: 2002141569}
   pageID: 0
 --- !u!1 &1237458025
 GameObject:
@@ -2798,7 +2802,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: 
 --- !u!222 &1320584381
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4042,7 +4046,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: 
 --- !u!222 &2002141572
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4174,6 +4178,7 @@ MonoBehaviour:
   - {fileID: 146513043}
   - {fileID: 68007017}
   - {fileID: 1462411811}
+  number: {fileID: 162002647}
   pageID: 0
 --- !u!1 &2043219271
 GameObject:
@@ -4446,4 +4451,5 @@ MonoBehaviour:
   - {fileID: 1645390517}
   - {fileID: 1829374865}
   - {fileID: 1275212593}
+  number: {fileID: 402871819}
   pageID: 0
