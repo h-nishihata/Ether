@@ -42,14 +42,10 @@ public class CSVReader : MonoBehaviour
 
     void GeneratePatterns(int activePages)
     {
-        for (int i = 0; i < pages.Length; i++)
-        {
-            pages[i].SetActive(false);
-        }
         for (int i = 0; i < activePages; i++)
         {
+            pages[i].GetComponent<SetParticleImages>().pageID = i;
             pages[i].SetActive(true);
         }
-        //各ページに，自分が何ページ目かをintで渡すよろし.
     }
 }

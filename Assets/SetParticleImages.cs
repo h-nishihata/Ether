@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class SetParticleImages : MonoBehaviour
 {
-    public Transform[] particles;
+    public GameObject[] particles;
     private CSVReader csvReader;
+    public int pageID;
     private int numBoxes;
     private int initLine;
 
@@ -23,11 +24,11 @@ public class SetParticleImages : MonoBehaviour
     {
         for (int i = 0; i < particles.Length; i++)
         {
-            particles[i].gameObject.SetActive(false);
+            particles[i].SetActive(false);
         }
         for (int i = 0; i < numBoxes; i++)
         {
-            particles[i].gameObject.SetActive(true);
+            particles[i].SetActive(true);
         }
     }
 
@@ -36,7 +37,7 @@ public class SetParticleImages : MonoBehaviour
         for (int i = 0; i < numBoxes; i++)
         {
             var images = particles[i].GetComponent<Image>();
-            var numImages = Int32.Parse(csvReader.csvData[initLine][i]);
+            var numImages = Int32.Parse(csvReader.csvData[initLine + pageID][i]);
             images.sprite = csvReader.sourceImages[numImages - 2]; //2〜7段目が可変パーティクルになるよう設定.
         }
     }
