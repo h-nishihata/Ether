@@ -36,11 +36,11 @@ public class CSVReader : MonoBehaviour
         //Debug.Log("boxes: " + numBoxes);
         //Debug.Log(csvData[numLine][0]);
 
-        GeneratePatterns(numPages);
+        SetPages(numPages);
         pageSwitcher.pageCount = numPages; //ページの端の位置を伝える.
     }
 
-    void GeneratePatterns(int activePages)
+    void SetPages(int activePages)
     {
         for (int i = 0; i < activePages; i++)
         {
