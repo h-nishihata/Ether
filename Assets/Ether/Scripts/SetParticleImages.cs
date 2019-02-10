@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class SetParticleImages : MonoBehaviour
 {
-    public GameObject[] particles;
-    public GameObject number;
     private CSVReader csvReader;
     public int pageID;
+
+    public GameObject[] particles;
     private int numBoxes;
     private int initLine;
+
+    public GameObject number;
     private StringBuilder lotNumber = new StringBuilder();
+
 
     private void OnEnable()
     {
@@ -52,7 +55,6 @@ public class SetParticleImages : MonoBehaviour
     private void SetLotNumber()
     {
         lotNumber.Append("8");
-        //Debug.Log(lotNumber);
         number.GetComponent<Text>().text = lotNumber.ToString();
     }
 }

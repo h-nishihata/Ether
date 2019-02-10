@@ -13,7 +13,7 @@ public class CSVReader : MonoBehaviour
 
     void Awake()
     {
-        csvFile = Resources.Load("testCSV") as TextAsset; // Resouces下のCSV読み込み.
+        csvFile = Resources.Load("patternData") as TextAsset; // Resouces下のCSV読み込み.
         StringReader reader = new StringReader(csvFile.text);
 
         // ","で分割しつつ一行ずつ読み込み，リストに追加していく.
@@ -32,9 +32,6 @@ public class CSVReader : MonoBehaviour
     void Start()
     {
         var numPages = Data.Instance.numPages;
-        //Debug.Log("pages: " + numPages);
-        //Debug.Log("boxes: " + numBoxes);
-        //Debug.Log(csvData[numLine][0]);
 
         SetPages(numPages);
         pageSwitcher.pageCount = numPages; //ページの端の位置を伝える.
