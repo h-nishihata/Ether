@@ -6,10 +6,16 @@ public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
-    public GameObject[] pages;
-    private TurnPage pageSwitcher;
-    public Sprite[] sourceImages;
 
+    private int numPages;
+    public int numBoxes;
+    public int csvInitLine;
+
+    private RectTransform list;
+    private TurnPage pageSwitcher;
+    public GameObject[] pages;
+    private SetParticleImages[] imageSetter;
+    public Sprite[] sourceImages;
 
     void Awake()
     {
@@ -26,22 +32,63 @@ public class CSVReader : MonoBehaviour
         // csvDatas[行][列]を指定して値を自由に取り出せる.
         //Debug.Log(csvData[0][1]);
 
+        list = transform.GetComponent<RectTransform>();
         pageSwitcher = transform.GetComponent<TurnPage>();
     }
 
     void Start()
     {
-        var numPages = Data.Instance.numPages;
+        imageSetter = new SetParticleImages[pages.Length];
+        for (int i = 0; i < pages.Length; i++)
+        {
+            imageSetter[i] = pages[i].GetComponent<SetParticleImages>();
+        }
 
+        numPages = 2;
+        numBoxes = 2;
+        csvInitLine = 1;
         SetPages(numPages);
-        pageSwitcher.pageCount = numPages; //ページの端の位置を伝える.
+    }
+
+    public void OnValueChanged(int dropDownValue)
+    {
+        switch (dropDownValue)
+        {
+            case 0: // 4 particles
+                numPages = 2;
+                numBoxes = 2;
+                csvInitLine = 1;
+                break;
+            case 1: // 5 particles
+                numPages = 6;
+                numBoxes = 3;
+                csvInitLine = 4;
+                break;
+            case 2: // 6 particles
+                numPages = 24;
+                numBoxes = 4;
+                csvInitLine = 11;
+                break;
+        }
+
+        // 1ページ目に戻す.
+        list.anchoredPosition = Vector3.zero;
+        pageSwitcher.currentPage = 1;
+        SetPages(numPages);
     }
 
     void SetPages(int activePages)
     {
+        pageSwitcher.pageCount = activePages; // ページの端の位置を伝える.
+
+        for (int i = 0; i < pages.Length; i++)
+        {
+            pages[i].SetActive(false);
+        }
         for (int i = 0; i < activePages; i++)
         {
-            pages[i].GetComponent<SetParticleImages>().pageID = i;
+            imageSetter[i].pageID = i;
+            imageSetter[i].Trigger();
             pages[i].SetActive(true);
         }
     }

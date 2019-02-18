@@ -13,7 +13,7 @@ public class TurnPage : MonoBehaviour
     private Tween moveAnimation;
 
     public int pageCount;
-    private int currentPage = 1;
+    public int currentPage = 1;
 
 
     void Awake()

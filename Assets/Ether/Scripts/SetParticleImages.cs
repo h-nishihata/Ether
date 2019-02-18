@@ -15,13 +15,18 @@ public class SetParticleImages : MonoBehaviour
     public GameObject number;
     private StringBuilder lotNumber = new StringBuilder();
 
-
-    private void OnEnable()
+    public void Trigger()
     {
-        numBoxes = Data.Instance.numBoxes;
-        initLine = Data.Instance.csvInitLine;
-        csvReader = transform.parent.GetComponent<CSVReader>();
+        if (csvReader == null)
+        {
+            csvReader = transform.parent.GetComponent<CSVReader>();
+        }       
+        numBoxes = csvReader.numBoxes;
+        initLine = csvReader.csvInitLine;
+
+        lotNumber.Clear();
         lotNumber.Append("1");
+
         PrepareBoxes();
         SetImages();
     }

@@ -35,7 +35,7 @@ public class TitleSceneControl : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("1_Select");
+            SceneManager.LoadScene("2_Swipe");
         }
     }
 
