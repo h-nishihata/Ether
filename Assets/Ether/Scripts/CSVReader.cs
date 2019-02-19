@@ -13,11 +13,14 @@ public class CSVReader : MonoBehaviour
 
     private RectTransform list;
     private TurnPage pageSwitcher;
+
+    public GameObject template;
     private GameObject[] pages;
+    public int numMaxPages = 24;
     private SetParticleImages[] imageSetter;
     public Sprite[] sourceImages;
-    public GameObject template;
-    public int numMaxPages = 24;
+
+
     void Awake()
     {
         csvFile = Resources.Load("patternData") as TextAsset; // Resouces下のCSV読み込み.
@@ -53,6 +56,7 @@ public class CSVReader : MonoBehaviour
         for (int i = 0; i < pages.Length; i++)
         {
             imageSetter[i] = pages[i].GetComponent<SetParticleImages>();
+            imageSetter[i].WarmUp();
         }
 
         numPages = 2;

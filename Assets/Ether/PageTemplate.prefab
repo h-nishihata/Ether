@@ -202,7 +202,7 @@ MonoBehaviour:
   - {fileID: 2015424517762867268}
   numMaxBoxes: 6
   fillColor: {r: 0, g: 0, b: 0, a: 0}
-  number: {fileID: 2015424517112130609}
+  number: {fileID: 2015424517112130611}
 --- !u!1 &2015424517112130609
 GameObject:
   m_ObjectHideFlags: 0

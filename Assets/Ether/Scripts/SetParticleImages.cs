@@ -12,18 +12,24 @@ public class SetParticleImages : MonoBehaviour
     public int numMaxBoxes = 6;
     private int numBoxes;
     private int initLine;
+    public Image[] images;
     public Color fillColor;
 
-    public GameObject number;
+    public Text number;
     private StringBuilder lotNumber = new StringBuilder();
 
+    public void WarmUp()
+    {
+        csvReader = transform.parent.GetComponent<CSVReader>();
+        images = new Image[particles.Length];
+        for (int i = 0; i < particles.Length; i++)
+        {
+            images[i] = particles[i].GetComponent<Image>();
+        }
+    }
 
     public void Trigger()
     {
-        if (csvReader == null)
-        {
-            csvReader = transform.parent.GetComponent<CSVReader>();
-        }       
         numBoxes = csvReader.numBoxes;
         initLine = csvReader.csvInitLine;
 
@@ -35,21 +41,21 @@ public class SetParticleImages : MonoBehaviour
     {
         for (int i = 0; i < numMaxBoxes; i++)
         {
-            var images = particles[i].GetComponent<Image>();
+
             if (i < numBoxes)
             {
-                images.color = Color.white;
+                images[i].color = Color.white;
                 var numImages = csvReader.csvData[initLine + pageID][i];
                 lotNumber.Append(numImages);
                 var imageID = Int32.Parse(numImages);
-                images.sprite = csvReader.sourceImages[imageID - 1];
+                images[i].sprite = csvReader.sourceImages[imageID - 1];
             }
             else if(i >= numBoxes)
             {
-                images.color = fillColor;
+                images[i].color = fillColor;
             }
         }
 
-        number.GetComponent<Text>().text = lotNumber.ToString();
+        number.text = lotNumber.ToString();
     }
 }
