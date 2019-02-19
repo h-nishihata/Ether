@@ -13,10 +13,11 @@ public class CSVReader : MonoBehaviour
 
     private RectTransform list;
     private TurnPage pageSwitcher;
-    public GameObject[] pages;
+    private GameObject[] pages;
     private SetParticleImages[] imageSetter;
     public Sprite[] sourceImages;
-
+    public GameObject template;
+    public int numMaxPages = 24;
     void Awake()
     {
         csvFile = Resources.Load("patternData") as TextAsset; // Resouces下のCSV読み込み.
@@ -34,6 +35,16 @@ public class CSVReader : MonoBehaviour
 
         list = transform.GetComponent<RectTransform>();
         pageSwitcher = transform.GetComponent<TurnPage>();
+
+
+        pages = new GameObject[numMaxPages];
+        for (int i = 0; i < numMaxPages; i++)
+        {
+            pages[i] = Instantiate(template);
+            var p = i < 10 ? "0" + i.ToString() : i.ToString();
+            pages[i].name = "page" + p;
+            pages[i].transform.SetParent(this.transform);
+        }
     }
 
     void Start()
@@ -45,7 +56,7 @@ public class CSVReader : MonoBehaviour
         }
 
         numPages = 2;
-        numBoxes = 2;
+        numBoxes = 4;
         csvInitLine = 1;
         SetPages(numPages);
     }
@@ -56,17 +67,17 @@ public class CSVReader : MonoBehaviour
         {
             case 0: // 4 particles
                 numPages = 2;
-                numBoxes = 2;
+                numBoxes = 4;
                 csvInitLine = 1;
                 break;
             case 1: // 5 particles
                 numPages = 6;
-                numBoxes = 3;
+                numBoxes = 5;
                 csvInitLine = 4;
                 break;
             case 2: // 6 particles
                 numPages = 24;
-                numBoxes = 4;
+                numBoxes = 6;
                 csvInitLine = 11;
                 break;
         }

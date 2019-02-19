@@ -9,11 +9,14 @@ public class SetParticleImages : MonoBehaviour
     public int pageID;
 
     public GameObject[] particles;
+    public int numMaxBoxes = 6;
     private int numBoxes;
     private int initLine;
+    public Color fillColor;
 
     public GameObject number;
     private StringBuilder lotNumber = new StringBuilder();
+
 
     public void Trigger()
     {
@@ -25,41 +28,28 @@ public class SetParticleImages : MonoBehaviour
         initLine = csvReader.csvInitLine;
 
         lotNumber.Clear();
-        lotNumber.Append("1");
-
-        PrepareBoxes();
         SetImages();
-    }
-
-    private void PrepareBoxes()
-    {
-        for (int i = 0; i < particles.Length; i++)
-        {
-            particles[i].SetActive(false);
-        }
-        for (int i = 0; i < numBoxes; i++)
-        {
-            particles[i].SetActive(true);
-        }
     }
 
     private void SetImages()
     {
-        for (int i = 0; i < numBoxes; i++)
+        for (int i = 0; i < numMaxBoxes; i++)
         {
             var images = particles[i].GetComponent<Image>();
-            var numImages = csvReader.csvData[initLine + pageID][i];
-            lotNumber.Append(numImages);
-            var imageID = Int32.Parse(numImages);
-            images.sprite = csvReader.sourceImages[imageID - 2]; //2〜7段目が可変パーティクルになるよう設定.
+            if (i < numBoxes)
+            {
+                images.color = Color.white;
+                var numImages = csvReader.csvData[initLine + pageID][i];
+                lotNumber.Append(numImages);
+                var imageID = Int32.Parse(numImages);
+                images.sprite = csvReader.sourceImages[imageID - 1];
+            }
+            else if(i >= numBoxes)
+            {
+                images.color = fillColor;
+            }
         }
 
-        SetLotNumber();
-    }
-
-    private void SetLotNumber()
-    {
-        lotNumber.Append("8");
         number.GetComponent<Text>().text = lotNumber.ToString();
     }
 }
