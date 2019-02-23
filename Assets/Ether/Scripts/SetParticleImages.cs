@@ -41,7 +41,6 @@ public class SetParticleImages : MonoBehaviour
     {
         for (int i = 0; i < numMaxBoxes; i++)
         {
-
             if (i < numBoxes)
             {
                 images[i].color = Color.white;

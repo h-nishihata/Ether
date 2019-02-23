@@ -1,53 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
 
 public class Permutation : MonoBehaviour
 {
+    private List<string> list;
     private List<string> result;
-    private List<string> AB;
-    private List<string> ABC;
-    private List<string> ABCD;
-    private List<string> ABCDE;
-    private List<string> ABCDEF;
-    private int numParticles = 0;
+
+    private Camera mainCamera;
+    private CSVWriter csvWriter;
+    int lastNumber0;
+    int lastNumber1;
+
 
     private void Start()
     {
+        list = new List<string>() { "2", "3", "4", "5", "6", "7"};
         result = new List<string>();
-        AB = new List<string>() { "2", "3"};
-        ABC = new List<string>() { "2", "3", "4"};
-        ABCD = new List<string>() { "2", "3", "4", "5" };
-        ABCDE = new List<string>() { "2", "3", "4", "5", "6" };
-        ABCDEF = new List<string>() { "2", "3", "4", "5", "6", "7" };
-    }
 
-    public void OnValueChanged(int dropDownValue)
-    {
-        numParticles = dropDownValue;
-    }
+        mainCamera = Camera.main;
+        csvWriter = mainCamera.GetComponent<CSVWriter>();
 
-    public void GeneratePatterns()
-    {
-        switch (numParticles)
-        {
-            case 0: // 4 particles (2! = 2 patterns)
-                permutation(AB, result);
-                break;
-            case 1: // 5 particles (3! = 6 patterns)
-                permutation(ABC, result);
-                break;
-            case 2: // 6 particles (4! = 24 patterns)
-                permutation(ABCD, result);
-                break;
-            case 3: // 7 particles (5! = 120 patterns)
-                permutation(ABCDE, result);
-                break;
-            case 4: // 8 particles (6! = 720 patterns)
-                permutation(ABCDEF, result);
-                break;
-        }
+        permutation(list, result);
     }
 
     private void permutation(List<string> list, List<string> result)
@@ -57,22 +30,34 @@ public class Permutation : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             result.Add(list[i]);
-            list.RemoveAt(i);
+            lastNumber0 = i;
 
-            if (count >= 2)
+            for (int j = 0; j < count; j++)
             {
-                permutation(list, result);
-                list.Insert(i, result[result.Count - 1]);
+                if (j == lastNumber0) continue;
+                result.Add(list[j]);
+                lastNumber1 = j;
+
+                for (int k = 0; k < count; k++)
+                {
+                    if (k == lastNumber1) continue;
+                    result.Add(list[k]);
+
+                    string[] tmp = result.ToArray();
+                    Debug.Log(string.Join(",", tmp));
+
+                    result.RemoveAt(result.Count - 1);
+                }
+
                 result.RemoveAt(result.Count - 1);
             }
-
-            if (count == 1)
-            {
-                string[] tmp = result.ToArray();
-                Debug.Log(string.Join(",", tmp));
-                list.Insert(i, result[result.Count - 1]);
-                result.RemoveAt(result.Count - 1);
-            }
+            result.Clear();
         }
+    }
+
+    public void Save(int numParticles)
+    {
+        var testData = new string[] { "\n", "1,2,3", "4,5,6", "7,8,9" };
+        csvWriter.Save(testData, "patternData");
     }
 }

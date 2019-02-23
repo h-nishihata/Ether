@@ -1395,6 +1395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numBoxes: 0
   csvInitLine: 0
+  template: {fileID: 2015424517058669952, guid: 9cfd8dafc464d4a759dff72d07a946a0,
+    type: 3}
+  numMaxPages: 24
   sourceImages:
   - {fileID: 21300000, guid: 72eb10589d39945b18cb195f3cc57b17, type: 3}
   - {fileID: 21300000, guid: 4e040f86243174927b48656defad8524, type: 3}
@@ -1404,9 +1407,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 86307c50ccaf0498c95fe4773f27c320, type: 3}
   - {fileID: 21300000, guid: 3f698a61197864abf93941f2b6403c5d, type: 3}
   - {fileID: 21300000, guid: a89347849c9e64a75a1a78c76641724c, type: 3}
-  template: {fileID: 2015424517058669952, guid: 9cfd8dafc464d4a759dff72d07a946a0,
-    type: 3}
-  numMaxPages: 24
 --- !u!1 &1904527111
 GameObject:
   m_ObjectHideFlags: 0
