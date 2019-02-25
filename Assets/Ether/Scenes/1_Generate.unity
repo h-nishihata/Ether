@@ -495,7 +495,6 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669907}
   - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
@@ -577,19 +576,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7159477972d46c194d3a4f966de337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &534669907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a747d44988fb04d8ea30160c83c079db, type: 3}
+  m_Script: {fileID: 11500000, guid: 16a1f705ad9674b13bcac6d5b77678f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &646224962
@@ -924,7 +911,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534669906}
-        m_MethodName: OnButtonPressed
+        m_MethodName: ManualStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

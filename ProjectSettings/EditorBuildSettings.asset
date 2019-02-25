@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Ether/Scenes/0_Title.unity
     guid: 911cad508858e42829a2bedb6d3ea2f7
   - enabled: 0
-    path: Assets/Ether/Scenes/1_Select.unity
+    path: Assets/Ether/Scenes/1_Generate.unity
     guid: d2eecfdf350da49ac9149c3c5c183550
   - enabled: 1
     path: Assets/Ether/Scenes/2_Swipe.unity

@@ -1,63 +1,81 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Text;
 
 public class Permutation : MonoBehaviour
 {
     private List<string> list;
-    private List<string> result;
-
-    private Camera mainCamera;
-    private CSVWriter csvWriter;
+    private List<string> tempResult;
+    private int numParicles;
     int lastNumber0;
     int lastNumber1;
 
+    private Camera mainCamera;
+    private CSVWriter csvWriter;
 
-    private void Start()
+    private List<string> result;
+
+
+    public void OnValueChanged(int dromDownValue)
+    {
+        numParicles = dromDownValue;
+    }
+
+    public void ManualStart()
     {
         list = new List<string>() { "2", "3", "4", "5", "6", "7"};
+        tempResult = new List<string>();
         result = new List<string>();
 
         mainCamera = Camera.main;
         csvWriter = mainCamera.GetComponent<CSVWriter>();
 
-        permutation(list, result);
+        GeneratePatterns();
     }
 
-    private void permutation(List<string> list, List<string> result)
+    public void GeneratePatterns()
     {
         int count = list.Count;
 
         for (int i = 0; i < count; i++)
         {
-            result.Add(list[i]);
+            tempResult.Add(list[i]);
             lastNumber0 = i;
 
             for (int j = 0; j < count; j++)
             {
                 if (j == lastNumber0) continue;
-                result.Add(list[j]);
+                tempResult.Add(list[j]);
                 lastNumber1 = j;
 
                 for (int k = 0; k < count; k++)
                 {
                     if (k == lastNumber1) continue;
-                    result.Add(list[k]);
+                    tempResult.Add(list[k]);
 
-                    string[] tmp = result.ToArray();
-                    Debug.Log(string.Join(",", tmp));
-
-                    result.RemoveAt(result.Count - 1);
+                    Save(tempResult);
+                    tempResult.RemoveAt(tempResult.Count - 1);
                 }
 
-                result.RemoveAt(result.Count - 1);
+                tempResult.RemoveAt(tempResult.Count - 1);
             }
-            result.Clear();
+            tempResult.Clear();
         }
     }
 
-    public void Save(int numParticles)
+    public void Save(List<string> tempResult)
     {
-        var testData = new string[] { "\n", "1,2,3", "4,5,6", "7,8,9" };
-        csvWriter.Save(testData, "patternData");
+        //result.Add("\n");
+        result.Add("1");
+        for (int i = 0; i < tempResult.Count; i++)
+        {
+            result.Add(tempResult[i]);
+        }
+        result.Add("8");
+        var temp = result.ToArray();
+        Debug.Log(string.Join(",", temp));
+        result.Clear();
+        //stringArray = new string[] { "\n", "1,2,3", "4,5,6", "7,8,9" };
+        //csvWriter.Save(stringArray, "patternData");
     }
 }
