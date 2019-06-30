@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class CSVReader : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class CSVReader : MonoBehaviour
     private SetParticleImages[] imageSetter;
     public Sprite[] sourceImages;
 
+    public Slider slider;
 
     void Awake()
     {
@@ -65,8 +67,9 @@ public class CSVReader : MonoBehaviour
         SetPages(numPages);
     }
 
-    public void OnValueChanged(int dropDownValue)
+    public void OnValueChanged()
     {
+        var dropDownValue = (int)slider.value;
         switch (dropDownValue)
         {
             case 0: // 4 particles

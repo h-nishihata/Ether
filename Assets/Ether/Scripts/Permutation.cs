@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Text;
 
 public class Permutation : MonoBehaviour
 {
     private List<string> list;
     private List<string> tempResult;
+    private List<string> result;
+
     private int numParicles;
     int lastNumber0;
     int lastNumber1;
@@ -13,8 +14,7 @@ public class Permutation : MonoBehaviour
     private Camera mainCamera;
     private CSVWriter csvWriter;
 
-    private List<string> result;
-
+    int iterCount;
 
     public void OnValueChanged(int dromDownValue)
     {
@@ -23,7 +23,7 @@ public class Permutation : MonoBehaviour
 
     public void ManualStart()
     {
-        list = new List<string>() { "2", "3", "4", "5", "6", "7"};
+        list = new List<string>() { "2", "3"/*, "4", "5", "6", "7"*/};
         tempResult = new List<string>();
         result = new List<string>();
 
@@ -35,31 +35,48 @@ public class Permutation : MonoBehaviour
 
     public void GeneratePatterns()
     {
-        int count = list.Count;
-
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             tempResult.Add(list[i]);
             lastNumber0 = i;
 
-            for (int j = 0; j < count; j++)
+            for (int j = 0; j < list.Count; j++)
             {
-                if (j == lastNumber0) continue;
+                //if (j == lastNumber0) continue;
                 tempResult.Add(list[j]);
                 lastNumber1 = j;
 
-                for (int k = 0; k < count; k++)
+                if (iterCount < 1)
                 {
-                    if (k == lastNumber1) continue;
-                    tempResult.Add(list[k]);
-
-                    Save(tempResult);
-                    tempResult.RemoveAt(tempResult.Count - 1);
+                    iterCount = 1;
+                    Debug.Log("<color=red>iterCount: </color>" + iterCount);
+                    GeneratePatterns();
                 }
+                //for (int k = 0; k < count; k++)
+                //{
+                //    if (k == lastNumber1) continue;
+                //    tempResult.Add(list[k]);
+                //if(tempResult.Count == 4)
+                    Save(tempResult);
+                //    tempResult.RemoveAt(tempResult.Count - 1);
+                //}
 
                 tempResult.RemoveAt(tempResult.Count - 1);
             }
-            tempResult.Clear();
+            iterCount++;
+            Debug.Log("<color=red>iterCount: </color>" + iterCount);
+
+            tempResult.RemoveAt(tempResult.Count - 1);
+            if (iterCount == 3)
+            {
+                iterCount = 0;
+            }
+            //if (iterCount > list.Count * 2)
+            //{
+            //    tempResult.Clear();
+            //    iterCount = 0;
+            //    Debug.Log("<color=red>iterCount: </color>" + iterCount);
+            //}
         }
     }
 
@@ -72,9 +89,11 @@ public class Permutation : MonoBehaviour
             result.Add(tempResult[i]);
         }
         result.Add("8");
+
         var temp = result.ToArray();
         Debug.Log(string.Join(",", temp));
         result.Clear();
+
         //stringArray = new string[] { "\n", "1,2,3", "4,5,6", "7,8,9" };
         //csvWriter.Save(stringArray, "patternData");
     }
