@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
+    public string fileName = "patternData";
     public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
 
     private int numPages;
@@ -17,7 +18,7 @@ public class CSVReader : MonoBehaviour
 
     public GameObject template;
     private GameObject[] pages;
-    public int numMaxPages = 24;
+    private int numMaxPages = 50;
     private SetParticleImages[] imageSetter;
     public Sprite[] sourceImages;
 
@@ -25,7 +26,7 @@ public class CSVReader : MonoBehaviour
 
     void Awake()
     {
-        csvFile = Resources.Load("patternData") as TextAsset; // Resouces下のCSV読み込み.
+        csvFile = Resources.Load(fileName) as TextAsset; // Resouces下のCSV読み込み.
         StringReader reader = new StringReader(csvFile.text);
 
         // ","で分割しつつ一行ずつ読み込み，リストに追加していく.

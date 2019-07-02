@@ -9,7 +9,7 @@ public class SetParticleImages : MonoBehaviour
     public int pageID;
 
     public GameObject[] particles;
-    public int numMaxBoxes = 6;
+    public int numMaxBoxes = 9;
     private int numBoxes;
     private int initLine;
     public Image[] images;
@@ -41,18 +41,25 @@ public class SetParticleImages : MonoBehaviour
     {
         for (int i = 0; i < numMaxBoxes; i++)
         {
-            if (i < numBoxes)
-            {
-                images[i].color = Color.white;
+            //if (i < numBoxes)
+            //{
+                //images[i].color = Color.white;
                 var numImages = csvReader.csvData[initLine + pageID][i];
-                lotNumber.Append(numImages);
-                var imageID = Int32.Parse(numImages);
-                images[i].sprite = csvReader.sourceImages[imageID - 1];
-            }
-            else if(i >= numBoxes)
-            {
-                images[i].color = fillColor;
-            }
+                if (numImages != "0")
+                {
+                    lotNumber.Append(numImages);
+                    var imageID = Int32.Parse(numImages);
+                    images[i].sprite = csvReader.sourceImages[imageID - 1];
+                }
+                else// if(i >= numBoxes)
+                {
+                    images[i].color = fillColor;
+                }
+            //}
+            //else// if(i >= numBoxes)
+            //{
+            //    images[i].color = fillColor;
+            //}
         }
 
         number.text = lotNumber.ToString();
