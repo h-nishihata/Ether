@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CSVReader : MonoBehaviour
 {
@@ -62,7 +63,8 @@ public class CSVReader : MonoBehaviour
             imageSetter[i].WarmUp();
         }
 
-        numPages = 2;
+        var scene = SceneManager.GetActiveScene().name;
+        numPages = scene == "1_Generate" ? 2 : 49;
         numBoxes = 4;
         csvInitLine = 1;
         SetPages(numPages);
