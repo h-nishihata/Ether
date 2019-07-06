@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039274527365948892}
+  - component: {fileID: 7497723446331192933}
   - component: {fileID: 4932538295514956427}
   m_Layer: 0
   m_Name: Sculpture
@@ -50,6 +51,24 @@ RectTransform:
   m_AnchoredPosition: {x: 621, y: -1344}
   m_SizeDelta: {x: 1242, y: 2688}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7497723446331192933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220537073146224147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bffadaf054cd48d292d5fe62a3c206f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageID: 0
+  particles: []
+  numMaxBoxes: 9
+  images: []
+  fillColor: {r: 0, g: 0, b: 0, a: 0}
+  number: {fileID: 0}
 --- !u!114 &4932538295514956427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052035a5d3ad043a19ad907b7e4c4373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelSetter: {fileID: 7497723446331192933}
 --- !u!1 &525136734425429470
 GameObject:
   m_ObjectHideFlags: 0

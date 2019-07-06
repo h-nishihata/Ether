@@ -1,50 +1,55 @@
-﻿ using UnityEngine;
- using System.Collections;
+﻿using UnityEngine;
+using DG.Tweening;
  
- public class SpinLogic : MonoBehaviour {
- 
-     float f_lastX = 0.0f;
-     float f_difX = 0.5f;
-     float f_steps = 0.0f;
-     int i_direction = 1;
- 
-     // Use this for initialization
-     void Start () 
-     {
-         
-     }
-     
-     // Update is called once per frame
-     void Update () 
-     {
-         if (Input.GetMouseButtonDown(0))
-         {
-             f_difX = 0.0f;
-         }
-         else if (Input.GetMouseButton(0))
-         {
-             f_difX = Mathf.Abs(f_lastX - Input.GetAxis ("Mouse Y"));
- 
-             if (f_lastX < Input.GetAxis ("Mouse Y"))
-             {
-                 i_direction = -1;
-                 transform.Rotate(Vector3.right, -f_difX);
-             }
- 
-             if (f_lastX > Input.GetAxis ("Mouse Y"))
-             {
-                 i_direction = 1;
-                 transform.Rotate(Vector3.right, f_difX);
-             }
- 
-             f_lastX = -Input.GetAxis ("Mouse Y");
-         }
-         else 
-         {
-             if (f_difX > 0.5f) f_difX -= 0.05f;
-             if (f_difX < 0.5f) f_difX += 0.05f;
- 
-             transform.Rotate(Vector3.right, f_difX * i_direction);
-         }
-     }
- }
+public class SpinLogic : MonoBehaviour { 
+    float lastX = 0.0f;
+    float difX = 0.5f;
+    int direction = 1;
+    private bool b;
+    public TurnPage pageSwitcher;
+    public SetParticleModels modelSetter;
+    private int pageID;
+
+    private void Start()
+    {
+        pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
+        pageID = modelSetter.pageID;
+    }
+
+    void Update ()
+    {
+        if (pageSwitcher.currentPage - 1 != pageID)
+            return;
+
+        if (Input.GetMouseButton(0))
+        {
+            difX = Mathf.Abs(lastX - Input.GetAxis ("Mouse Y"));
+
+            if (lastX < Input.GetAxis ("Mouse Y"))
+            {
+                direction = -1;
+                transform.Rotate(Vector3.right, -difX);
+            }
+
+            if (lastX > Input.GetAxis ("Mouse Y"))
+            {
+                direction = 1;
+                transform.Rotate(Vector3.right, difX);
+            }
+
+            lastX = -Input.GetAxis ("Mouse Y");
+
+            b = true;
+        }
+        else
+        {
+            if (!b)
+                return;
+
+            if (difX > 0f) difX -= 0.01f;
+            if (difX < 0f) difX += 0.01f;
+
+            transform.Rotate(Vector3.right, difX * direction);
+        }
+    }
+}

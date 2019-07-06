@@ -11,7 +11,6 @@ public class CSVReader3D : MonoBehaviour
     public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
 
     private int numPages;
-    //public int numBoxes;
     public int csvInitLine;
 
     private RectTransform list;
@@ -20,7 +19,7 @@ public class CSVReader3D : MonoBehaviour
     public GameObject template;
     private GameObject[] pages;
     private int numMaxPages = 100;
-    private SetParticleImages[] imageSetter;
+    private SetParticleModels[] modelSetter;
     public Sprite[] sourceImages;
 
     public Slider slider;
@@ -56,16 +55,15 @@ public class CSVReader3D : MonoBehaviour
 
     void Start()
     {
-        //imageSetter = new SetParticleImages[pages.Length];
-        //for (int i = 0; i < pages.Length; i++)
-        //{
-        //    imageSetter[i] = pages[i].GetComponent<SetParticleImages>();
-        //    imageSetter[i].WarmUp();
-        //}
+        modelSetter = new SetParticleModels[pages.Length];
+        for (int i = 0; i < pages.Length; i++)
+        {
+            modelSetter[i] = pages[i].GetComponentInChildren<SetParticleModels>();
+        }
 
         var scene = SceneManager.GetActiveScene().name;
         numPages = scene == "2_Archives" ? 58 : 2;
-        //numBoxes = 4;
+
         csvInitLine = 1;
         SetPages(numPages);
     }
@@ -77,17 +75,14 @@ public class CSVReader3D : MonoBehaviour
         {
             case 0: // 4 particles
                 numPages = 2;
-                //numBoxes = 4;
                 csvInitLine = 1;
                 break;
             case 1: // 5 particles
                 numPages = 6;
-                //numBoxes = 5;
                 csvInitLine = 4;
                 break;
             case 2: // 6 particles
                 numPages = 24;
-                //numBoxes = 6;
                 csvInitLine = 11;
                 break;
         }
@@ -108,8 +103,7 @@ public class CSVReader3D : MonoBehaviour
         }
         for (int i = 0; i < activePages; i++)
         {
-            //imageSetter[i].pageID = i;
-            //imageSetter[i].Trigger();
+            modelSetter[i].pageID = i;
             pages[i].SetActive(true);
         }
     }
