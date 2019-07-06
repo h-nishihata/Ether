@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Permutation : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class Permutation : MonoBehaviour
     private List<string> result;
 
     private int numParicles;
-    int lastNumber0;
-    int lastNumber1;
+    private string lastNumber;
 
     private Camera mainCamera;
     private CSVWriter csvWriter;
 
     int iterCount;
+
 
     public void OnValueChanged(int dromDownValue)
     {
@@ -37,10 +38,17 @@ public class Permutation : MonoBehaviour
     {
         for (int i = 0; i < list.Count; i++)
         {
+            if (tempResult.Count > 0)
+            {
+                if (list[i] == tempResult[tempResult.Count - 1])
+                    continue;
+            }
             tempResult.Add(list[i]);
 
             for (int j = 0; j < list.Count; j++)
             {
+                if (list[j] == tempResult[tempResult.Count - 1])
+                    continue;
                 tempResult.Add(list[j]);
 
                 if (iterCount < 1)
@@ -57,7 +65,10 @@ public class Permutation : MonoBehaviour
 
             if (i == list.Count - 1)
             {
-                iterCount = 0;
+                //if (iterCount < 2)
+                //    iterCount++;
+                //else
+                    iterCount = 0;
                 //Debug.Log("<color=red>reset: </color>" + iterCount);
             }
         }

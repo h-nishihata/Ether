@@ -36,8 +36,8 @@ public class TurnPage : MonoBehaviour
             {
                 this.currentPage++;
                 this.moveAnimation = this.rectTransform
-                    .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, 0.5f)
-                    .Play();
+                .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, 0.5f)
+                .Play();
             });
 
         // back
@@ -49,8 +49,8 @@ public class TurnPage : MonoBehaviour
             {
                 this.currentPage--;
                 this.moveAnimation = this.rectTransform
-                    .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, 0.5f)
-                    .Play();
+                .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, 0.5f)
+                .Play();
             });
 
         // last page

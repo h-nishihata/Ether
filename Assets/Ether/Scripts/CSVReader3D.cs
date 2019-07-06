@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CSVReader : MonoBehaviour
+public class CSVReader3D : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     public string fileName = "patternData";
@@ -56,12 +56,12 @@ public class CSVReader : MonoBehaviour
 
     void Start()
     {
-        imageSetter = new SetParticleImages[pages.Length];
-        for (int i = 0; i < pages.Length; i++)
-        {
-            imageSetter[i] = pages[i].GetComponent<SetParticleImages>();
-            imageSetter[i].WarmUp();
-        }
+        //imageSetter = new SetParticleImages[pages.Length];
+        //for (int i = 0; i < pages.Length; i++)
+        //{
+        //    imageSetter[i] = pages[i].GetComponent<SetParticleImages>();
+        //    imageSetter[i].WarmUp();
+        //}
 
         var scene = SceneManager.GetActiveScene().name;
         numPages = scene == "2_Archives" ? 58 : 2;
@@ -108,8 +108,8 @@ public class CSVReader : MonoBehaviour
         }
         for (int i = 0; i < activePages; i++)
         {
-            imageSetter[i].pageID = i;
-            imageSetter[i].Trigger();
+            //imageSetter[i].pageID = i;
+            //imageSetter[i].Trigger();
             pages[i].SetActive(true);
         }
     }

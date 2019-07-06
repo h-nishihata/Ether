@@ -10,7 +10,7 @@ public class SetParticleImages : MonoBehaviour
 
     public GameObject[] particles;
     public int numMaxBoxes = 9;
-    private int numBoxes;
+    //private int numBoxes;
     private int initLine;
     public Image[] images;
     public Color fillColor;
@@ -30,7 +30,7 @@ public class SetParticleImages : MonoBehaviour
 
     public void Trigger()
     {
-        numBoxes = csvReader.numBoxes;
+        //numBoxes = csvReader.numBoxes;
         initLine = csvReader.csvInitLine;
 
         lotNumber.Clear();
@@ -43,7 +43,7 @@ public class SetParticleImages : MonoBehaviour
         {
             //if (i < numBoxes)
             //{
-                //images[i].color = Color.white;
+                images[i].color = Color.white;
                 var numImages = csvReader.csvData[initLine + pageID][i];
                 if (numImages != "0")
                 {
