@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -373,6 +374,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a361ff4326344bfa048cbef9f06a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureMat: {fileID: 2100000, guid: c1ff725a03e4f4e0193fff9a4834a6d8, type: 2}
+  textures:
+  - {fileID: 2800000, guid: 78a59ca99f8987941adb61f9e14a06a7, type: 3}
+  - {fileID: 2800000, guid: df944f9742b8348a0bbaef37d108bb5c, type: 3}
+  - {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &559543971
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +733,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 534669906}
         m_MethodName: SetTextureB
         m_Mode: 1
         m_Arguments:
@@ -1096,7 +1114,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 534669906}
         m_MethodName: SetDefaultTexture
         m_Mode: 1
         m_Arguments:
@@ -1502,7 +1520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 534669906}
         m_MethodName: SetTextureA
         m_Mode: 1
         m_Arguments:

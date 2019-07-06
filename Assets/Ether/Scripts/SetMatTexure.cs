@@ -1,35 +1,28 @@
-﻿//Attach this script to your GameObject (make sure it has a Renderer component)
-//Click on the GameObject. Attach your own Textures in the GameObject’s Inspector.
-
-//This script takes your GameObject’s material and changes its Normal Map, Albedo, and Metallic properties to the Textures you attach in the GameObject’s Inspector. This happens when you enter Play Mode
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SetMatTexure : MonoBehaviour {
 
-    //Set these Textures in the Inspector
-    public Texture m_MainTexture, m_Normal, m_Metal;
-    Renderer m_Renderer;
+    public Material textureMat;
+    public Texture[] textures;
+
 
     // Use this for initialization
     void Start () {
-        //Fetch the Renderer from the GameObject
-        m_Renderer = GetComponent<Renderer> ();
-        m_Renderer.material.SetTexture("_MainTex", m_MainTexture);
+        textureMat.SetTexture("_MainTex", textures[0]);
     }
 
     public void SetDefaultTexture()
     {
-        m_Renderer.material.SetTexture("_MainTex", m_MainTexture);
+        textureMat.SetTexture("_MainTex", textures[0]);
     }
 
     public void SetTextureA()
     {
-        m_Renderer.material.SetTexture("_MainTex", m_Normal);
+        textureMat.SetTexture("_MainTex", textures[1]);
     }
 
     public void SetTextureB()
     {
-        m_Renderer.material.SetTexture("_MainTex", m_Metal);
+        textureMat.SetTexture("_MainTex", textures[2]);
     }
 }
