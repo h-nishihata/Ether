@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using DG.Tweening;
  
 public class SpinLogic : MonoBehaviour { 
-    float lastX = 0.0f;
-    float difX = 0.5f;
+    float lastY = 0.0f;
+    float difY = 0.5f;
     int direction = 1;
-    private bool b;
+    private bool userHasTouched;
     public TurnPage pageSwitcher;
     public SetParticleModels modelSetter;
     private int pageID;
@@ -19,37 +18,42 @@ public class SpinLogic : MonoBehaviour {
     void Update ()
     {
         if (pageSwitcher.currentPage - 1 != pageID)
-            return;
-
-        if (Input.GetMouseButton(0))
         {
-            difX = Mathf.Abs(lastX - Input.GetAxis ("Mouse Y"));
-
-            if (lastX < Input.GetAxis ("Mouse Y"))
-            {
-                direction = -1;
-                transform.Rotate(Vector3.right, -difX);
-            }
-
-            if (lastX > Input.GetAxis ("Mouse Y"))
-            {
-                direction = 1;
-                transform.Rotate(Vector3.right, difX);
-            }
-
-            lastX = -Input.GetAxis ("Mouse Y");
-
-            b = true;
+            transform.rotation = Quaternion.identity;
         }
         else
         {
-            if (!b)
-                return;
 
-            if (difX > 0f) difX -= 0.01f;
-            if (difX < 0f) difX += 0.01f;
+            if (Input.GetMouseButton(0))
+            {
+                difY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
 
-            transform.Rotate(Vector3.right, difX * direction);
+                if (lastY < Input.GetAxis("Mouse Y"))
+                {
+                    direction = -1;
+                    transform.Rotate(Vector3.right, -difY);
+                }
+
+                if (lastY > Input.GetAxis("Mouse Y"))
+                {
+                    direction = 1;
+                    transform.Rotate(Vector3.right, difY);
+                }
+
+                lastY = -Input.GetAxis("Mouse Y");
+
+                userHasTouched = true;
+            }
+            else
+            {
+                if (!userHasTouched)
+                    return;
+
+                if (difY > 0f) difY -= 0.01f;
+                if (difY < 0f) difY += 0.01f;
+
+                transform.Rotate(Vector3.right, difY * direction);
+            }
         }
     }
 }

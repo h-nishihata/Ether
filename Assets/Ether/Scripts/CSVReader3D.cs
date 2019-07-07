@@ -20,7 +20,7 @@ public class CSVReader3D : MonoBehaviour
     private GameObject[] pages;
     private int numMaxPages = 100;
     private SetParticleModels[] modelSetter;
-    public Sprite[] sourceImages;
+    public MeshFilter[] sourceMeshes;
 
     public Slider slider;
 
@@ -59,6 +59,7 @@ public class CSVReader3D : MonoBehaviour
         for (int i = 0; i < pages.Length; i++)
         {
             modelSetter[i] = pages[i].GetComponentInChildren<SetParticleModels>();
+            modelSetter[i].WarmUp();
         }
 
         var scene = SceneManager.GetActiveScene().name;
@@ -104,6 +105,7 @@ public class CSVReader3D : MonoBehaviour
         for (int i = 0; i < activePages; i++)
         {
             modelSetter[i].pageID = i;
+            modelSetter[i].Trigger();
             pages[i].SetActive(true);
         }
     }

@@ -5,64 +5,51 @@ using UnityEngine.UI;
 
 public class SetParticleModels : MonoBehaviour
 {
-    private CSVReader csvReader;
+    private CSVReader3D csvReader;
     public int pageID;
 
-    public GameObject[] particles;
-    public int numMaxBoxes = 9;
+    public Transform[] particles;
+    private int numMaxBoxes = 13;
     //private int numBoxes;
     private int initLine;
-    public Image[] images;
+    public MeshFilter[] meshes;
     public Color fillColor;
 
     public Text number;
     private StringBuilder lotNumber = new StringBuilder();
-    /*
+
     public void WarmUp()
     {
-        csvReader = transform.parent.GetComponent<CSVReader>();
-        images = new Image[particles.Length];
+        csvReader = GameObject.FindWithTag("List").GetComponent<CSVReader3D>();
+        meshes = new MeshFilter[particles.Length];
         for (int i = 0; i < particles.Length; i++)
         {
-            images[i] = particles[i].GetComponent<Image>();
+            meshes[i] = particles[i].GetComponent<MeshFilter>();
         }
     }
 
     public void Trigger()
     {
-        //numBoxes = csvReader.numBoxes;
         initLine = csvReader.csvInitLine;
-
         lotNumber.Clear();
-        SetImages();
+        SetMeshes();
     }
 
-    private void SetImages()
+    private void SetMeshes()
     {
         for (int i = 0; i < numMaxBoxes; i++)
         {
-            //if (i < numBoxes)
-            //{
-                images[i].color = Color.white;
-                var numImages = csvReader.csvData[initLine + pageID][i];
-                if (numImages != "0")
-                {
-                    lotNumber.Append(numImages);
-                    var imageID = Int32.Parse(numImages);
-                    images[i].sprite = csvReader.sourceImages[imageID - 1];
-                }
-                else// if(i >= numBoxes)
-                {
-                    images[i].color = fillColor;
-                }
-            //}
-            //else// if(i >= numBoxes)
-            //{
-            //    images[i].color = fillColor;
-            //}
-        }
+            meshes[i].mesh.Clear();
 
+            var numImages = csvReader.csvData[initLine + pageID][i];
+            if (numImages != "0")
+            {
+                lotNumber.Append(numImages);
+                var imageID = Int32.Parse(numImages);
+                meshes[i].sharedMesh = csvReader.sourceMeshes[imageID - 1].sharedMesh;
+            }
+        }
         number.text = lotNumber.ToString();
     }
-    */
+
 }
