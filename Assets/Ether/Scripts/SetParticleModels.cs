@@ -13,7 +13,7 @@ public class SetParticleModels : MonoBehaviour
     //private int numBoxes;
     private int initLine;
     public MeshFilter[] meshes;
-    public Color fillColor;
+    private int bottomBoxOffset;
 
     public Text number;
     private StringBuilder lotNumber = new StringBuilder();
@@ -40,8 +40,11 @@ public class SetParticleModels : MonoBehaviour
         for (int i = 0; i < numMaxBoxes; i++)
         {
             meshes[i].mesh.Clear();
-
-            var numImages = csvReader.csvData[initLine + pageID][i];
+        }
+        bottomBoxOffset = (numMaxBoxes - csvReader.numBoxes) / 2;
+        for (int i = bottomBoxOffset; i < bottomBoxOffset + csvReader.numBoxes; i++)
+        {
+            var numImages = csvReader.csvData[initLine + pageID][i - bottomBoxOffset];
             if (numImages != "0")
             {
                 lotNumber.Append(numImages);
@@ -51,5 +54,4 @@ public class SetParticleModels : MonoBehaviour
         }
         number.text = lotNumber.ToString();
     }
-
 }

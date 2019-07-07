@@ -11,6 +11,7 @@ public class CSVReader3D : MonoBehaviour
     public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
 
     private int numPages;
+    public int numBoxes;
     public int csvInitLine;
 
     private RectTransform list;
@@ -64,7 +65,7 @@ public class CSVReader3D : MonoBehaviour
 
         var scene = SceneManager.GetActiveScene().name;
         numPages = scene == "2_Archives" ? 58 : 2;
-
+        numBoxes = 4;
         csvInitLine = 1;
         SetPages(numPages);
     }
@@ -76,14 +77,17 @@ public class CSVReader3D : MonoBehaviour
         {
             case 0: // 4 particles
                 numPages = 2;
+                numBoxes = 4;
                 csvInitLine = 1;
                 break;
             case 1: // 5 particles
                 numPages = 6;
+                numBoxes = 5;
                 csvInitLine = 4;
                 break;
             case 2: // 6 particles
                 numPages = 24;
+                numBoxes = 6;
                 csvInitLine = 11;
                 break;
         }
