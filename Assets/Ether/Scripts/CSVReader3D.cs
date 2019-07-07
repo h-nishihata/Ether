@@ -64,9 +64,9 @@ public class CSVReader3D : MonoBehaviour
         }
 
         var scene = SceneManager.GetActiveScene().name;
-        numPages = scene == "2_Archives" ? 58 : 2;
+        numPages = scene == "2_Archives3D" ? 58 : 2;
         numBoxes = 4;
-        csvInitLine = 1;
+        csvInitLine = 0;
         SetPages(numPages);
     }
 
@@ -78,17 +78,17 @@ public class CSVReader3D : MonoBehaviour
             case 0: // 4 particles
                 numPages = 2;
                 numBoxes = 4;
-                csvInitLine = 1;
+                csvInitLine = 0;
                 break;
             case 1: // 5 particles
                 numPages = 6;
                 numBoxes = 5;
-                csvInitLine = 4;
+                csvInitLine = 2;
                 break;
             case 2: // 6 particles
                 numPages = 24;
                 numBoxes = 6;
-                csvInitLine = 11;
+                csvInitLine = 8;
                 break;
         }
 

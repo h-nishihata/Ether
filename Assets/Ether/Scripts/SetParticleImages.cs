@@ -9,7 +9,7 @@ public class SetParticleImages : MonoBehaviour
     public int pageID;
 
     public GameObject[] particles;
-    public int numMaxBoxes = 9;
+    public int numMaxBoxes = 13;
     //private int numBoxes;
     private int initLine;
     public Image[] images;

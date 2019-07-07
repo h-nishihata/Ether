@@ -10,7 +10,7 @@ public class SetParticleModels : MonoBehaviour
 
     public Transform[] particles;
     private int numMaxBoxes = 13;
-    //private int numBoxes;
+    private int numBoxes;
     private int initLine;
     public MeshFilter[] meshes;
     private int bottomBoxOffset;
@@ -40,18 +40,22 @@ public class SetParticleModels : MonoBehaviour
         for (int i = 0; i < numMaxBoxes; i++)
         {
             meshes[i].mesh.Clear();
-        }
-        bottomBoxOffset = (numMaxBoxes - csvReader.numBoxes) / 2;
-        for (int i = bottomBoxOffset; i < bottomBoxOffset + csvReader.numBoxes; i++)
-        {
-            var numImages = csvReader.csvData[initLine + pageID][i - bottomBoxOffset];
-            if (numImages != "0")
+            var modelNumber = csvReader.csvData[initLine + pageID][i];
+            if (modelNumber != "0")
             {
-                lotNumber.Append(numImages);
-                var imageID = Int32.Parse(numImages);
-                meshes[i].sharedMesh = csvReader.sourceMeshes[imageID - 1].sharedMesh;
+                numBoxes++;
             }
         }
+        bottomBoxOffset = (numMaxBoxes - numBoxes) / 2;
+        for (int i = 0; i < numBoxes; i++)
+        {
+            var numImages = csvReader.csvData[initLine + pageID][i];
+
+                lotNumber.Append(numImages);
+                var imageID = Int32.Parse(numImages);
+                meshes[i + bottomBoxOffset].sharedMesh = csvReader.sourceMeshes[imageID - 1].sharedMesh;
+        }
         number.text = lotNumber.ToString();
+        numBoxes = 0;
     }
 }
