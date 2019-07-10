@@ -193,7 +193,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 9.695324e+10, z: 1e-45, w: 1.39e-43}
+  m_BoundingSphereOverride: {x: 2.2366878e+20, y: -1.7066794e+38, z: 2.3509886e-38,
+    w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1384,7 +1385,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803338965}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1458,19 +1459,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: patternData
-  numBoxes: 0
   csvInitLine: 0
-  template: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
+  pageTemplate: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
     type: 3}
   sourceMeshes:
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
-  - {fileID: 4657492025619517938, guid: bdd6a659939124550bf74d62e9d30429, type: 3}
+  - {fileID: 5293227185063829959, guid: 245814b0dd79d4b4f87a25e622e3d5d6, type: 3}
+  - {fileID: 2080475525185499327, guid: de695b9718a1f48f4822d6f68a9bed84, type: 3}
+  - {fileID: 4890970579952408311, guid: a37c31034814e4b4597784f7db759f7d, type: 3}
+  - {fileID: 3960657846773933211, guid: e1201ed18096e4a269b4c1850ab3d3eb, type: 3}
+  - {fileID: 5974685297786948103, guid: 4cfd8e8c3d1244503b2d978d1725dfb0, type: 3}
+  - {fileID: 9113427654656994868, guid: 3c37d97a922de4e408595e5c30699488, type: 3}
+  - {fileID: 1990745697799576386, guid: cf671f9f38f0f480d93deb2e903afc68, type: 3}
+  - {fileID: 2922890541877730528, guid: 5566741b7e6074fc38201c40c65dc7a7, type: 3}
   slider: {fileID: 559543973}
 --- !u!1 &1848983884
 GameObject:
