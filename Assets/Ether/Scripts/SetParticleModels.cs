@@ -12,12 +12,12 @@ public class SetParticleModels : MonoBehaviour
     private int csvInitLine;
     public int pageID;
 
-    public Transform[] particles;
-    public MeshFilter[] meshFilters;
-    //private int numMaxBoxes = 13;
-    private int numBoxes;
-    //private int bottomBoxOffset;
-    public Vector3[] offsetValues;
+    public Transform[] particles; // 粒のモデルのテンプレート.メッシュのみを変更して使用する.
+    private MeshFilter[] meshFilters;
+    [Range(1, 4)]
+    public int scaleMultiplier = 4;
+    private int numActiveBoxes;
+    public Vector3[] offsetPositions;
 
     public Text number;
     private StringBuilder lotNumber = new StringBuilder();
@@ -43,26 +43,28 @@ public class SetParticleModels : MonoBehaviour
     {
         for (int i = 0; i < particles.Length; i++)
         {
+            particles[i].transform.parent.gameObject.SetActive(true);
             meshFilters[i].mesh.Clear(); // すべての粒のメッシュをクリア.
+
             var modelID = csvReader.csvData[csvInitLine + pageID][i];
             if (modelID != "0")
             {
-                numBoxes++;
+                numActiveBoxes++;
             }
-            //}
-            //bottomBoxOffset = (particles.Length - numBoxes) / 2;
-            //for (int i = 0; i < numBoxes; i++)
-            //{
-            //var modelNumber = csvReader.csvData[csvInitLine + pageID][i];
-            if (i > numBoxes - 1)
+
+            if (i > numActiveBoxes - 1)
+            {
+                particles[i].transform.parent.gameObject.SetActive(false); // 彫刻の中心を回転の中心を揃えるため，使わないBoxは非アクティブにする.
                 continue;
+            }
 
             lotNumber.Append(modelID); //  「1」と「8」のあいだの番号を生成.
             var dropID = Int32.Parse(modelID);
             meshFilters[i].sharedMesh = csvReader.sourceMeshes[dropID - 1].sharedMesh;
-            particles[i].transform.localPosition = offsetValues[dropID - 1];
+            //offsetPositions[dropID - 1].y *= scaleMultiplier;
+            particles[i].transform.localPosition = offsetPositions[dropID - 1];
         }
         number.text = lotNumber.ToString();
-        numBoxes = 0;
+        numActiveBoxes = 0;
     }
 }

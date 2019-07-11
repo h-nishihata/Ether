@@ -600,9 +600,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: archivedData
-  numBoxes: 0
   csvInitLine: 0
-  template: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
+  pageTemplate: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
     type: 3}
   sourceMeshes:
   - {fileID: 5293227185063829959, guid: 245814b0dd79d4b4f87a25e622e3d5d6, type: 3}
