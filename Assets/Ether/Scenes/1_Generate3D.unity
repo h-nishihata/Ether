@@ -476,7 +476,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1472292205}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 2
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -1462,14 +1462,14 @@ MonoBehaviour:
   pageTemplate: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
     type: 3}
   sourceMeshes:
-  - {fileID: 5293227185063829959, guid: 245814b0dd79d4b4f87a25e622e3d5d6, type: 3}
-  - {fileID: 2080475525185499327, guid: de695b9718a1f48f4822d6f68a9bed84, type: 3}
-  - {fileID: 4890970579952408311, guid: a37c31034814e4b4597784f7db759f7d, type: 3}
-  - {fileID: 3960657846773933211, guid: e1201ed18096e4a269b4c1850ab3d3eb, type: 3}
-  - {fileID: 5974685297786948103, guid: 4cfd8e8c3d1244503b2d978d1725dfb0, type: 3}
-  - {fileID: 9113427654656994868, guid: 3c37d97a922de4e408595e5c30699488, type: 3}
-  - {fileID: 1990745697799576386, guid: cf671f9f38f0f480d93deb2e903afc68, type: 3}
-  - {fileID: 2922890541877730528, guid: 5566741b7e6074fc38201c40c65dc7a7, type: 3}
+  - {fileID: 3331958630026882296, guid: 84252d4a2de9b40f6a742af6d9da80e2, type: 3}
+  - {fileID: 3331958630026882296, guid: 45d7a9fe9831240c4a18c1ba1940c1cb, type: 3}
+  - {fileID: 3331958630026882296, guid: cc5ab670d1b2c46bc893cd2bac4494f1, type: 3}
+  - {fileID: 3331958630026882296, guid: d97743087fb4945c4a55f3acd5a27f45, type: 3}
+  - {fileID: 3331958630026882296, guid: e737cdee4326f4a1b8502c67cdeb2e28, type: 3}
+  - {fileID: 3331958630026882296, guid: 5ed3b0753ee4845ee8d4f0400fb8bfc9, type: 3}
+  - {fileID: 3331958630026882296, guid: 1513b2be0342f47988d7b1d270882b23, type: 3}
+  - {fileID: 3331958630026882296, guid: 61440376f44e44661aa842e893abda31, type: 3}
   slider: {fileID: 559543973}
 --- !u!1 &1848983884
 GameObject:

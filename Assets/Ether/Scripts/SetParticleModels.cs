@@ -35,7 +35,7 @@ public class SetParticleModels : MonoBehaviour
     public void Trigger()
     {
         csvInitLine = csvReader.csvInitLine;
-        lotNumber.Clear();
+        lotNumber.Clear(); // 番号をクリア.
         SetMeshes();
     }
 
@@ -60,10 +60,11 @@ public class SetParticleModels : MonoBehaviour
 
             lotNumber.Append(modelID); //  「1」と「8」のあいだの番号を生成.
             var dropID = Int32.Parse(modelID);
-            meshFilters[i].sharedMesh = csvReader.sourceMeshes[dropID - 1].sharedMesh;
+            meshFilters[i].mesh = csvReader.sourceMeshes[dropID - 1];
             //offsetPositions[dropID - 1].y *= scaleMultiplier;
             particles[i].transform.localPosition = offsetPositions[dropID - 1];
         }
+
         number.text = lotNumber.ToString();
         numActiveBoxes = 0;
     }

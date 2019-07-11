@@ -22,12 +22,12 @@ public class CSVReader3D : MonoBehaviour
     private GameObject[] pages;
     private int numMaxPages = 100;
 
-    //public int numBoxes; //?
-
     private SetParticleModels[] setParticleModels; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
-    public MeshFilter[] sourceMeshes;
+    public Mesh[] sourceMeshes;
 
     public Slider slider;
+    private int sliderValue;
+    private int lastSliderValue;
 
 
     void Awake()
@@ -83,8 +83,12 @@ public class CSVReader3D : MonoBehaviour
     /// </summary>
     public void OnValueChanged()
     {
-        var dropDownValue = (int)slider.value;
-        switch (dropDownValue)
+        sliderValue = (int)slider.value;
+        if (sliderValue == lastSliderValue)
+            return;
+        lastSliderValue = sliderValue;
+
+        switch (sliderValue)
         {
             case 0: // 4 particles
                 numPages = 2;

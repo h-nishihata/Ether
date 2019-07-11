@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3119843226830967002}
   - component: {fileID: 2922890541877730528}
   - component: {fileID: 5994669743869980611}
-  - component: {fileID: 8197435173915682837}
   m_Layer: 0
   m_Name: drop8
   m_TagString: Untagged
@@ -78,16 +77,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8197435173915682837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5079684352736597312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0900e6cb3a6364951a27570f21aff27d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: -668, z: 0}
