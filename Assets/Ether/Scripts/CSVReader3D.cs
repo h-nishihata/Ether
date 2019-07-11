@@ -123,9 +123,9 @@ public class CSVReader3D : MonoBehaviour
         }
         for (int i = 0; i < activePages; i++)
         {
+            pages[i].SetActive(true);
             setParticleModels[i].pageID = i;
             setParticleModels[i].Trigger();
-            pages[i].SetActive(true);
         }
     }
 }

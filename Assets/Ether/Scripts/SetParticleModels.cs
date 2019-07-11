@@ -60,7 +60,7 @@ public class SetParticleModels : MonoBehaviour
             lotNumber.Append(modelID); //  「1」と「8」のあいだの番号を生成.
             var dropID = Int32.Parse(modelID);
             meshFilters[i].sharedMesh = csvReader.sourceMeshes[dropID - 1].sharedMesh;
-            particles[i].transform.position = offsetValues[dropID - 1];
+            particles[i].transform.localPosition = offsetValues[dropID - 1];
         }
         number.text = lotNumber.ToString();
         numBoxes = 0;
