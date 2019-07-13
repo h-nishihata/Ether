@@ -9,25 +9,12 @@ public class SetMatTexure : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        textureMat.SetTexture("_MainTex", textures[0]);
-        textureMat.SetTexture("_BumpMap", normalMaps[0]);
+        this.SetTexture(0);
     }
 
-    public void SetDefaultTexture()
+    public void SetTexture(int matType)
     {
-        textureMat.SetTexture("_MainTex", textures[0]);
-        textureMat.SetTexture("_BumpMap", normalMaps[0]);
-    }
-
-    public void SetTextureA()
-    {
-        textureMat.SetTexture("_MainTex", textures[1]);
-        textureMat.SetTexture("_BumpMap", null);
-    }
-
-    public void SetTextureB()
-    {
-        textureMat.SetTexture("_MainTex", textures[2]);
-        textureMat.SetTexture("_BumpMap", null);
+        textureMat.SetTexture("_MainTex", textures[matType]);
+        textureMat.SetTexture("_BumpMap", normalMaps[matType]);
     }
 }
