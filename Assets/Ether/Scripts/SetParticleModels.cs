@@ -22,13 +22,17 @@ public class SetParticleModels : MonoBehaviour
     public Text number;
     private StringBuilder lotNumber = new StringBuilder();
 
+    SwitchActiveDrops[] switchActiveDrops;
+
     public void ManualStart()
     {
         csvReader = GameObject.FindWithTag("List").GetComponent<CSVReader3D>();
-        meshFilters = new MeshFilter[particles.Length];
+        //meshFilters = new MeshFilter[particles.Length];
+        switchActiveDrops = new SwitchActiveDrops[particles.Length];
         for (int i = 0; i < particles.Length; i++)
         {
-            meshFilters[i] = particles[i].GetComponent<MeshFilter>();
+            //meshFilters[i] = particles[i].GetComponent<MeshFilter>();
+            switchActiveDrops[i] = particles[i].GetComponent<SwitchActiveDrops>();
         }
     }
 
@@ -43,8 +47,8 @@ public class SetParticleModels : MonoBehaviour
     {
         for (int i = 0; i < particles.Length; i++)
         {
-            particles[i].transform.parent.gameObject.SetActive(true);
-            meshFilters[i].mesh.Clear(); // すべての粒のメッシュをクリア.
+            particles[i].transform.gameObject.SetActive(true);
+            //meshFilters[i].mesh.Clear(); // すべての粒のメッシュをクリア.
 
             var modelID = csvReader.csvData[csvInitLine + pageID][i];
             if (modelID != "0")
@@ -54,15 +58,20 @@ public class SetParticleModels : MonoBehaviour
 
             if (i > numActiveBoxes - 1)
             {
-                particles[i].transform.parent.gameObject.SetActive(false); // 彫刻の中心を回転の中心を揃えるため，使わないBoxは非アクティブにする.
+                particles[i].transform.gameObject.SetActive(false); // 彫刻の中心を回転の中心を揃えるため，使わないBoxは非アクティブにする.
                 continue;
             }
 
             lotNumber.Append(modelID); //  「1」と「8」のあいだの番号を生成.
+
+
             var dropID = Int32.Parse(modelID);
-            meshFilters[i].mesh = csvReader.sourceMeshes[dropID - 1];
+
+            switchActiveDrops[i].SetActiveDrops(dropID - 1);
+
+            //meshFilters[i].mesh = csvReader.sourceMeshes[dropID - 1];
             //offsetPositions[dropID - 1].y *= scaleMultiplier;
-            particles[i].transform.localPosition = offsetPositions[dropID - 1];
+            //particles[i].transform.localPosition = offsetPositions[dropID - 1];
         }
 
         number.text = lotNumber.ToString();
