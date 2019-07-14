@@ -6,8 +6,8 @@ TagManager:
   tags:
   - List
   - LotNumber
-  - drop01
   - drop08
+  - drop01
   layers:
   - Default
   - TransparentFX

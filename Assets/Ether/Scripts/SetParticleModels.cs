@@ -66,7 +66,6 @@ public class SetParticleModels : MonoBehaviour
 
 
             var dropID = Int32.Parse(modelID);
-
             switchActiveDrops[i].SetActiveDrops(dropID - 1);
 
             //meshFilters[i].mesh = csvReader.sourceMeshes[dropID - 1];

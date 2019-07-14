@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SwitchActiveDrops : MonoBehaviour
 {
+    public SetParticleModels modelSetter;
     public Transform[] drops;
+
 
     public void SetActiveDrops(int num)
     {
@@ -17,7 +19,7 @@ public class SwitchActiveDrops : MonoBehaviour
         if (drops[num] == null)
             return;
         drops[num].gameObject.SetActive(true);
-        //var yOffset = num == 0 ? 0 : -668;
-        //drops[num].transform.localPosition = new Vector3(0, yOffset, 0);
+        modelSetter.offsetPositions[num].y *= 4;
+        drops[num].transform.localPosition = modelSetter.offsetPositions[num];
     }
 }
