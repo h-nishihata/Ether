@@ -22,17 +22,17 @@ public class SetParticleModels : MonoBehaviour
     public Text number;
     private StringBuilder lotNumber = new StringBuilder();
 
-    SwitchActiveDrops[] switchActiveDrops;
+    SwitchActiveDrop[] switchActiveDrops;
 
     public void ManualStart()
     {
         csvReader = GameObject.FindWithTag("List").GetComponent<CSVReader3D>();
         //meshFilters = new MeshFilter[particles.Length];
-        switchActiveDrops = new SwitchActiveDrops[particles.Length];
+        switchActiveDrops = new SwitchActiveDrop[particles.Length];
         for (int i = 0; i < particles.Length; i++)
         {
             //meshFilters[i] = particles[i].GetComponent<MeshFilter>();
-            switchActiveDrops[i] = particles[i].GetComponent<SwitchActiveDrops>();
+            switchActiveDrops[i] = particles[i].GetComponent<SwitchActiveDrop>();
         }
     }
 
@@ -66,7 +66,7 @@ public class SetParticleModels : MonoBehaviour
 
 
             var dropID = Int32.Parse(modelID);
-            switchActiveDrops[i].SetActiveDrops(dropID - 1);
+            switchActiveDrops[i].Trigger(dropID - 1);
 
             //meshFilters[i].mesh = csvReader.sourceMeshes[dropID - 1];
             //offsetPositions[dropID - 1].y *= scaleMultiplier;
