@@ -85,11 +85,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 220537073146224147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bffadaf054cd48d292d5fe62a3c206f, type: 3}
+  m_Script: {fileID: 11500000, guid: 87e4a38d24882469195c3a068aefebde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pageID: 0
-  particles:
+  boxes:
   - {fileID: 3356215837747684033}
   - {fileID: 1266032135980436329}
   - {fileID: 1229636122882638662}
@@ -103,7 +103,7 @@ MonoBehaviour:
   - {fileID: 388053245787247332}
   - {fileID: 3124814104246799164}
   - {fileID: 8951428394000971356}
-  scaleMultiplier: 4
+  verticalLayoutGroup: {fileID: 8764652283011346078}
   offsetPositions:
   - {x: 0, y: 34, z: 0}
   - {x: 0, y: -568, z: 0}
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 8642947983806112711}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 2138628372158717446}
   - {fileID: 0}
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 3321259206446909890}
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 7078293588554537741}
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 7424148976820653755}
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 7088273444602623298}
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 5905456840152682802}
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 1960677154711110461}
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 9143151365163650266}
@@ -1307,7 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 5967615674938226895}
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 2101908273308871244}
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 7531519911968153735}
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1513896f49cc4770a4ce2be38dd6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSetter: {fileID: 7497723446331192933}
+  setDropModels: {fileID: 7497723446331192933}
   drops:
   - {fileID: 0}
   - {fileID: 6656777191359145051}

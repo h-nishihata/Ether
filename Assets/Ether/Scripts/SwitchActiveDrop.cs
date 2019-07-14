@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SwitchActiveDrop : MonoBehaviour
 {
-    public SetParticleModels modelSetter;
+    public SetDropModels setDropModels;
     public Transform[] drops;
     private Vector3 tempOffset = new Vector3();
 
 
-    public void Trigger(int num)
+    public void Trigger(int id)
     {
         for (int i = 0; i < drops.Length; i++)
         {
@@ -17,13 +15,13 @@ public class SwitchActiveDrop : MonoBehaviour
                 continue;
             drops[i].gameObject.SetActive(false);
         }
-        if (drops[num] == null)
+        if (drops[id] == null)
             return;
-        drops[num].gameObject.SetActive(true);
+        drops[id].gameObject.SetActive(true);
 
-        tempOffset = modelSetter.offsetPositions[num];
+        tempOffset = setDropModels.offsetPositions[id];
         tempOffset.y *= 4;
-        drops[num].transform.localPosition = tempOffset;
+        drops[id].transform.localPosition = tempOffset;
         tempOffset = Vector3.zero;
     }
 }

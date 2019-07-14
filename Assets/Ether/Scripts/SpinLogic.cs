@@ -6,7 +6,7 @@ public class SpinLogic : MonoBehaviour {
     int direction = 1;
     private bool userHasTouched;
     public TurnPage pageSwitcher;
-    public SetParticleModels modelSetter;
+    public SetDropModels modelSetter;
     private int pageID;
 
     private void Start()

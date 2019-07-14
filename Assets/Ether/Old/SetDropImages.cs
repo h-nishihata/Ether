@@ -3,9 +3,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetParticleImages : MonoBehaviour
+public class SetDropImages : MonoBehaviour
 {
-    private CSVReader csvReader;
+    private CSVReader2D csvReader;
     public int pageID;
 
     public GameObject[] particles;
@@ -20,7 +20,7 @@ public class SetParticleImages : MonoBehaviour
 
     public void WarmUp()
     {
-        csvReader = transform.parent.GetComponent<CSVReader>();
+        csvReader = transform.parent.GetComponent<CSVReader2D>();
         images = new Image[particles.Length];
         for (int i = 0; i < particles.Length; i++)
         {

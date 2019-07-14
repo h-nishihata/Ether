@@ -1,38 +1,32 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
+using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Canvasについている，データ読込〜粒の設定までを行うスクリプト.
-/// </summary>
-public class CSVReader3D : MonoBehaviour
+public class CSVReader2D : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     public string fileName = "patternData";
     public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
-    public int csvInitLine;
-
-    private RectTransform list;// 全ページを含む，Canvasの子オブジェクト.
-    private TurnPage pageSwitcher;
 
     private int numPages;
-    public GameObject pageTemplate;
+    //public int numBoxes;
+    public int csvInitLine;
+
+    private RectTransform list;
+    private TurnPage pageSwitcher;
+
+    public GameObject template;
     private GameObject[] pages;
     private int numMaxPages = 100;
-
-    private SetParticleModels[] setParticleModels; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
-    public Mesh[] sourceMeshes;
+    private SetDropImages[] imageSetter;
+    public Sprite[] sourceImages;
 
     public Slider slider;
-    private int sliderValue;
-    private int lastSliderValue;
-
 
     void Awake()
     {
-        #region CSV
         csvFile = Resources.Load(fileName) as TextAsset; // Resouces下のCSV読み込み.
         StringReader reader = new StringReader(csvFile.text);
 
@@ -45,16 +39,15 @@ public class CSVReader3D : MonoBehaviour
 
         // csvDatas[行][列]を指定して値を自由に取り出せる.
         //Debug.Log(csvData[0][1]);
-        #endregion
 
         list = transform.GetComponent<RectTransform>();
         pageSwitcher = transform.GetComponent<TurnPage>();
 
-        // 上限までページを生成し，オブジェクトに名前をつける.
+
         pages = new GameObject[numMaxPages];
         for (int i = 0; i < numMaxPages; i++)
         {
-            pages[i] = Instantiate(pageTemplate);
+            pages[i] = Instantiate(template);
             var p = i < 10 ? "0" + i.ToString() : i.ToString();
             pages[i].name = "page" + p;
             pages[i].transform.SetParent(this.transform);
@@ -63,32 +56,24 @@ public class CSVReader3D : MonoBehaviour
 
     void Start()
     {
-        setParticleModels = new SetParticleModels[pages.Length];
+        imageSetter = new SetDropImages[pages.Length];
         for (int i = 0; i < pages.Length; i++)
         {
-            setParticleModels[i] = pages[i].GetComponentInChildren<SetParticleModels>();
-            setParticleModels[i].ManualStart();
+            imageSetter[i] = pages[i].GetComponent<SetDropImages>();
+            imageSetter[i].WarmUp();
         }
 
-        // 生成シーンとアーカイヴシーンで同じスクリプトを使用しているので，初期ページ数が異なる.
         var scene = SceneManager.GetActiveScene().name;
-        numPages = scene == "2_Archives3D" ? 58 : 2;
-        //numBoxes = 4; //?
+        numPages = scene == "2_Archives" ? 58 : 2;
+        //numBoxes = 4;
         csvInitLine = 0;
         SetPages(numPages);
     }
 
-    /// <summary>
-    /// スライダーから粒の数を変更する.
-    /// </summary>
     public void OnValueChanged()
     {
-        sliderValue = (int)slider.value;
-        if (sliderValue == lastSliderValue)
-            return;
-        lastSliderValue = sliderValue;
-
-        switch (sliderValue)
+        var dropDownValue = (int)slider.value;
+        switch (dropDownValue)
         {
             case 0: // 4 particles
                 numPages = 2;
@@ -113,23 +98,19 @@ public class CSVReader3D : MonoBehaviour
         SetPages(numPages);
     }
 
-    /// <summary>
-    /// 必要分のページを作成する.
-    /// </summary>
-    /// <param name="activePages">アクティヴになっているページの数.</param>
     void SetPages(int activePages)
     {
         pageSwitcher.pageCount = activePages; // ページの端の位置を伝える.
 
         for (int i = 0; i < pages.Length; i++)
         {
-            pages[i].SetActive(false); //一旦すべてのページをオフにする.
+            pages[i].SetActive(false);
         }
         for (int i = 0; i < activePages; i++)
         {
+            imageSetter[i].pageID = i;
+            imageSetter[i].Trigger();
             pages[i].SetActive(true);
-            setParticleModels[i].pageID = i;
-            setParticleModels[i].Trigger();
         }
     }
 }
