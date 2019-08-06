@@ -72,16 +72,27 @@ public class SetDropModels : MonoBehaviour
     {
         switch (numDrops)
         {
+            case 3:
+                //padding = 290;
+                verticalLayoutGroup.padding.top = 350;
+                verticalLayoutGroup.padding.bottom = 230;
+                break;
             case 4:
-                padding = 550;
+                //padding = 240;
+                verticalLayoutGroup.padding.top = 300;
+                verticalLayoutGroup.padding.bottom = 180;
                 break;
             case 5:
-                padding = 350;
+                //padding = 190;
+                verticalLayoutGroup.padding.top = 250;
+                verticalLayoutGroup.padding.bottom = 130;
                 break;
             case 6:
-                padding = 200;
+                //padding = 140;
+                verticalLayoutGroup.padding.top = 200;
+                verticalLayoutGroup.padding.bottom = 80;
                 break;
         }
-        verticalLayoutGroup.padding.top = verticalLayoutGroup.padding.bottom = padding;
+        //verticalLayoutGroup.padding.top = verticalLayoutGroup.padding.bottom = padding;
     }
 }

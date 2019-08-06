@@ -28,6 +28,8 @@ public class CSVReader : MonoBehaviour
     private int sliderValue;
     private int lastSliderValue;
 
+    public Text numDrops;
+
 
     void Awake()
     {
@@ -70,7 +72,7 @@ public class CSVReader : MonoBehaviour
 
         // 生成シーンとアーカイヴシーンで同じスクリプトを使用しているので，初期ページ数が異なる.
         var scene = SceneManager.GetActiveScene().name;
-        numPages = scene == "2_Archives3D" ? 58 : 2;
+        numPages = scene == "2_Archives" ? 58 : 2;
         csvInitLine = 0;
         SetPages(numPages);
     }
