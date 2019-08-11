@@ -40,15 +40,15 @@ public class Permutation : MonoBehaviour
         {
             if (tempResult.Count > 0)
             {
-                if (list[i] == tempResult[tempResult.Count - 1])
-                    continue;
+                //if (list[i] == tempResult[tempResult.Count - 1])
+                    //continue;
             }
             tempResult.Add(list[i]);
 
             for (int j = 0; j < list.Count; j++)
             {
-                if (list[j] == tempResult[tempResult.Count - 1])
-                    continue;
+                //if (list[j] == tempResult[tempResult.Count - 1])
+                    //continue;
                 tempResult.Add(list[j]);
 
                 if (iterCount < 1)
