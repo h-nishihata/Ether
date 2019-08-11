@@ -25,7 +25,7 @@ public class CSVReader : MonoBehaviour
     private SetDropModels[] setDropModels; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
 
     public Slider slider;
-    private int sliderValue;
+    public int sliderValue;
     private int lastSliderValue;
 
     public Text numDrops;

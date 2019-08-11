@@ -20,7 +20,7 @@ public class SetDropModels : MonoBehaviour
     public Vector3[] offsetPositions; // 枠の上下のオフセット値.
     private int padding;
 
-    public Text number;
+    public Text info;
     private StringBuilder lotNumber = new StringBuilder();
 
 
@@ -63,7 +63,7 @@ public class SetDropModels : MonoBehaviour
             switchActiveDrops[i].Trigger(dropID - 1);
         }
 
-        number.text = lotNumber.ToString();
+        SetInfo(lotNumber.ToString());
         AdjustOffsets(numActiveBoxes);
         numActiveBoxes = 0;
     }
@@ -94,5 +94,12 @@ public class SetDropModels : MonoBehaviour
                 break;
         }
         //verticalLayoutGroup.padding.top = verticalLayoutGroup.padding.bottom = padding;
+    }
+
+    void SetInfo(string lotNumber)
+    {
+        info.text = "Number of drops: " + csvReader.sliderValue + "\n" +
+                    "Pattern: " + lotNumber + "\n" +
+                    "Material: " + "\n";
     }
 }
