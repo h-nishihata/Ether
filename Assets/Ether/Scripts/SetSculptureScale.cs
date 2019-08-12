@@ -11,6 +11,7 @@ public class SetSculptureScale : MonoBehaviour
     {
         this.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
         var scale = Screen.width / SetScreenResolution.minimumWidth;
+        sculpture.sizeDelta = new Vector2(Screen.width, Screen.height);
         //sculpture.localScale = new Vector3(scale, scale, scale);
     }
 }
