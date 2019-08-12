@@ -101,5 +101,6 @@ public class SetDropModels : MonoBehaviour
         info.text = "Number of drops: " + csvReader.sliderValue + "\n" +
                     "Pattern: " + lotNumber + "\n" +
                     "Material: " + "\n";
+        info.fontSize = (int)(Screen.width * 0.02f);
     }
 }
