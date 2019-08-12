@@ -9,7 +9,5 @@ public class SelectorBehaviour : MonoBehaviour
     public void MoveTo(int targetNum)
     {
         transform.position = targets[targetNum].position;
-        //gameObject.transform.Translate(targets[targetNum].position * Time.deltaTime);
-        //transform.position = Vector2.MoveTowards(transform.position, targets[targetNum].position, Time.deltaTime);
     }
 }

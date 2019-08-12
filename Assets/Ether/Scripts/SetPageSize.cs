@@ -10,7 +10,7 @@ public class SetPageSize : MonoBehaviour
     void Start()
     {
         this.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
-        var value = Screen.width / 416;
+        var value = Screen.width / SetScreenResolution.referenceWidth;
         sculpture.localScale = new Vector3(value, value, value);
     }
 }

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Canvasについている，データ読込〜粒の設定までを行うスクリプト.
@@ -12,7 +12,9 @@ public class CSVReader : MonoBehaviour
     private TextAsset csvFile; // CSVファイル.
     public string fileName = "patternData";
     public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
-    public int csvInitLine;
+    // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている. この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
+    private int[] csvInitLines = new int[3];
+    int iter;
 
     private RectTransform list;// 全ページを含む，Canvasの子オブジェクト.
     private TurnPage pageSwitcher;
@@ -24,11 +26,8 @@ public class CSVReader : MonoBehaviour
 
     private SetDropModels[] setDropModels; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
 
-    public Slider slider;
-    public int sliderValue;
-    private int lastSliderValue;
-
-    public Text numDrops;
+    public float sliderValue;
+    private float lastSliderValue;
 
 
     void Awake()
@@ -45,6 +44,16 @@ public class CSVReader : MonoBehaviour
 
         // csvDatas[行][列]を指定して値を自由に取り出せる.
         //Debug.Log(csvData[0][1]);
+
+        for (int i = 0; i < csvData.Count; i++)
+        {
+            var value = csvData[i][0];
+            if(value == "===") // CSVファイルの中で区切りの記号を見つけたら.
+            {
+                csvInitLines[iter] = i; // 次の行から粒数が増える目印として登録する.
+                iter++;
+            }
+        }
     }
 
     void Start()
@@ -70,50 +79,47 @@ public class CSVReader : MonoBehaviour
             setDropModels[i].ManualStart();
         }
 
-        // 生成シーンとアーカイヴシーンで同じスクリプトを使用しているので，初期ページ数が異なる.
-        var scene = SceneManager.GetActiveScene().name;
-        numPages = scene == "2_Archives" ? 58 : 2;
-        csvInitLine = 0;
-        SetPages(numPages);
+        SetPages(2, 0);
     }
 
     /// <summary>
     /// スライダーから粒の数を変更する.
     /// </summary>
-    public void OnValueChanged()
+    public void OnValueChanged(float value)
     {
-        sliderValue = (int)slider.value;
+        //sliderValue = (int)slider.value;
+        sliderValue = value;
         if (sliderValue == lastSliderValue)
             return;
         lastSliderValue = sliderValue;
 
         switch (sliderValue)
         {
-            case 0: // 4 particles
+            case 0f: // 4 particles
                 numPages = 2;
-                csvInitLine = 0;
+                iter = 0;
                 break;
-            case 1: // 5 particles
+            case 0.5f: // 5 particles
                 numPages = 6;
-                csvInitLine = 2;
+                iter = 1;
                 break;
-            case 2: // 6 particles
+            case 1f: // 6 particles
                 numPages = 24;
-                csvInitLine = 8;
+                iter = 2;
                 break;
         }
 
         // 1ページ目に戻す.
         list.anchoredPosition = Vector3.zero;
         pageSwitcher.currentPage = 1;
-        SetPages(numPages);
+        SetPages(numPages, iter);
     }
 
     /// <summary>
     /// 必要分のページを有効にする.
     /// </summary>
     /// <param name="activePages">アクティヴになっているページの数.</param>
-    void SetPages(int activePages)
+    void SetPages(int activePages, int iter)
     {
         pageSwitcher.pageCount = activePages; // ページの端の位置を伝える.
 
@@ -125,7 +131,7 @@ public class CSVReader : MonoBehaviour
         {
             pages[i].SetActive(true);
             setDropModels[i].pageID = i;
-            setDropModels[i].Trigger();
+            setDropModels[i].Trigger(csvInitLines[iter]);
         }
     }
 }

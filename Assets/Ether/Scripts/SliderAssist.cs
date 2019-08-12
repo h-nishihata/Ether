@@ -10,6 +10,7 @@ public class SliderAssist : MonoBehaviour
     public  RectTransform fill;
     public Vector2[] fixedPos;
     private Vector2 currentPos;
+    public CSVReader csvReader;
 
 
     void Start()
@@ -33,6 +34,7 @@ public class SliderAssist : MonoBehaviour
     void ToNearest()
     {
         var nearest = fixedPos.OrderBy(x => Mathf.Abs(x.x - currentPos.x)).First();
+        csvReader.OnValueChanged(nearest.x);
         handlePosition.anchorMax = fill.anchorMax = nearest;
         handlePosition.anchorMin = nearest * Vector2.right; // yの値だけ0にして使用する.
     }

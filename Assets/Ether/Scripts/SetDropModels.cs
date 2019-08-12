@@ -34,9 +34,9 @@ public class SetDropModels : MonoBehaviour
         }
     }
 
-    public void Trigger()
+    public void Trigger(int initLine)
     {
-        csvInitLine = csvReader.csvInitLine;
+        csvInitLine = initLine + 1;
         lotNumber.Clear(); // 番号をクリア.
         SetDrops();
     }
