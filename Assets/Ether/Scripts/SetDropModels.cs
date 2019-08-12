@@ -64,10 +64,10 @@ public class SetDropModels : MonoBehaviour
         }
 
         SetInfo(lotNumber.ToString());
-        AdjustOffsets(numActiveBoxes);
+        //AdjustOffsets(numActiveBoxes);
         numActiveBoxes = 0;
     }
-
+    /*
     private void AdjustOffsets(int numDrops)
     {
         switch (numDrops)
@@ -95,7 +95,7 @@ public class SetDropModels : MonoBehaviour
         }
         //verticalLayoutGroup.padding.top = verticalLayoutGroup.padding.bottom = padding;
     }
-
+    */
     void SetInfo(string lotNumber)
     {
         info.text = "Number of drops: " + csvReader.sliderValue + "\n" +
