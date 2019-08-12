@@ -7,9 +7,9 @@
 /// </summary>
 public class SetScreenResolution : MonoBehaviour
 {
-    public int screenWidth = 397;
-    public int screenHeight = 860;
-    public static int referenceWidth = 397;
+    private int screenWidth;
+    private int screenHeight;
+    public static int minimumWidth = 397;
 
     public TurnPage pageSwitcher;
 

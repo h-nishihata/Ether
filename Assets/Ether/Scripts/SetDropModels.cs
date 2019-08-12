@@ -53,7 +53,7 @@ public class SetDropModels : MonoBehaviour
 
             if (i > numActiveBoxes - 1)
             {
-                boxes[i].transform.gameObject.SetActive(false); // 彫刻の中心を回転の中心を揃えるため，使わないBoxは非アクティブにする.
+                boxes[i].transform.gameObject.SetActive(false); // 使わないBoxは非アクティブにする.
                 continue;
             }
 

@@ -7,7 +7,6 @@ public class SetMatTexure : MonoBehaviour {
     public Texture[] normalMaps;
 
 
-    // Use this for initialization
     void Start () {
         this.SetTexture(0);
     }

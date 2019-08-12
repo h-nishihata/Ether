@@ -20,7 +20,7 @@ public class SwitchActiveDrop : MonoBehaviour
         drops[id].gameObject.SetActive(true);
 
         tempOffset = setDropModels.offsetPositions[id];
-        tempOffset.y *= 4;
+        //tempOffset.y *= 4;
         drops[id].transform.localPosition = tempOffset;
         tempOffset = Vector3.zero;
     }
