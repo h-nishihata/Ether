@@ -4,21 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 各ページの子オブジェクトについている，モデル設定のためのスクリプト.
+/// 各ページの子オブジェクトに付いている，必要分のBoxを有効にするスクリプト. 
 /// </summary>
 public class SetDropModels : MonoBehaviour
 {
     private CSVReader csvReader; // シーン内にある，モデル設定のスクリプト.
     private int csvInitLine;
-    public int pageID; // ページ番号.
+    public int pageID; // 自分のページ番号.
 
-    public Transform[] boxes; // 各ページの，粒を入れる枠.
+    public Transform[] boxes; // 各ページの，粒を入れるBox.
     private int numActiveBoxes; // 有効化されているBoxの数.
     private SwitchActiveDrop[] switchActiveDrops; // 各Boxに付いている，どの粒を有効化するかを決めるスクリプト.
 
-    public VerticalLayoutGroup verticalLayoutGroup;
-    public Vector3[] offsetPositions; // 枠の上下のオフセット値.
-    private int padding;
+    public Vector3[] offsetPositions; // 3Dモデルをインポートした時点で付いていたオフセットを相殺するための値.
 
     public Text info;
     private StringBuilder lotNumber = new StringBuilder();
@@ -34,15 +32,12 @@ public class SetDropModels : MonoBehaviour
         }
     }
 
-    public void Trigger(int initLine)
+    public void SetDrops(int initLine)
     {
         csvInitLine = initLine + 1;
         lotNumber.Clear(); // 番号をクリア.
-        SetDrops();
-    }
 
-    private void SetDrops()
-    {
+
         for (int i = 0; i < boxes.Length; i++)
         {
             boxes[i].transform.gameObject.SetActive(true);
@@ -64,41 +59,12 @@ public class SetDropModels : MonoBehaviour
         }
 
         SetInfo(lotNumber.ToString());
-        //AdjustOffsets(numActiveBoxes);
         numActiveBoxes = 0;
     }
-    /*
-    private void AdjustOffsets(int numDrops)
-    {
-        switch (numDrops)
-        {
-            case 3:
-                //padding = 290;
-                verticalLayoutGroup.padding.top = 350;
-                verticalLayoutGroup.padding.bottom = 230;
-                break;
-            case 4:
-                //padding = 240;
-                verticalLayoutGroup.padding.top = 300;
-                verticalLayoutGroup.padding.bottom = 180;
-                break;
-            case 5:
-                //padding = 190;
-                verticalLayoutGroup.padding.top = 250;
-                verticalLayoutGroup.padding.bottom = 130;
-                break;
-            case 6:
-                //padding = 140;
-                verticalLayoutGroup.padding.top = 200;
-                verticalLayoutGroup.padding.bottom = 80;
-                break;
-        }
-        //verticalLayoutGroup.padding.top = verticalLayoutGroup.padding.bottom = padding;
-    }
-    */
+
     void SetInfo(string lotNumber)
     {
-        info.text = "Number of drops: " + csvReader.sliderValue + "\n" +
+        info.text = "Number of drops: " + "\n" +
                     "Pattern: " + lotNumber + "\n" +
                     "Material: " + "\n";
         info.fontSize = (int)(Screen.width * 0.02f);

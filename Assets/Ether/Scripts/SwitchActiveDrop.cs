@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 各Boxに付いている，使用する3Dモデルのみを有効にするためのスクリプト.
+/// </summary>
 public class SwitchActiveDrop : MonoBehaviour
 {
     public SetDropModels setDropModels;
@@ -20,7 +23,6 @@ public class SwitchActiveDrop : MonoBehaviour
         drops[id].gameObject.SetActive(true);
 
         tempOffset = setDropModels.offsetPositions[id];
-        //tempOffset.y *= 4;
         drops[id].transform.localPosition = tempOffset;
         tempOffset = Vector3.zero;
     }

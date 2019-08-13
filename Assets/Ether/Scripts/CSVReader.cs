@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
-/// Canvasについている，データ読込〜粒の設定までを行うスクリプト.
+/// Canvasに付いている，データ読込〜粒の設定までを行うスクリプト.
 /// </summary>
 public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     public string fileName = "patternData";
-    public List<string[]> csvData = new List<string[]>(); // CSVの中身を入れるリスト.
-    // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている. この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
-    private int[] csvInitLines = new int[3];
-    int iter;
+    private int[] csvInitLines = new int[11]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
+                                              // この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
+    private int numInitLines;
+    public List<string[]> csvData = new List<string[]>(); // CSVファイルの中身を入れるリスト.
 
-    private RectTransform list;// 全ページを含む，Canvasの子オブジェクト.
+    private RectTransform list; // 全ページを含む，Canvasの子オブジェクト.
     private TurnPage pageSwitcher;
 
-    private int numPages;
+    private int numPages; // 用意するページ数.
+    private int numMaxPages = 100; // 最大ページ数.
     public GameObject pageTemplate;
     private GameObject[] pages;
-    private int numMaxPages = 100;
 
     private SetDropModels[] setDropModels; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
 
-    public float sliderValue;
-    private float lastSliderValue;
+    private float lastHandlePos;
 
 
     void Awake()
@@ -48,10 +46,10 @@ public class CSVReader : MonoBehaviour
         for (int i = 0; i < csvData.Count; i++)
         {
             var value = csvData[i][0];
-            if(value == "===") // CSVファイルの中で区切りの記号を見つけたら.
+            if(value == "===") // CSVファイルの中で区切りの記号を見つけたら...
             {
-                csvInitLines[iter] = i; // 次の行から粒数が増える目印として登録する.
-                iter++;
+                csvInitLines[numInitLines] = i; // 次の行から粒数が増える目印として登録する.
+                numInitLines++;
             }
         }
     }
@@ -84,42 +82,41 @@ public class CSVReader : MonoBehaviour
 
     /// <summary>
     /// スライダーから粒の数を変更する.
+    /// 【TO DO】switch文使うのやめたい.
     /// </summary>
-    public void OnValueChanged(float value)
+    public void OnValueChanged(float handlePos)
     {
-        //sliderValue = (int)slider.value;
-        sliderValue = value;
-        if (sliderValue == lastSliderValue)
+        if (handlePos == lastHandlePos)
             return;
-        lastSliderValue = sliderValue;
+        lastHandlePos = handlePos;
 
-        switch (sliderValue)
+        switch (handlePos)
         {
-            case 0f: // 4 particles
-                numPages = 2;
-                iter = 0;
+            case 0f: // 4段
+                numInitLines = 0;
                 break;
-            case 0.5f: // 5 particles
-                numPages = 6;
-                iter = 1;
+            case 0.5f: // 5段
+                numInitLines = 1;
                 break;
-            case 1f: // 6 particles
-                numPages = 24;
-                iter = 2;
+            case 1f: // 6段
+                numInitLines = 2;
                 break;
         }
 
         // 1ページ目に戻す.
         list.anchoredPosition = Vector3.zero;
         pageSwitcher.currentPage = 1;
-        SetPages(numPages, iter);
+        // その粒数のパターンがいくつあるか(= 何ページ必要か)を数える.
+        numPages = csvInitLines[numInitLines + 1] - (csvInitLines[numInitLines] + 1);
+        SetPages(numPages, csvInitLines[numInitLines]);
     }
 
     /// <summary>
     /// 必要分のページを有効にする.
     /// </summary>
-    /// <param name="activePages">アクティヴになっているページの数.</param>
-    void SetPages(int activePages, int iter)
+    /// <param name="activePages">準備するページの数.</param>
+    /// <param name="initLine">データ読込を開始する行番号.</param>
+    void SetPages(int activePages, int initLine)
     {
         pageSwitcher.pageCount = activePages; // ページの端の位置を伝える.
 
@@ -131,7 +128,7 @@ public class CSVReader : MonoBehaviour
         {
             pages[i].SetActive(true);
             setDropModels[i].pageID = i;
-            setDropModels[i].Trigger(csvInitLines[iter]);
+            setDropModels[i].SetDrops(initLine);
         }
     }
 }
