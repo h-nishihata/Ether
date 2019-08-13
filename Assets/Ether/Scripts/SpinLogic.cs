@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
  
-public class SpinLogic : MonoBehaviour { 
-    float lastY = 0.0f;
-    float difY = 0.5f;
-    int direction = 1;
-    private bool userHasTouched;
+public class SpinLogic : MonoBehaviour
+{
     public TurnPage pageSwitcher;
     public SetDropModels modelSetter;
     private int pageID;
+
+    private float lastX, lastY;
+    private float diffX, diffY = 0.5f;
+    private int directionX, directionY = 1;
+    private float decayLevel = 0.03f;
+
+    private bool userHasTouched;
+
 
     private void Start()
     {
@@ -17,29 +22,40 @@ public class SpinLogic : MonoBehaviour {
 
     void Update ()
     {
-        if (pageSwitcher.currentPage - 1 != pageID)
+        if (pageSwitcher.currentPage - 1 != pageID) // 現在表示中でなければ...
         {
-            transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.identity; // 回転をリセット.
         }
         else
         {
-
             if (Input.GetMouseButton(0))
             {
-                difY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
-
+                diffX = Mathf.Abs(lastX - Input.GetAxis("Mouse X"));
+                diffY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
+                // X軸方向回転
+                if (lastX < Input.GetAxis("Mouse X"))
+                {
+                    directionX = -1;
+                    transform.Rotate(Vector3.up, -diffX);
+                }
+                else if (lastX > Input.GetAxis("Mouse X"))
+                {
+                    directionX = 1;
+                    transform.Rotate(Vector3.up, diffX);
+                }
+                // Y軸方向回転
                 if (lastY < Input.GetAxis("Mouse Y"))
                 {
-                    direction = -1;
-                    transform.Rotate(Vector3.right, -difY);
+                    directionY = -1;
+                    transform.Rotate(Vector3.right, -diffY * 2.5f);
                 }
-
-                if (lastY > Input.GetAxis("Mouse Y"))
+                else if (lastY > Input.GetAxis("Mouse Y"))
                 {
-                    direction = 1;
-                    transform.Rotate(Vector3.right, difY);
+                    directionY = 1;
+                    transform.Rotate(Vector3.right, diffY * 2.5f);
                 }
 
+                lastX = -Input.GetAxis("Mouse X");
                 lastY = -Input.GetAxis("Mouse Y");
 
                 userHasTouched = true;
@@ -48,11 +64,19 @@ public class SpinLogic : MonoBehaviour {
             {
                 if (!userHasTouched)
                     return;
+                // マウスボタンを離した後も惰性で回転を続け，徐々に減衰する.
+                if (diffX < 0f)
+                    diffX += decayLevel;
+                else if (diffX > 0f)
+                    diffX -= decayLevel;
 
-                if (difY > 0f) difY -= 0.01f;
-                if (difY < 0f) difY += 0.01f;
+                if (diffY > 0f)
+                    diffY -= decayLevel;
+                else if (diffY < 0f)
+                    diffY += decayLevel;
 
-                transform.Rotate(Vector3.right, difY * direction);
+                transform.Rotate(Vector3.up, diffX * directionX);
+                transform.Rotate(Vector3.right, diffY * directionY);
             }
         }
     }

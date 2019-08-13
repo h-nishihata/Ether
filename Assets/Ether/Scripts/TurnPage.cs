@@ -14,6 +14,7 @@ public class TurnPage : MonoBehaviour
 
     public int pageCount;
     public int currentPage = 1;
+    public float swipeDuration = 1f;
 
 
     void Awake()
@@ -36,7 +37,7 @@ public class TurnPage : MonoBehaviour
             {
                 this.currentPage++;
                 this.moveAnimation = this.rectTransform
-                .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, 0.5f)
+                .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, swipeDuration)
                 .Play();
             });
 
@@ -49,7 +50,7 @@ public class TurnPage : MonoBehaviour
             {
                 this.currentPage--;
                 this.moveAnimation = this.rectTransform
-                .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, 0.5f)
+                .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, swipeDuration)
                 .Play();
             });
 
