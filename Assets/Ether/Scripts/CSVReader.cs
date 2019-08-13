@@ -10,7 +10,7 @@ public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     public string fileName = "patternData";
-    private int[] csvInitLines = new int[11]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
+    public int[] csvInitLines = new int[11]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
                                               // この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
     private int numInitLines;
     public List<string[]> csvData = new List<string[]>(); // CSVファイルの中身を入れるリスト.
@@ -122,7 +122,7 @@ public class CSVReader : MonoBehaviour
 
         for (int i = 0; i < pages.Length; i++)
         {
-            pages[i].SetActive(false); //一旦すべてのページをオフにする.
+            pages[i].SetActive(false); // 一旦すべてのページをオフにする.
         }
         for (int i = 0; i < activePages; i++)
         {
