@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Ether/Scenes/Create Title Scene.unity
-    guid: 3186a548298b94bdea20e62df5a212ed
+    path: Assets/Ether/Scenes/Title.unity
+    guid: 911cad508858e42829a2bedb6d3ea2f7
   - enabled: 1
     path: Assets/Ether/Scenes/Main.unity
     guid: 985e22e1b22a34a75b8e85e56b3983df

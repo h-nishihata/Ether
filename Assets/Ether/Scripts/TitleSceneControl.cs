@@ -36,6 +36,6 @@ public class TitleSceneControl : MonoBehaviour {
 
 	void OnGUI()
 	{
-        GUI.Label(new Rect(100, Screen.height - 100, 100, 100), version, guiStyle);
+        GUI.Label(new Rect(50, Screen.height - 50, 100, 50), version, guiStyle);
 	}
 }
