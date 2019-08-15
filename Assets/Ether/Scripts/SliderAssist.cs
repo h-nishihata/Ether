@@ -1,21 +1,26 @@
 ﻿using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 /// <summary>
 /// スライダーをドラッグしたとき，目盛上で最寄りの数値に合わせるためのスクリプト.
 /// </summary>
 public class SliderAssist : MonoBehaviour
 {
+    public Slider slider;
+    private float lastSliderValue;
     private RectTransform handlePosition;
     public  RectTransform fill;
     public Vector2[] fixedPos;
     private Vector2 currentPos;
     public CSVReader csvReader;
+    public AudioSource audio;
 
 
     void Start()
     {
         handlePosition = this.GetComponent<RectTransform>();
+        lastSliderValue = slider.value;
     }
 
     void Update()
@@ -24,19 +29,24 @@ public class SliderAssist : MonoBehaviour
         {
             currentPos = handlePosition.anchorMin;
         }
-        else
+        else if (Input.GetMouseButtonUp(0))
         {
+            if (slider.value == lastSliderValue)
+                return;
+
+            lastSliderValue = slider.value;
             ToNearest();
         }
-
     }
 
     void ToNearest()
     {
+        Debug.Log("ToNearest");
         var nearest = fixedPos.OrderBy(x => Mathf.Abs(x.x - currentPos.x)).First();
         csvReader.OnValueChanged(nearest.x); // 粒数を変更することを伝える.
         // ハンドル位置を変更する.
         handlePosition.anchorMax = fill.anchorMax = nearest;
         handlePosition.anchorMin = nearest * Vector2.right; // yの値だけ0にして使用する.
+        audio.Play();
     }
 }

@@ -15,6 +15,7 @@ public class TurnPage : MonoBehaviour
     public int pageCount;
     public int currentPage = 1;
     public float swipeDuration = 1f;
+    public AudioSource[] audio;
 
 
     void Awake()
@@ -39,6 +40,7 @@ public class TurnPage : MonoBehaviour
                 this.moveAnimation = this.rectTransform
                 .DOAnchorPosX(rectTransform.anchoredPosition.x - this.PageWidth, swipeDuration)
                 .Play();
+                audio[0].Play();
             });
 
         // back
@@ -52,6 +54,7 @@ public class TurnPage : MonoBehaviour
                 this.moveAnimation = this.rectTransform
                 .DOAnchorPosX(rectTransform.anchoredPosition.x + this.PageWidth, swipeDuration)
                 .Play();
+                audio[0].Play();
             });
 
         // last page
@@ -64,6 +67,7 @@ public class TurnPage : MonoBehaviour
                 this.moveAnimation = this.rectTransform
                     .DOShakeAnchorPos(0.5f, Vector3.right * 200, 10)
                     .Play();
+                    audio[1].Play();
             });
 
         // 1st page
@@ -76,6 +80,7 @@ public class TurnPage : MonoBehaviour
                 this.moveAnimation = this.rectTransform
                     .DOShakeAnchorPos(0.5f, Vector3.left * 200, 10)
                     .Play();
+                    audio[1].Play();
             });
     }
 }
