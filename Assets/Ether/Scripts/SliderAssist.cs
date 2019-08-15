@@ -14,7 +14,7 @@ public class SliderAssist : MonoBehaviour
     public Vector2[] fixedPos;
     private Vector2 currentPos;
     public CSVReader csvReader;
-    public AudioSource audio;
+    public AudioManager audioManager;
 
 
     void Start()
@@ -41,12 +41,11 @@ public class SliderAssist : MonoBehaviour
 
     void ToNearest()
     {
-        Debug.Log("ToNearest");
         var nearest = fixedPos.OrderBy(x => Mathf.Abs(x.x - currentPos.x)).First();
         csvReader.OnValueChanged(nearest.x); // 粒数を変更することを伝える.
         // ハンドル位置を変更する.
         handlePosition.anchorMax = fill.anchorMax = nearest;
         handlePosition.anchorMin = nearest * Vector2.right; // yの値だけ0にして使用する.
-        audio.Play();
+        audioManager.Play(0);
     }
 }
