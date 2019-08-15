@@ -7,8 +7,6 @@ public class TitleSceneControl : MonoBehaviour {
     private int screenHeight;
     private GUIStyle guiStyle;
     public string version = "Ver_1.0.0";
-    //public Transform ether;
-    //private float rotateVal;
 
     void Awake()
     {
@@ -26,23 +24,18 @@ public class TitleSceneControl : MonoBehaviour {
     void Start ()
     {
         guiStyle = new GUIStyle();
-        guiStyle.fontSize = (int)(screenWidth * 0.02f);
-        guiStyle.normal.textColor = Color.white;
+        guiStyle.fontSize = (int)(screenWidth * 0.03f);
+        guiStyle.normal.textColor = Color.cyan;
 	}
 
     void Update()
     {
-        //rotateVal += Time.deltaTime * 20f;
-        //ether.transform.rotation = Quaternion.AngleAxis(rotateVal, Vector3.right);
-
         if (Input.GetMouseButtonDown(0))
-        {
             SceneManager.LoadScene("Main");
-        }
     }
 
 	void OnGUI()
 	{
-        GUI.Label(new Rect(Screen.width - 200, Screen.height - 100, 200, 100), version, guiStyle);
+        GUI.Label(new Rect(100, Screen.height - 100, 100, 100), version, guiStyle);
 	}
 }
