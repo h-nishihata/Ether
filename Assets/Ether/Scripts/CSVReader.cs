@@ -77,7 +77,7 @@ public class CSVReader : MonoBehaviour
             setDropModels[i].ManualStart();
         }
 
-        SetPages(2, 0);
+        SetPages(4, 0);
     }
 
     /// <summary>

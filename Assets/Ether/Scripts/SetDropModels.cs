@@ -21,6 +21,7 @@ public class SetDropModels : MonoBehaviour
     private StringBuilder lotNumber = new StringBuilder();
 
     public bool isExistentInArchive;
+    public string fixedMat;
 
     public void ManualStart()
     {
@@ -56,21 +57,20 @@ public class SetDropModels : MonoBehaviour
             switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 
-        isExistentInArchive = UnityEngine.Random.Range(0f, 10f) < 4.5f;
-        //CheckExistence(csvInitLine + pageID);
+        //isExistentInArchive = UnityEngine.Random.Range(0f, 10f) < 4.5f;
+        CheckExistence(csvInitLine + pageID);
         SetInfo(lotNumber.ToString());
     }
 
     void CheckExistence(int lineNum)
     {
         var matType = csvReader.csvData[csvInitLine + pageID][13];
-        if(matType != "Z")
+        if(matType != "unfixed")
         {
             isExistentInArchive = true; // すでに制作されたことがある.
-            // 背景色を変更(SpinLogic.csで，自分のページが表示中(MainCameraに映っている)かどうか毎フレーム確認しているので，表示されたらカメラの背景色を徐々に変える). 
-            // 展示情報を表示(14列目以降の情報を順次読み込む). 文字色を変更.
-            // UIパネルを非表示(アルファ値を下げる).
-            // アルファベットに応じて，制作された素材を適用(SetMatTextureから行う. その際，選択中のマテリアルは退避させておく).
+            // 展示情報を表示(14列目以降の情報を順次読み込む). 
+            fixedMat = matType;
+            // アルファベットに応じて，制作された素材を適用(SetMatTextureから行う. 
         }
     }
 
@@ -80,5 +80,6 @@ public class SetDropModels : MonoBehaviour
                     "Pattern: " + lotNumber + "\n" +
                     "Material: " + "\n";
         info.fontSize = (int)(Screen.width * 0.02f);
+        info.color = isExistentInArchive ? Color.black : Color.white;
     }
 }

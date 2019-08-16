@@ -32,9 +32,15 @@ public class SpinLogic : MonoBehaviour
         {
             // すでに制作されたことがある場合，自分のページが表示されたら(MainCameraに映ったら)カメラの背景色を徐々に変える. 
             if (modelSetter.isExistentInArchive)
-                materialSetter.ChangeBGToWhite(); // 背景色を白に変える.
-            else
+            {
+                var matType = modelSetter.fixedMat;
+                materialSetter.ChangeBGToWhite(matType); // 背景色を白に変える.
+            }
+            else if (!modelSetter.isExistentInArchive)
+            {
                 materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+            }
+
 
             // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))
