@@ -18,10 +18,12 @@ public class SetDropModels : MonoBehaviour
     public Vector3[] offsetPositions; // 3Dモデルをインポートした時点で付いていたオフセットを相殺するための値.
 
     public Text info;
+    private StringBuilder infoText = new StringBuilder();
     private StringBuilder lotNumber = new StringBuilder();
 
     public bool isExistentInArchive;
     public string fixedMat;
+
 
     public void ManualStart()
     {
@@ -39,8 +41,10 @@ public class SetDropModels : MonoBehaviour
     /// <param name="initLine">粒数のグループの始まりの行番号.</param>
     public void SetDrops(int initLine)
     {
+        isExistentInArchive = false;
         csvInitLine = initLine + 1;
         lotNumber.Clear(); // 番号をクリア.
+        infoText.Clear();
 
 
         for (int i = 0; i < boxes.Length; i++)
@@ -57,7 +61,6 @@ public class SetDropModels : MonoBehaviour
             switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 
-        //isExistentInArchive = UnityEngine.Random.Range(0f, 10f) < 4.5f;
         CheckExistence(csvInitLine + pageID);
         SetInfo(lotNumber.ToString());
     }
@@ -76,10 +79,22 @@ public class SetDropModels : MonoBehaviour
 
     void SetInfo(string lotNumber)
     {
-        info.text = "Number of drops: " + "\n" +
-                    "Pattern: " + lotNumber + "\n" +
-                    "Material: " + "\n";
+        infoText.Append("Pattern      : " + lotNumber + "\n");
+
+        if (isExistentInArchive)
+        {
+            var edition = csvReader.csvData[csvInitLine + pageID][14];
+            var dimension = csvReader.csvData[csvInitLine + pageID][15];
+            var year = csvReader.csvData[csvInitLine + pageID][16];
+            var exhibition = csvReader.csvData[csvInitLine + pageID][17];
+            infoText.Append("Edition      : " + edition + "\n");
+            infoText.Append("Dimension: " + dimension + "\n");
+            infoText.Append("Year           : " + year + "\n");
+            infoText.Append("Exhibition : " + "\n" + exhibition + "\n");
+        }
+
         info.fontSize = (int)(Screen.width * 0.02f);
         info.color = isExistentInArchive ? Color.black : Color.white;
+        info.text = infoText.ToString();
     }
 }
