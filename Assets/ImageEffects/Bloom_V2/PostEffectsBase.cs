@@ -78,12 +78,12 @@ public class PostEffectsBase : MonoBehaviour {
 		isSupported = true;
 		supportHDRTextures = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf);
 		supportDX11 = SystemInfo.graphicsShaderLevel >= 50 && SystemInfo.supportsComputeShaders;
-
+/*
 		if (!SystemInfo.supportsImageEffects) {
 			NotSupported ();
 			return false;
 		}
-
+*/
 		if (needDepth && !SystemInfo.SupportsRenderTextureFormat (RenderTextureFormat.Depth)) {
 			NotSupported ();
 			return false;

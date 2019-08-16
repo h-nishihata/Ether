@@ -13,11 +13,13 @@ public class SpinLogic : MonoBehaviour
 
     private bool userHasTouched;
 
+    private SetMatTexure materialSetter;
 
     private void Start()
     {
         pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
         pageID = modelSetter.pageID;
+        materialSetter = Camera.main.GetComponent<SetMatTexure>();
     }
 
     void Update ()
@@ -26,13 +28,20 @@ public class SpinLogic : MonoBehaviour
         {
             transform.rotation = Quaternion.identity; // 回転をリセット.
         }
-        else
+        else if (pageSwitcher.currentPage - 1 == pageID) // 自分のページが表示されたら...
         {
+            // すでに制作されたことがある場合，自分のページが表示されたら(MainCameraに映ったら)カメラの背景色を徐々に変える. 
+            if (modelSetter.isExistentInArchive)
+                materialSetter.ChangeBGToWhite(); // 背景色を白に変える.
+            else
+                materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+
+            // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))
             {
                 diffX = Mathf.Abs(lastX - Input.GetAxis("Mouse X"));
                 diffY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
-                // X軸方向回転
+                // X軸方向.
                 if (lastX < Input.GetAxis("Mouse X"))
                 {
                     directionX = -1;
@@ -43,7 +52,7 @@ public class SpinLogic : MonoBehaviour
                     directionX = 1;
                     transform.Rotate(Vector3.up, diffX);
                 }
-                // Y軸方向回転
+                // Y軸方向.
                 if (lastY < Input.GetAxis("Mouse Y"))
                 {
                     directionY = -1;

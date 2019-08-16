@@ -20,6 +20,7 @@ public class SetDropModels : MonoBehaviour
     public Text info;
     private StringBuilder lotNumber = new StringBuilder();
 
+    public bool isExistentInArchive;
 
     public void ManualStart()
     {
@@ -31,6 +32,10 @@ public class SetDropModels : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// CSVファイル内の自分の行の数字の並びに従って，粒を設定する.
+    /// </summary>
+    /// <param name="initLine">粒数のグループの始まりの行番号.</param>
     public void SetDrops(int initLine)
     {
         csvInitLine = initLine + 1;
@@ -51,7 +56,22 @@ public class SetDropModels : MonoBehaviour
             switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 
+        isExistentInArchive = UnityEngine.Random.Range(0f, 10f) < 4.5f;
+        //CheckExistence(csvInitLine + pageID);
         SetInfo(lotNumber.ToString());
+    }
+
+    void CheckExistence(int lineNum)
+    {
+        var matType = csvReader.csvData[csvInitLine + pageID][13];
+        if(matType != "Z")
+        {
+            isExistentInArchive = true; // すでに制作されたことがある.
+            // 背景色を変更(SpinLogic.csで，自分のページが表示中(MainCameraに映っている)かどうか毎フレーム確認しているので，表示されたらカメラの背景色を徐々に変える). 
+            // 展示情報を表示(14列目以降の情報を順次読み込む). 文字色を変更.
+            // UIパネルを非表示(アルファ値を下げる).
+            // アルファベットに応じて，制作された素材を適用(SetMatTextureから行う. その際，選択中のマテリアルは退避させておく).
+        }
     }
 
     void SetInfo(string lotNumber)
