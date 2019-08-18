@@ -3,19 +3,16 @@ using UnityEngine;
 
 public class CSVWriter : MonoBehaviour
 {
-    public void Save(string[] data, string fileName)
+    public void Save(string data, string fileName)
     {
-        StreamWriter sw;
-        FileInfo fi;
+        StreamWriter streamWriter;
+        FileInfo fileInfo;
 
-        fi = new FileInfo(Application.dataPath + "/Resources/" + fileName + ".csv");
-        sw = fi.AppendText();
-        for (int i = 0; i < data.Length; i++)
-        {
-            sw.WriteLine(data[i]);
-        }
+        fileInfo = new FileInfo(Application.dataPath + "/Resources/" + fileName + ".csv");
+        streamWriter = fileInfo.AppendText();
+        streamWriter.WriteLine(data);
 
-        sw.Flush();
-        sw.Close();
+        streamWriter.Flush();
+        streamWriter.Close();
     }
 }
