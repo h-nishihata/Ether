@@ -1,6 +1,9 @@
 ﻿using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// CSVファイルへの書き込みを行うスクリプト.
+/// </summary>
 public class CSVWriter : MonoBehaviour
 {
     public void Save(string data, string fileName)

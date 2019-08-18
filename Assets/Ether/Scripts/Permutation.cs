@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 別シーンで順列を生成するスクリプト.
+/// </summary>
 public class Permutation : MonoBehaviour
 {
     private List<string> dropList;
@@ -55,13 +58,15 @@ public class Permutation : MonoBehaviour
     public void Save(List<string> tempResult)
     {
         //if (tempResult.Count < 4)
-            //return;
+        //return;
+        if (Random.Range(0f, 10f) > 4.5f) // 膨大な数のパターンが生成されるので，CSVファイルへ書き込む前の段階でランダムに選択する.
+            return;
 
         result.Add("1");
         for (int i = 0; i < tempResult.Count; i++)
         {
-            if (lastNum == tempResult[i])
-                continue;
+            if (lastNum == tempResult[i]) // 同じ粒が続いているものは使わないので，飛ばす.
+                goto CLEAR;
             result.Add(tempResult[i]);
             lastNum = tempResult[i];
         }
@@ -70,13 +75,15 @@ public class Permutation : MonoBehaviour
         if (result.Count == tempResult.Count + 2)
         {
             var stringData = string.Join(",", result.ToArray());
-            //Debug.Log(stringData);
-            csvWriter.Save(stringData, "patternData");
+            Debug.Log(stringData);
+            //csvWriter.Save(stringData, "patternData");
 
             // ex.
             //stringArray = new string[] { "\n", "1,2,3", "4,5,6", "7,8,9" };
             //csvWriter.Save(stringArray, "patternData");
         }
+
+    CLEAR: ;
         result.Clear();
         lastNum = "";
     }
