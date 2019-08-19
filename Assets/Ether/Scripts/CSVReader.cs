@@ -10,7 +10,7 @@ public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
     public string fileName = "patternData";
-    public int[] csvInitLines = new int[11]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
+    public int[] csvInitLines = new int[12]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
                                               // この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
     private int numInitLines;
     public List<string[]> csvData = new List<string[]>(); // CSVファイルの中身を入れるリスト.
@@ -19,7 +19,7 @@ public class CSVReader : MonoBehaviour
     private TurnPage pageSwitcher;
 
     private int numPages; // 用意するページ数.
-    private int numMaxPages = 100; // 最大ページ数.
+    private int numMaxPages = 200; // 最大ページ数.
     public GameObject pageTemplate;
     private GameObject[] pages;
 
@@ -77,7 +77,7 @@ public class CSVReader : MonoBehaviour
             setDropModels[i].ManualStart();
         }
 
-        SetPages(4, 0);
+        SetPages(7, csvInitLines[0]);
     }
 
     /// <summary>

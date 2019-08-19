@@ -52,7 +52,7 @@ public class SetDropModels : MonoBehaviour
             boxes[i].transform.gameObject.SetActive(false); // 一旦すべてのBoxをオフにする.
 
             var modelID = csvReader.csvData[csvInitLine + pageID][i];
-            if (modelID != "0") // 1~8までのいずれかの粒を使うなら(使わない段にはリスト内で「0」を入れている)
+            if (modelID != "") // 1~8までのいずれかの粒を使うなら(使わない段はリスト内で空白になっている)
                 boxes[i].transform.gameObject.SetActive(true); // 使うBoxのみ有効化する.
             else
                 continue;
@@ -68,7 +68,7 @@ public class SetDropModels : MonoBehaviour
     void CheckExistence(int lineNum)
     {
         var matType = csvReader.csvData[csvInitLine + pageID][13];
-        if(matType != "unfixed")
+        if(matType != "")
         {
             isExistentInArchive = true; // すでに制作されたことがある.
             // 展示情報を表示(14列目以降の情報を順次読み込む). 
