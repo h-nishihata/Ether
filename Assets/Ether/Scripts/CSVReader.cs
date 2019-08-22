@@ -5,6 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// Canvasに付いている，データ読込〜粒の設定までを行うスクリプト.
+/// https://note.mu/macgyverthink/n/n83943f3bad60
 /// </summary>
 public class CSVReader : MonoBehaviour
 {
@@ -17,9 +18,8 @@ public class CSVReader : MonoBehaviour
 
     private RectTransform list; // 全ページを含む，Canvasの子オブジェクト.
     private TurnPage pageSwitcher;
-
-    private int numPages; // 用意するページ数.
     private int numMaxPages = 200; // 最大ページ数.
+    private int numPages; // 用意するページ数.
     public GameObject pageTemplate;
     private GameObject[] pages;
 
@@ -82,26 +82,13 @@ public class CSVReader : MonoBehaviour
 
     /// <summary>
     /// スライダーから粒の数を変更する.
-    /// 【TO DO】switch文使うのやめたい.
     /// </summary>
     public void OnValueChanged(float handlePos)
     {
         if (handlePos == lastHandlePos)
             return;
         lastHandlePos = handlePos;
-
-        switch (handlePos)
-        {
-            case 0f: // 4段
-                numInitLines = 0;
-                break;
-            case 0.5f: // 5段
-                numInitLines = 1;
-                break;
-            case 1f: // 6段
-                numInitLines = 2;
-                break;
-        }
+        numInitLines = (int)(handlePos * 10);
 
         // 1ページ目に戻す.
         list.anchoredPosition = Vector3.zero;
@@ -126,6 +113,9 @@ public class CSVReader : MonoBehaviour
         }
         for (int i = 0; i < activePages; i++)
         {
+            if (i >= pages.Length)
+                return;
+
             pages[i].SetActive(true);
             setDropModels[i].pageID = i;
             setDropModels[i].SetDrops(initLine);

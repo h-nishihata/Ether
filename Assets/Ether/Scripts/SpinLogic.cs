@@ -51,23 +51,23 @@ public class SpinLogic : MonoBehaviour
                 if (lastX < Input.GetAxis("Mouse X"))
                 {
                     directionX = -1;
-                    transform.Rotate(Vector3.up, -diffX);
+                    transform.Rotate(Vector3.up, -diffX * 0.8f);
                 }
                 else if (lastX > Input.GetAxis("Mouse X"))
                 {
                     directionX = 1;
-                    transform.Rotate(Vector3.up, diffX);
+                    transform.Rotate(Vector3.up, diffX * 0.8f);
                 }
                 // Y軸方向.
                 if (lastY < Input.GetAxis("Mouse Y"))
                 {
                     directionY = -1;
-                    transform.Rotate(Vector3.right, -diffY * 2.5f);
+                    transform.Rotate(Vector3.right, -diffY * 3f);
                 }
                 else if (lastY > Input.GetAxis("Mouse Y"))
                 {
                     directionY = 1;
-                    transform.Rotate(Vector3.right, diffY * 2.5f);
+                    transform.Rotate(Vector3.right, diffY * 3f);
                 }
 
                 lastX = -Input.GetAxis("Mouse X");

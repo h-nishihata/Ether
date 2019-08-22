@@ -11,7 +11,7 @@ public class SliderAssist : MonoBehaviour
     private float lastSliderValue;
     private RectTransform handlePosition;
     public  RectTransform fill;
-    public Vector2[] fixedPos;
+    private Vector2[] fixedPos = new Vector2[11];
     private Vector2 currentPos;
     public CSVReader csvReader;
     public AudioManager audioManager;
@@ -19,6 +19,10 @@ public class SliderAssist : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < fixedPos.Length; i++)
+        {
+            fixedPos[i] = new Vector2(i * 0.1f, 1f);
+        }
         handlePosition = this.GetComponent<RectTransform>();
         lastSliderValue = slider.value;
     }

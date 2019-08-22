@@ -14,7 +14,6 @@ public class SetDropModels : MonoBehaviour
 
     public Transform[] boxes; // 各ページの，粒を入れるBox.
     private SwitchActiveDrop[] switchActiveDrops; // 各Boxに付いている，どの粒を有効化するかを決めるスクリプト.
-
     public Vector3[] offsetPositions; // 3Dモデルをインポートした時点で付いていたオフセットを相殺するための値.
 
     public Text info;
@@ -46,7 +45,6 @@ public class SetDropModels : MonoBehaviour
         lotNumber.Clear(); // 番号をクリア.
         infoText.Clear();
 
-
         for (int i = 0; i < boxes.Length; i++)
         {
             boxes[i].transform.gameObject.SetActive(false); // 一旦すべてのBoxをオフにする.
@@ -71,9 +69,7 @@ public class SetDropModels : MonoBehaviour
         if(matType != "")
         {
             isExistentInArchive = true; // すでに制作されたことがある.
-            // 展示情報を表示(14列目以降の情報を順次読み込む). 
-            fixedMat = matType;
-            // アルファベットに応じて，制作された素材を適用(SetMatTextureから行う. 
+            fixedMat = matType; // SetMatTexture.csで制作された素材を適用.
         }
     }
 
@@ -83,6 +79,7 @@ public class SetDropModels : MonoBehaviour
 
         if (isExistentInArchive)
         {
+            // 展示情報を表示(14列目以降の情報を順次読み込む). 
             var edition = csvReader.csvData[csvInitLine + pageID][14];
             var dimension = csvReader.csvData[csvInitLine + pageID][15];
             var year = csvReader.csvData[csvInitLine + pageID][16];

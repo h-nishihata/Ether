@@ -3,6 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// CSVファイルへの書き込みを行うスクリプト.
+/// https://note.mu/macgyverthink/n/na29bc525fc95
 /// </summary>
 public class CSVWriter : MonoBehaviour
 {
