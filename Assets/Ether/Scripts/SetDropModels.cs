@@ -90,7 +90,7 @@ public class SetDropModels : MonoBehaviour
             infoText.Append("Exhibition : " + "\n" + exhibition + "\n");
         }
 
-        info.fontSize = (int)(Screen.width * 0.02f);
+        info.fontSize = (int)(Screen.width * 0.03f);
         info.color = isExistentInArchive ? Color.black : Color.white;
         info.text = infoText.ToString();
     }

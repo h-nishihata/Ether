@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Linq;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -13,7 +13,9 @@ public class SliderAssist : MonoBehaviour
     public  RectTransform fill;
     private Vector2[] fixedPos = new Vector2[11];
     private Vector2 currentPos;
+
     public CSVReader csvReader;
+    public Text info;
     public AudioManager audioManager;
 
 
@@ -25,6 +27,7 @@ public class SliderAssist : MonoBehaviour
         }
         handlePosition = this.GetComponent<RectTransform>();
         lastSliderValue = slider.value;
+        SetInfo(0f);
     }
 
     void Update()
@@ -39,7 +42,7 @@ public class SliderAssist : MonoBehaviour
                 return;
 
             lastSliderValue = slider.value;
-            ToNearest();
+            ToNearest();;
         }
     }
 
@@ -50,6 +53,14 @@ public class SliderAssist : MonoBehaviour
         // ハンドル位置を変更する.
         handlePosition.anchorMax = fill.anchorMax = nearest;
         handlePosition.anchorMin = nearest * Vector2.right; // yの値だけ0にして使用する.
+
+        SetInfo(nearest.x);
         audioManager.Play(0);
+    }
+
+    void SetInfo(float nearestValue)
+    {
+        var numDrops = (int)(nearestValue * 10 + 3);
+        info.text = "num drops: " + numDrops.ToString();
     }
 }

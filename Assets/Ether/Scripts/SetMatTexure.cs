@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class SetMatTexure : MonoBehaviour {
 
@@ -6,13 +7,13 @@ public class SetMatTexure : MonoBehaviour {
     public Texture[] textures;
     public Texture[] normalMaps;
 
+    public Text info;
+    private int lastMat;
+
     public Color targetColor = new Color(0.93f, 0.93f, 0.88f, 1f);
     private float colTransToWhite;
     private float colTransToBlack;
-
     public Transform UIPanel;
-
-    private int lastMat;
 
 
     void Start () {
@@ -23,6 +24,7 @@ public class SetMatTexure : MonoBehaviour {
     {
         textureMat.SetTexture("_MainTex", textures[matType]);
         textureMat.SetTexture("_BumpMap", normalMaps[matType]);
+        SetInfo(textures[matType].name);
         lastMat = matType;
     }
 
@@ -34,6 +36,7 @@ public class SetMatTexure : MonoBehaviour {
     {
         textureMat.SetTexture("_MainTex", textures[matType]);
         textureMat.SetTexture("_BumpMap", normalMaps[matType]);
+        SetInfo(textures[matType].name);
     }
 
     public void ChangeBGToWhite(string matType)
@@ -44,14 +47,25 @@ public class SetMatTexure : MonoBehaviour {
         {
             switch (matType)
             {
+                case "Gold":
+                    this.SetTexture(0, true);
+                    break;
+                case "Platinum":
+                    this.SetTexture(1, true);
+                    break;
+                case "MicroBeads":
+                    this.SetTexture(2, true);
+                    break;
                 case "Alumina":
                     this.SetTexture(3, true);
                     break;
                 case "Particle":
                     this.SetTexture(4, true);
                     break;
+                default:
+                    this.SetTexture(5, true);
+                    break;
             }
-
         }
 
         colTransToBlack = 0f;
@@ -72,5 +86,10 @@ public class SetMatTexure : MonoBehaviour {
         if (colTransToBlack < 1f)
             colTransToBlack += Time.deltaTime;
         Camera.main.backgroundColor = Color.Lerp(targetColor, Color.black, colTransToBlack);
+    }
+
+    void SetInfo(string matName)
+    {
+        info.text = "material type: " + matName;
     }
 }
