@@ -7,13 +7,17 @@ public class SetMatTexure : MonoBehaviour {
     public Texture[] textures;
     public Texture[] normalMaps;
 
-    public Text info;
+    public Text numDrops;
+    public Text matType;
     private int lastMat;
 
     public Color targetColor = new Color(0.93f, 0.93f, 0.88f, 1f);
     private float colTransToWhite;
     private float colTransToBlack;
-    public Transform UIPanel;
+    public Transform[] UIobjects;
+
+    public static bool genButtonPressed;
+    public Transform confirmButton;
 
 
     void Start () {
@@ -44,7 +48,11 @@ public class SetMatTexure : MonoBehaviour {
         if (Camera.main.backgroundColor == targetColor)
             return;
 
-        UIPanel.transform.gameObject.SetActive(false); // UIパネルを非表示.
+        for (int i = 0; i < UIobjects.Length; i++)
+        {
+            UIobjects[i].transform.gameObject.SetActive(false); // UIパネルを非表示.
+        }
+
         if (matType != null)
         {
             switch (matType)
@@ -78,10 +86,13 @@ public class SetMatTexure : MonoBehaviour {
 
     public void ChangeBGToBlack()
     {
-        if (Camera.main.backgroundColor == Color.black)
+        if (Camera.main.backgroundColor == Color.black || genButtonPressed)
             return;
 
-        UIPanel.transform.gameObject.SetActive(true); // UIパネルを表示.
+        for (int i = 0; i < UIobjects.Length; i++)
+        {
+            UIobjects[i].transform.gameObject.SetActive(true); // UIパネルを表示.
+        }
         this.SetTexture(lastMat);
 
         colTransToWhite = 0f;
@@ -90,8 +101,20 @@ public class SetMatTexure : MonoBehaviour {
         Camera.main.backgroundColor = Color.Lerp(targetColor, Color.black, colTransToBlack);
     }
 
+    public void Generate(bool isGenerateMode)
+    {
+        genButtonPressed = isGenerateMode;
+        for (int i = 0; i < UIobjects.Length; i++)
+        {
+            UIobjects[i].transform.gameObject.SetActive(!isGenerateMode); // UIパネルを非表示.
+        }
+        numDrops.color = matType.color = isGenerateMode ? Color.black : Color.white;
+        confirmButton.transform.gameObject.SetActive(isGenerateMode); // 確認用ボタンを表示.
+        Camera.main.backgroundColor = isGenerateMode ? targetColor : Color.black;
+    }
+
     void SetInfo(string matName)
     {
-        info.text = "material type: " + matName;
+        matType.text = "material type: " + matName;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
- 
+using UnityEngine.UI;
+
 public class SpinLogic : MonoBehaviour
 {
     public TurnPage pageSwitcher;
@@ -15,12 +16,14 @@ public class SpinLogic : MonoBehaviour
     private int directionX, directionY = 1;
     private float decayLevel = 0.03f;
 
+    private Text patternInfo;
 
     private void Start()
     {
         pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
         pageID = modelSetter.pageID;
         materialSetter = Camera.main.GetComponent<SetMatTexure>();
+        patternInfo = modelSetter.info;
     }
 
     void Update ()
@@ -39,9 +42,11 @@ public class SpinLogic : MonoBehaviour
             }
             else if (!modelSetter.isExistentInArchive)
             {
-                materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+                if (!SetMatTexure.genButtonPressed)
+                    materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
             }
 
+            patternInfo.color = SetMatTexure.genButtonPressed ? Color.black : Color.white;
 
             // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))

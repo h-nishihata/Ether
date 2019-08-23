@@ -21,7 +21,7 @@ public class TurnPage : MonoBehaviour
     void Awake()
     {
         DOTween.Init();
-        DOTween.defaultAutoPlay = AutoPlay.None; // Tween生成時に自動再生させない
+        DOTween.defaultAutoPlay = AutoPlay.None; // Tween生成時に自動再生させない.
     }
 
     void OnEnable()
@@ -29,11 +29,12 @@ public class TurnPage : MonoBehaviour
         this.rectTransform = this.GetComponent<RectTransform>();
         this.swipeGesture = this.GetComponent<SwipeGesture>();
 
-        // next
+        // 右のページに進む.
         this.swipeGesture
             .OnSwipeLeft
-            .Where(_ => currentPage < pageCount) // 最大ページ以前である場合のみ進める
-            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Where(_ => currentPage < pageCount) // 最大ページ以前である場合のみ進める.
+            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない.
+            .Where(_ => !SetMatTexure.genButtonPressed) // パターン決定後でない.
             .Subscribe(_ =>
             {
                 this.currentPage++;
@@ -43,11 +44,12 @@ public class TurnPage : MonoBehaviour
                 audioManager.Play(0);
             });
 
-        // back
+        // 左のページに戻る.
         this.swipeGesture
             .OnSwipeRight
-            .Where(_ => currentPage > 1) // 1ページ目以降である場合のみ戻れる
-            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Where(_ => currentPage > 1) // 1ページ目以降である場合のみ戻れる.
+            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying())
+            .Where(_ => !SetMatTexure.genButtonPressed)
             .Subscribe(_ =>
             {
                 this.currentPage--;
@@ -57,11 +59,12 @@ public class TurnPage : MonoBehaviour
                 audioManager.Play(0);
             });
 
-        // last page
+        // 最終ページより先に進もうとした場合.
         this.swipeGesture
             .OnSwipeLeft
-            .Where(_ => currentPage == pageCount) // これ以上は進めない
-            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Where(_ => currentPage == pageCount) // これ以上は進めない.
+            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying())
+            .Where(_ => !SetMatTexure.genButtonPressed)
             .Subscribe(_ =>
             {
                 this.moveAnimation = this.rectTransform
@@ -70,11 +73,12 @@ public class TurnPage : MonoBehaviour
                     audioManager.Play(1);
             });
 
-        // 1st page
+        // １ページ目より前に戻ろうとした場合.
         this.swipeGesture
             .OnSwipeRight
-            .Where(_ => currentPage == 1) // これ以上は戻れない
-            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない
+            .Where(_ => currentPage == 1) // これ以上は戻れない.
+            .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying())
+            .Where(_ => !SetMatTexure.genButtonPressed)
             .Subscribe(_ =>
             {
                 this.moveAnimation = this.rectTransform
