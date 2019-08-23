@@ -458,14 +458,14 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 16aa0ff36e5224efcac8e8236345381f, type: 3}
   - {fileID: 2800000, guid: 436f07e7a8e6c440b9883d3201d306fc, type: 3}
   - {fileID: 2800000, guid: a7cc7af1e6fc84c2680d895de3b18209, type: 3}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: 436f07e7a8e6c440b9883d3201d306fc, type: 3}
   normalMaps:
   - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
   - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
   - {fileID: 2800000, guid: 4779621bb69a34f9eb72899312d6d2e4, type: 3}
   - {fileID: 2800000, guid: ffaa6824a70bd41f0902702749c29ab6, type: 3}
   - {fileID: 2800000, guid: cf30a2f23d6c248d3a47d4dfb35e63ab, type: 3}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: ffaa6824a70bd41f0902702749c29ab6, type: 3}
   info: {fileID: 1144232629}
   targetColor: {r: 0.93, g: 0.93, b: 0.88, a: 1}
   UIPanel: {fileID: 1713118098}

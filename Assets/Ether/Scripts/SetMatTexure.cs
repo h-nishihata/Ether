@@ -41,8 +41,10 @@ public class SetMatTexure : MonoBehaviour {
 
     public void ChangeBGToWhite(string matType)
     {
-        UIPanel.transform.gameObject.SetActive(false); // UIパネルを非表示.
+        if (Camera.main.backgroundColor == targetColor)
+            return;
 
+        UIPanel.transform.gameObject.SetActive(false); // UIパネルを非表示.
         if (matType != null)
         {
             switch (matType)
@@ -76,11 +78,11 @@ public class SetMatTexure : MonoBehaviour {
 
     public void ChangeBGToBlack()
     {
-        this.SetTexture(lastMat);
         if (Camera.main.backgroundColor == Color.black)
             return;
 
         UIPanel.transform.gameObject.SetActive(true); // UIパネルを表示.
+        this.SetTexture(lastMat);
 
         colTransToWhite = 0f;
         if (colTransToBlack < 1f)

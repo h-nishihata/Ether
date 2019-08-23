@@ -19,6 +19,7 @@ public class SetDropModels : MonoBehaviour
     public Text info;
     private StringBuilder infoText = new StringBuilder();
     private StringBuilder lotNumber = new StringBuilder();
+    public string lotNumber4CSV; // CSVファイル書き込み用の，カンマで区切られたロット番号.
 
     public bool isExistentInArchive;
     public string fixedMat;
@@ -55,7 +56,7 @@ public class SetDropModels : MonoBehaviour
             else
                 continue;
 
-            lotNumber.Append(modelID); // 「1」と「8」のあいだの番号を生成.
+            lotNumber.Append(modelID); // 番号を生成.
             switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 

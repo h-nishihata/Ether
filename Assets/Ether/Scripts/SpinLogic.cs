@@ -3,17 +3,18 @@
 public class SpinLogic : MonoBehaviour
 {
     public TurnPage pageSwitcher;
-    public SetDropModels modelSetter;
     private int pageID;
+    public SetDropModels modelSetter;
+    private SetMatTexure materialSetter;
+    string lotNumber;
+
+    private bool userHasTouched;
 
     private float lastX, lastY;
     private float diffX, diffY = 0.5f;
     private int directionX, directionY = 1;
     private float decayLevel = 0.03f;
 
-    private bool userHasTouched;
-
-    private SetMatTexure materialSetter;
 
     private void Start()
     {
@@ -94,5 +95,11 @@ public class SpinLogic : MonoBehaviour
                 transform.Rotate(Vector3.right, diffY * directionY);
             }
         }
+    }
+
+    void GenerateNewPattern()
+    {
+        lotNumber = modelSetter.lotNumber4CSV;
+        Debug.Log(lotNumber);
     }
 }
