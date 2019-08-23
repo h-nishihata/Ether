@@ -24,6 +24,8 @@ public class SetDropModels : MonoBehaviour
     public bool isExistentInArchive;
     public string fixedMat;
 
+    string[] arr = new string[13];
+
 
     public void ManualStart()
     {
@@ -56,12 +58,14 @@ public class SetDropModels : MonoBehaviour
             else
                 continue;
 
+            arr[i] = modelID;
             lotNumber.Append(modelID); // 番号を生成.
             switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 
         CheckExistence(csvInitLine + pageID);
         SetInfo(lotNumber.ToString());
+        lotNumber4CSV = string.Join(",", arr);
     }
 
     void CheckExistence(int lineNum)

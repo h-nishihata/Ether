@@ -42,11 +42,19 @@ public class SpinLogic : MonoBehaviour
             }
             else if (!modelSetter.isExistentInArchive)
             {
-                if (!SetMatTexure.genButtonPressed)
-                    materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+                materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
             }
 
-            patternInfo.color = SetMatTexure.genButtonPressed ? Color.black : Color.white;
+
+            if (SetMatTexure.genButtonPressed)
+            {
+                this.GenerateNewPattern();
+                patternInfo.color = Color.black;
+            }
+            else
+            {
+                patternInfo.color = Color.white;
+            }
 
             // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))
@@ -105,6 +113,6 @@ public class SpinLogic : MonoBehaviour
     void GenerateNewPattern()
     {
         lotNumber = modelSetter.lotNumber4CSV;
-        Debug.Log(lotNumber);
+        Debug.Log("<color='red'>Generate !</color>" + lotNumber);
     }
 }
