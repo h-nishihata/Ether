@@ -7,8 +7,8 @@ public class SetMatTexure : MonoBehaviour {
     public Texture[] textures;
     public Texture[] normalMaps;
 
-    public Text numDrops;
-    public Text matType;
+    public Text numDropsInfo;
+    public Text matTypeInfo;
     private int lastMat;
 
     public Color targetColor = new Color(0.93f, 0.93f, 0.88f, 1f);
@@ -17,8 +17,9 @@ public class SetMatTexure : MonoBehaviour {
     public Transform[] UIobjects;
 
     public static bool genButtonPressed;
+    public static bool genConfirmed;
     public Transform confirmButton;
-
+    public ParticleSystem particles;
 
     void Start () {
         this.SetTexture(0);
@@ -78,6 +79,7 @@ public class SetMatTexure : MonoBehaviour {
             }
         }
 
+        numDropsInfo.color = matTypeInfo.color = Color.black;
         colTransToBlack = 0f;
         if (colTransToWhite < 1f)
             colTransToWhite += Time.deltaTime;
@@ -95,26 +97,35 @@ public class SetMatTexure : MonoBehaviour {
         }
         this.SetTexture(lastMat);
 
+        numDropsInfo.color = matTypeInfo.color = Color.white;
         colTransToWhite = 0f;
         if (colTransToBlack < 1f)
             colTransToBlack += Time.deltaTime;
         Camera.main.backgroundColor = Color.Lerp(targetColor, Color.black, colTransToBlack);
     }
 
-    public void Generate(bool isGenerateMode)
+    public void ConfirmGenerate(bool isGenerateMode)
     {
         genButtonPressed = isGenerateMode;
         for (int i = 0; i < UIobjects.Length; i++)
         {
             UIobjects[i].transform.gameObject.SetActive(!isGenerateMode); // UIパネルを非表示.
         }
-        numDrops.color = matType.color = isGenerateMode ? Color.black : Color.white;
+        numDropsInfo.color = matTypeInfo.color = isGenerateMode ? Color.black : Color.white;
         confirmButton.transform.gameObject.SetActive(isGenerateMode); // 確認用ボタンを表示.
         Camera.main.backgroundColor = isGenerateMode ? targetColor : Color.black;
     }
 
+    public void Generate()
+    {
+        genConfirmed = true;
+        confirmButton.transform.gameObject.SetActive(false);
+        Camera.main.backgroundColor = Color.black;
+        //particles.Play();
+    }
+
     void SetInfo(string matName)
     {
-        matType.text = "material type: " + matName;
+        matTypeInfo.text = "material type: " + matName;
     }
 }

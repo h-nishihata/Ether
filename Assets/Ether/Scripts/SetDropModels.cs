@@ -19,12 +19,12 @@ public class SetDropModels : MonoBehaviour
     public Text info;
     private StringBuilder infoText = new StringBuilder();
     private StringBuilder lotNumber = new StringBuilder();
-    public string lotNumber4CSV; // CSVファイル書き込み用の，カンマで区切られたロット番号.
+    // CSVファイル書き込み用の，カンマで区切られたロット番号を作成する.
+    string[] lotNumArray = new string[13];
+    public string lotNumber4CSV;
 
     public bool isExistentInArchive;
     public string fixedMat;
-
-    string[] arr = new string[13];
 
 
     public void ManualStart()
@@ -58,14 +58,14 @@ public class SetDropModels : MonoBehaviour
             else
                 continue;
 
-            arr[i] = modelID;
+            lotNumArray[i] = modelID;
             lotNumber.Append(modelID); // 番号を生成.
             switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 
         CheckExistence(csvInitLine + pageID);
         SetInfo(lotNumber.ToString());
-        lotNumber4CSV = string.Join(",", arr);
+        lotNumber4CSV = string.Join(",", lotNumArray);
     }
 
     void CheckExistence(int lineNum)

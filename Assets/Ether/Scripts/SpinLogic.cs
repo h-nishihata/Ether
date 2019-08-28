@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SpinLogic : MonoBehaviour
@@ -17,6 +19,7 @@ public class SpinLogic : MonoBehaviour
     private float decayLevel = 0.03f;
 
     private Text patternInfo;
+    private CSVWriter csvWriter;
 
     private void Start()
     {
@@ -24,6 +27,7 @@ public class SpinLogic : MonoBehaviour
         pageID = modelSetter.pageID;
         materialSetter = Camera.main.GetComponent<SetMatTexure>();
         patternInfo = modelSetter.info;
+        csvWriter = GameObject.FindWithTag("CSVWriter").GetComponent<CSVWriter>();
     }
 
     void Update ()
@@ -42,19 +46,19 @@ public class SpinLogic : MonoBehaviour
             }
             else if (!modelSetter.isExistentInArchive)
             {
-                materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+                if (SetMatTexure.genButtonPressed)
+                {
+                    patternInfo.color = Color.black;
+                }
+                else
+                {
+                    patternInfo.color = Color.white;
+                    materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+                }
             }
 
-
-            if (SetMatTexure.genButtonPressed)
-            {
+            if(SetMatTexure.genConfirmed)
                 this.GenerateNewPattern();
-                patternInfo.color = Color.black;
-            }
-            else
-            {
-                patternInfo.color = Color.white;
-            }
 
             // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))
@@ -110,9 +114,45 @@ public class SpinLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// https://stackoverflow.com/questions/14370757/editing-saving-a-row-in-a-csv-file
+    /// </summary>
     void GenerateNewPattern()
     {
         lotNumber = modelSetter.lotNumber4CSV;
-        Debug.Log("<color='red'>Generate !</color>" + lotNumber);
+        //csvWriter.Save(test, "patternData");
+        return;
+
+        var path = Application.dataPath + "/Resources/patternData.csv";
+
+        if (!File.Exists(path))
+            return;
+
+        using (StreamReader reader = new StreamReader(path))
+        {
+            String line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                if (line.Contains(lotNumber))
+                {
+                    String[] split = line.Split(',');
+                    if (split[13].Contains(""))
+                    {
+                        split[13] = "Gold";
+                        line = String.Join(",", split);
+                        Debug.Log(line);
+
+                        //streamWriter.WriteLine(line);
+                    }
+                }
+
+            }
+        }
+
+        //using (StreamWriter writer = new StreamWriter(path, false))
+        //{
+            //foreach (String line in lines)
+                
+        //}
     }
 }

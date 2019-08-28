@@ -42,7 +42,7 @@ public class SliderAssist : MonoBehaviour
                 return;
 
             lastSliderValue = slider.value;
-            ToNearest();;
+            ToNearest();
         }
     }
 
