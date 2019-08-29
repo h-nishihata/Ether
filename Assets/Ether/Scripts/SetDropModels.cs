@@ -83,8 +83,8 @@ public class SetDropModels : MonoBehaviour
                 if (csvReader.archivedPatterns[i] == lotNumber.ToString())
                 {
                     Debug.Log(lotNumber.ToString());
-                    //isExistentInArchive = true;
-                    //fixedMat = csvReader.archiveData[i][13];
+                    isExistentInArchive = true;
+                    fixedMat = csvReader.archiveData[i][13];
                 }
             }
         //}
