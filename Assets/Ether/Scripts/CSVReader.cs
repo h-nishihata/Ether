@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -10,11 +10,16 @@ using UnityEngine;
 public class CSVReader : MonoBehaviour
 {
     private TextAsset csvFile; // CSVファイル.
+    private TextAsset archiveFile;
     public string fileName = "patternData";
     public int[] csvInitLines = new int[12]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
                                               // この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
     private int numInitLines;
     public List<string[]> csvData = new List<string[]>(); // CSVファイルの中身を入れるリスト.
+    public List<string[]> archiveData = new List<string[]>();
+
+    private StringBuilder stringBuilder = new StringBuilder();
+    public string[] archivedPatterns;
 
     private RectTransform list; // 全ページを含む，Canvasの子オブジェクト.
     private TurnPage pageSwitcher;
@@ -31,7 +36,9 @@ public class CSVReader : MonoBehaviour
     void Awake()
     {
         csvFile = Resources.Load(fileName) as TextAsset; // Resouces下のCSV読み込み.
+        archiveFile = Resources.Load("archivedData") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
+        StringReader reader01 = new StringReader(archiveFile.text);
 
         // ","で分割しつつ一行ずつ読み込み，リストに追加していく.
         while (reader.Peek() > -1) // reader.Peekが0になるまで繰り返す.
@@ -39,7 +46,11 @@ public class CSVReader : MonoBehaviour
             string line = reader.ReadLine(); // 一行ずつ読み込み.
             csvData.Add(line.Split(','));   // ","区切りでリストに追加.
         }
-
+        while (reader01.Peek() > -1)
+        {
+            string line = reader01.ReadLine();
+            archiveData.Add(line.Split(','));
+        }
         // csvDatas[行][列]を指定して値を自由に取り出せる.
         //Debug.Log(csvData[0][1]);
 
@@ -51,6 +62,20 @@ public class CSVReader : MonoBehaviour
                 csvInitLines[numInitLines] = i; // 次の行から粒数が増える目印として登録する.
                 numInitLines++;
             }
+        }
+
+        archivedPatterns = new string[archiveData.Count];
+        for (int i = 0; i < archiveData.Count; i++)
+        {
+            //archivedPatterns[i] = string.Join("", archiveData[i]);
+            for (int j = 0; j < 13; j++)
+            {
+                var val = archiveData[i][j];
+                stringBuilder.Append(val);
+            }
+            archivedPatterns[i] = stringBuilder.ToString();
+            //Debug.Log(archivedPatterns[i]);
+            stringBuilder.Clear();
         }
     }
 

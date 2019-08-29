@@ -19,7 +19,7 @@ public class SetMatTexure : MonoBehaviour {
     public static bool genButtonPressed;
     public static bool genConfirmed;
     public Transform confirmButton;
-    public ParticleSystem particles;
+
 
     void Start () {
         this.SetTexture(0);
@@ -121,7 +121,6 @@ public class SetMatTexure : MonoBehaviour {
         genConfirmed = true;
         confirmButton.transform.gameObject.SetActive(false);
         Camera.main.backgroundColor = Color.black;
-        //particles.Play();
     }
 
     void SetInfo(string matName)

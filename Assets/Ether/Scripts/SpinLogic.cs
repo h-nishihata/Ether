@@ -141,18 +141,10 @@ public class SpinLogic : MonoBehaviour
                         split[13] = "Gold";
                         line = String.Join(",", split);
                         Debug.Log(line);
-
-                        //streamWriter.WriteLine(line);
                     }
                 }
 
             }
         }
-
-        //using (StreamWriter writer = new StreamWriter(path, false))
-        //{
-            //foreach (String line in lines)
-                
-        //}
     }
 }

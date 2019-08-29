@@ -71,11 +71,23 @@ public class SetDropModels : MonoBehaviour
     void CheckExistence(int lineNum)
     {
         var matType = csvReader.csvData[csvInitLine + pageID][13];
-        if(matType != "")
+        if (matType != "")
         {
             isExistentInArchive = true; // すでに制作されたことがある.
             fixedMat = matType; // SetMatTexture.csで制作された素材を適用.
         }
+        //else if(matType == "")
+        //{
+            for (int i = 0; i < csvReader.archivedPatterns.Length; i++)
+            {
+                if (csvReader.archivedPatterns[i] == lotNumber.ToString())
+                {
+                    Debug.Log(lotNumber.ToString());
+                    //isExistentInArchive = true;
+                    //fixedMat = csvReader.archiveData[i][13];
+                }
+            }
+        //}
     }
 
     void SetInfo(string lotNumber)
