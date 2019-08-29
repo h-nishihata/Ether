@@ -10,6 +10,7 @@ public class SetMatTexure : MonoBehaviour {
     public Text numDropsInfo;
     public Text matTypeInfo;
     private int lastMat;
+    public string lastMatName;
 
     public Color targetColor = new Color(0.93f, 0.93f, 0.88f, 1f);
     private float colTransToWhite;
@@ -31,11 +32,12 @@ public class SetMatTexure : MonoBehaviour {
         textureMat.SetTexture("_BumpMap", normalMaps[matType]);
         SetInfo(textures[matType].name);
         lastMat = matType;
+        lastMatName = textures[lastMat].name;
     }
 
     /// <summary>
     /// SetTexture()のオーバーロード関数. 
-    /// lastMatにユーザが選択中のマテリアルを退避させておきたいが，素材が決まっている制作済パターンのときにも同じメソッドを使うと，上書きされてしまうため.
+    /// ユーザが選択中のマテリアルをlastMatに退避させておきたいが，素材が決まっている制作済パターンのときにも同じメソッドを使うと，上書きされてしまうため.
     /// </summary>
     public void SetTexture(int matType, bool isSetFromCSV)
     {

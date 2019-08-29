@@ -119,32 +119,8 @@ public class SpinLogic : MonoBehaviour
     /// </summary>
     void GenerateNewPattern()
     {
-        lotNumber = modelSetter.lotNumber4CSV;
+        var lotNumber = modelSetter.lotNumber4CSV + materialSetter.lastMatName + ",,,,";
+        Debug.Log(lotNumber);
         //csvWriter.Save(test, "patternData");
-        return;
-
-        var path = Application.dataPath + "/Resources/patternData.csv";
-
-        if (!File.Exists(path))
-            return;
-
-        using (StreamReader reader = new StreamReader(path))
-        {
-            String line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                if (line.Contains(lotNumber))
-                {
-                    String[] split = line.Split(',');
-                    if (split[13].Contains(""))
-                    {
-                        split[13] = "Gold";
-                        line = String.Join(",", split);
-                        Debug.Log(line);
-                    }
-                }
-
-            }
-        }
     }
 }

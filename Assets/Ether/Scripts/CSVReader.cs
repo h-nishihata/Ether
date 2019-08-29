@@ -51,7 +51,7 @@ public class CSVReader : MonoBehaviour
             string line = reader01.ReadLine();
             archiveData.Add(line.Split(','));
         }
-        // csvDatas[行][列]を指定して値を自由に取り出せる.
+        // csvData[行][列]を指定して値を自由に取り出せる.
         //Debug.Log(csvData[0][1]);
 
         for (int i = 0; i < csvData.Count; i++)
