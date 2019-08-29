@@ -63,7 +63,7 @@ public class SetMatTexure : MonoBehaviour {
                 case "Gold":
                     this.SetTexture(0, true);
                     break;
-                case "Platinum":
+                case "platinum":
                     this.SetTexture(1, true);
                     break;
                 case "MicroBeads":
@@ -74,9 +74,6 @@ public class SetMatTexure : MonoBehaviour {
                     break;
                 case "Particle":
                     this.SetTexture(4, true);
-                    break;
-                default:
-                    this.SetTexture(5, true);
                     break;
             }
         }

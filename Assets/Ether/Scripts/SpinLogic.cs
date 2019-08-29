@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ public class SpinLogic : MonoBehaviour
     private int pageID;
     public SetDropModels modelSetter;
     private SetMatTexure materialSetter;
-    string lotNumber;
+    private StringBuilder lotNumber = new StringBuilder();
 
     private bool userHasTouched;
 
@@ -21,6 +20,10 @@ public class SpinLogic : MonoBehaviour
     private Text patternInfo;
     private CSVWriter csvWriter;
 
+    private bool isSaved;
+    private Text genMessage;
+
+
     private void Start()
     {
         pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
@@ -28,6 +31,7 @@ public class SpinLogic : MonoBehaviour
         materialSetter = Camera.main.GetComponent<SetMatTexure>();
         patternInfo = modelSetter.info;
         csvWriter = GameObject.FindWithTag("CSVWriter").GetComponent<CSVWriter>();
+        genMessage = GameObject.FindWithTag("GenMessage").GetComponent<Text>();
     }
 
     void Update ()
@@ -119,8 +123,17 @@ public class SpinLogic : MonoBehaviour
     /// </summary>
     void GenerateNewPattern()
     {
-        var lotNumber = modelSetter.lotNumber4CSV + materialSetter.lastMatName + ",,,,";
-        Debug.Log(lotNumber);
-        //csvWriter.Save(test, "patternData");
+        genMessage.color = new Color(genMessage.color.r, genMessage.color.g, genMessage.color.b, Mathf.PingPong(Time.time, 1));
+        /*
+        if (!isSaved)
+        {
+            lotNumber.Append("\n");
+            lotNumber.Append(modelSetter.lotNumber4CSV);
+            lotNumber.Append(materialSetter.lastMatName);
+            lotNumber.Append(",,#,,,");
+            csvWriter.Save(lotNumber.ToString(), "archivedData");
+            isSaved = true;
+        }
+        */
     }
 }

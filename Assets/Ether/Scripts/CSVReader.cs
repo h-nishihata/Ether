@@ -67,7 +67,6 @@ public class CSVReader : MonoBehaviour
         archivedPatterns = new string[archiveData.Count];
         for (int i = 0; i < archiveData.Count; i++)
         {
-            //archivedPatterns[i] = string.Join("", archiveData[i]);
             for (int j = 0; j < 13; j++)
             {
                 var val = archiveData[i][j];

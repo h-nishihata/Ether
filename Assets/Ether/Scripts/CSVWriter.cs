@@ -15,6 +15,7 @@ public class CSVWriter : MonoBehaviour
         fileInfo = new FileInfo(Application.dataPath + "/Resources/" + fileName + ".csv");
         streamWriter = fileInfo.AppendText();
         streamWriter.WriteLine(data);
+        Debug.Log("saved: " + data);
 
         streamWriter.Flush();
         streamWriter.Close();
