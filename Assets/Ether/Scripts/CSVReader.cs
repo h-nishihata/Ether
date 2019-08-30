@@ -109,8 +109,9 @@ public class CSVReader : MonoBehaviour
     /// </summary>
     public void OnValueChanged(float handlePos)
     {
-        if (handlePos == lastHandlePos)
+        if ((!SetMatTexure.genConfirmed) && (handlePos == lastHandlePos))
             return;
+
         lastHandlePos = handlePos;
         numInitLines = (int)(handlePos * 10);
 

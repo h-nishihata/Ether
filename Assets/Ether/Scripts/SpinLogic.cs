@@ -128,17 +128,16 @@ public class SpinLogic : MonoBehaviour
         genMessage.text = "Generated !";
         genMessage.color = new Color(1, 1, 1, Mathf.PingPong(Time.time, 1));
 
-        /*
         if (!isSaved)
         {
             lotNumber.Append("\n");
             lotNumber.Append(modelSetter.lotNumber4CSV);
+            lotNumber.Append(",");
             lotNumber.Append(materialSetter.lastMatName);
-            lotNumber.Append(",,#,,,");
+            lotNumber.Append(",#,,,");
             csvWriter.Save(lotNumber.ToString(), "archivedData");
             isSaved = true;
         }
-        */
 
         if (counterToGoBack < 5f)
         {

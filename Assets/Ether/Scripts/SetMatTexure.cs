@@ -136,6 +136,7 @@ public class SetMatTexure : MonoBehaviour {
 
     public void Reset()
     {
+        csvReader.OnValueChanged(0);
         SetMatTexure.genButtonPressed = SetMatTexure.genConfirmed = false;
         genMessage.color = new Color(0, 0, 0, 0);
         for (int i = 0; i < UIobjects.Length; i++)
@@ -143,6 +144,5 @@ public class SetMatTexure : MonoBehaviour {
             UIobjects[i].transform.gameObject.SetActive(true); // UIパネルを非表示.
         }
         this.SetTexture(0);
-        csvReader.OnValueChanged(0);
     }
 }
