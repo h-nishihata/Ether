@@ -6,6 +6,7 @@ TagManager:
   tags:
   - List
   - CSVWriter
+  - GenMessage
   layers:
   - Default
   - TransparentFX

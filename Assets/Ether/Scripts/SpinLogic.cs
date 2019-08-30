@@ -23,11 +23,13 @@ public class SpinLogic : MonoBehaviour
     private bool isSaved;
     private Text genMessage;
 
+    private float counterToGoBack;
+
 
     private void Start()
     {
-        pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
         pageID = modelSetter.pageID;
+        pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
         materialSetter = Camera.main.GetComponent<SetMatTexure>();
         patternInfo = modelSetter.info;
         csvWriter = GameObject.FindWithTag("CSVWriter").GetComponent<CSVWriter>();
@@ -123,7 +125,9 @@ public class SpinLogic : MonoBehaviour
     /// </summary>
     void GenerateNewPattern()
     {
-        genMessage.color = new Color(genMessage.color.r, genMessage.color.g, genMessage.color.b, Mathf.PingPong(Time.time, 1));
+        genMessage.text = "Generated !";
+        genMessage.color = new Color(1, 1, 1, Mathf.PingPong(Time.time, 1));
+
         /*
         if (!isSaved)
         {
@@ -135,5 +139,16 @@ public class SpinLogic : MonoBehaviour
             isSaved = true;
         }
         */
+
+        if (counterToGoBack < 5f)
+        {
+            counterToGoBack += Time.deltaTime;
+        }
+        else
+        {
+            counterToGoBack = 0;
+            materialSetter.Reset();
+        }
+
     }
 }

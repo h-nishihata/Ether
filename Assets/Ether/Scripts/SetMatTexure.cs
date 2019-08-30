@@ -21,9 +21,13 @@ public class SetMatTexure : MonoBehaviour {
     public static bool genConfirmed;
     public Transform confirmButton;
 
+    public Text genMessage;
+    private CSVReader csvReader;
+
 
     void Start () {
         this.SetTexture(0);
+        csvReader = GameObject.FindWithTag("List").GetComponent<CSVReader>();
     }
 
     public virtual void SetTexture(int matType)
@@ -113,6 +117,9 @@ public class SetMatTexure : MonoBehaviour {
         numDropsInfo.color = matTypeInfo.color = isGenerateMode ? Color.black : Color.white;
         confirmButton.transform.gameObject.SetActive(isGenerateMode); // 確認用ボタンを表示.
         Camera.main.backgroundColor = isGenerateMode ? targetColor : Color.black;
+
+        genMessage.text = "Generate this pattern ?";
+        genMessage.color = isGenerateMode ? Color.black : new Color(0, 0, 0, 0);
     }
 
     public void Generate()
@@ -125,5 +132,17 @@ public class SetMatTexure : MonoBehaviour {
     void SetInfo(string matName)
     {
         matTypeInfo.text = "material type: " + matName;
+    }
+
+    public void Reset()
+    {
+        SetMatTexure.genButtonPressed = SetMatTexure.genConfirmed = false;
+        genMessage.color = new Color(0, 0, 0, 0);
+        for (int i = 0; i < UIobjects.Length; i++)
+        {
+            UIobjects[i].transform.gameObject.SetActive(true); // UIパネルを非表示.
+        }
+        this.SetTexture(0);
+        csvReader.OnValueChanged(0);
     }
 }
