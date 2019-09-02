@@ -9,50 +9,46 @@ using UnityEngine;
 /// </summary>
 public class CSVReader : MonoBehaviour
 {
-    private TextAsset csvFile; // CSVファイル.
-    private TextAsset archiveFile;
-    public string fileName = "patternData";
-    public int[] csvInitLines = new int[12]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.
-                                              // この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
-    private int numInitLines;
+    private TextAsset[] csvFile = new TextAsset[2]; // CSVファイル.
+    public string[] fileNames;
+    private StringReader[] reader = new StringReader[2];
     public List<string[]> csvData = new List<string[]>(); // CSVファイルの中身を入れるリスト.
     public List<string[]> archiveData = new List<string[]>();
+    public int[] csvInitLines = new int[12]; // (今のところ)全ての粒数のパターンが一つのCSVファイルの中に収まっている.この行番号は，リストの中でそれぞれの粒数のパターンが始まっている区切りを表す.
+    private int numInitLines; // いくつめの区切り(===)かを示すカウント.
 
     private StringBuilder stringBuilder = new StringBuilder();
-    public string[] archivedPatterns;
+    public string[] archivedPatterns; // 新たに生成されたパターンと重複していないか確認するための，今までに制作されたパターンの文字列データ.
 
     private RectTransform list; // 全ページを含む，Canvasの子オブジェクト.
-    private TurnPage pageSwitcher;
+    private PageSwitcher pageSwitcher;
     private int numMaxPages = 200; // 最大ページ数.
     private int numPages; // 用意するページ数.
     public GameObject pageTemplate;
     private GameObject[] pages;
 
-    private SetDropModels[] setDropModels; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
-
+    private DropModelSetter[] modelSetter; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
     private float lastHandlePos;
 
 
     void Awake()
     {
-        csvFile = Resources.Load(fileName) as TextAsset; // Resouces下のCSV読み込み.
-        archiveFile = Resources.Load("archivedData") as TextAsset;
-        StringReader reader = new StringReader(csvFile.text);
-        StringReader reader01 = new StringReader(archiveFile.text);
+        for (int i = 0; i < 2; i++)
+        {
+            csvFile[i] = Resources.Load(fileNames[i]) as TextAsset; // Resouces下のCSV読み込み.
+            reader[i] = new StringReader(csvFile[i].text);
 
-        // ","で分割しつつ一行ずつ読み込み，リストに追加していく.
-        while (reader.Peek() > -1) // reader.Peekが0になるまで繰り返す.
-        {
-            string line = reader.ReadLine(); // 一行ずつ読み込み.
-            csvData.Add(line.Split(','));   // ","区切りでリストに追加.
+            while (reader[i].Peek() > -1) // reader.Peekが0になるまで繰り返す.
+            {
+                string line = reader[i].ReadLine(); // 一行ずつ読み込み.
+                if(i == 0)
+                    csvData.Add(line.Split(','));   // ","で分割し，リストに追加.
+                else if(i == 1)
+                    archiveData.Add(line.Split(','));
+            }
+            // [行][列]を指定して値を自由に取り出せる.
+            // Debug.Log(csvData[0][1]);
         }
-        while (reader01.Peek() > -1)
-        {
-            string line = reader01.ReadLine();
-            archiveData.Add(line.Split(','));
-        }
-        // csvData[行][列]を指定して値を自由に取り出せる.
-        //Debug.Log(csvData[0][1]);
 
         for (int i = 0; i < csvData.Count; i++)
         {
@@ -67,13 +63,13 @@ public class CSVReader : MonoBehaviour
         archivedPatterns = new string[archiveData.Count];
         for (int i = 0; i < archiveData.Count; i++)
         {
+            // archiveDataのそれぞれの行から，数字の並びだけを取り出して文字列にする.
             for (int j = 0; j < 13; j++)
             {
                 var val = archiveData[i][j];
                 stringBuilder.Append(val);
             }
             archivedPatterns[i] = stringBuilder.ToString();
-            //Debug.Log(archivedPatterns[i]);
             stringBuilder.Clear();
         }
     }
@@ -81,9 +77,9 @@ public class CSVReader : MonoBehaviour
     void Start()
     {
         list = transform.GetComponent<RectTransform>();
-        pageSwitcher = transform.GetComponent<TurnPage>();
+        pageSwitcher = transform.GetComponent<PageSwitcher>();
 
-        // 上限までページを生成し，オブジェクトに名前をつける.
+        // 上限までページを生成し，Hierarchy内のオブジェクトに名前をつける.
         pages = new GameObject[numMaxPages];
         for (int i = 0; i < numMaxPages; i++)
         {
@@ -94,11 +90,11 @@ public class CSVReader : MonoBehaviour
         }
 
         // 粒のモデルを準備.
-        setDropModels = new SetDropModels[pages.Length];
+        modelSetter = new DropModelSetter[pages.Length];
         for (int i = 0; i < pages.Length; i++)
         {
-            setDropModels[i] = pages[i].GetComponentInChildren<SetDropModels>();
-            setDropModels[i].ManualStart();
+            modelSetter[i] = pages[i].GetComponentInChildren<DropModelSetter>();
+            modelSetter[i].ManualStart();
         }
 
         SetPages(7, csvInitLines[0]);
@@ -109,7 +105,7 @@ public class CSVReader : MonoBehaviour
     /// </summary>
     public void OnValueChanged(float handlePos)
     {
-        if ((!SetMatTexure.genConfirmed) && (handlePos == lastHandlePos))
+        if ((!MatTexSetter.genConfirmed) && (handlePos == lastHandlePos))
             return;
 
         lastHandlePos = handlePos;
@@ -142,8 +138,8 @@ public class CSVReader : MonoBehaviour
                 return;
 
             pages[i].SetActive(true);
-            setDropModels[i].pageID = i;
-            setDropModels[i].SetDrops(initLine);
+            modelSetter[i].pageID = i;
+            modelSetter[i].SetDrops(initLine);
         }
     }
 }

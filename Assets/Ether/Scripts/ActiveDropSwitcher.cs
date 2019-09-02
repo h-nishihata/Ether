@@ -3,9 +3,9 @@
 /// <summary>
 /// 各Boxに付いている，使用する3Dモデルのみを有効化するためのスクリプト.
 /// </summary>
-public class SwitchActiveDrop : MonoBehaviour
+public class ActiveDropSwitcher : MonoBehaviour
 {
-    public SetDropModels setDropModels;
+    public DropModelSetter modelSetter;
     public Transform[] drops;
     private Vector3 offset = new Vector3();
 
@@ -22,7 +22,7 @@ public class SwitchActiveDrop : MonoBehaviour
             return;
         drops[id].gameObject.SetActive(true);
 
-        offset = setDropModels.offsetPositions[id];
+        offset = modelSetter.offsetPositions[id];
         drops[id].transform.localPosition = offset;
         offset = Vector3.zero;
     }

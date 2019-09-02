@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: SetTexture
         m_Mode: 3
         m_Arguments:
@@ -365,8 +365,8 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669907}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -448,33 +448,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a361ff4326344bfa048cbef9f06a54, type: 3}
+  m_Script: {fileID: 11500000, guid: 555d39be2666446ea9132f0f0443a650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textureMat: {fileID: 2100000, guid: c1ff725a03e4f4e0193fff9a4834a6d8, type: 2}
-  textures:
-  - {fileID: 2800000, guid: 32c5595f524684fcbb6f214bb2fb2e61, type: 3}
-  - {fileID: 2800000, guid: b49d550e8b6a44df7ba2dd5e4265bc80, type: 3}
-  - {fileID: 2800000, guid: 16aa0ff36e5224efcac8e8236345381f, type: 3}
-  - {fileID: 2800000, guid: 436f07e7a8e6c440b9883d3201d306fc, type: 3}
-  - {fileID: 2800000, guid: a7cc7af1e6fc84c2680d895de3b18209, type: 3}
-  - {fileID: 2800000, guid: 436f07e7a8e6c440b9883d3201d306fc, type: 3}
-  normalMaps:
-  - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
-  - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
-  - {fileID: 2800000, guid: 4779621bb69a34f9eb72899312d6d2e4, type: 3}
-  - {fileID: 2800000, guid: ffaa6824a70bd41f0902702749c29ab6, type: 3}
-  - {fileID: 2800000, guid: cf30a2f23d6c248d3a47d4dfb35e63ab, type: 3}
-  - {fileID: 2800000, guid: ffaa6824a70bd41f0902702749c29ab6, type: 3}
-  numDropsInfo: {fileID: 1183226755}
-  matTypeInfo: {fileID: 1144232629}
-  lastMatName: 
-  targetColor: {r: 0.93, g: 0.93, b: 0.88, a: 1}
-  UIobjects:
-  - {fileID: 7233368660640454738}
-  - {fileID: 1408944330}
-  confirmButton: {fileID: 1918562087}
-  genMessage: {fileID: 932091713}
+  pageSwitcher: {fileID: 1803338969}
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,10 +461,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4aa3d1ec9b94c8498774607556f3f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4313fdc078ee04445b575f09aa09269f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pageSwitcher: {fileID: 1803338969}
+  textureMat: {fileID: 2100000, guid: c1ff725a03e4f4e0193fff9a4834a6d8, type: 2}
+  textures:
+  - {fileID: 2800000, guid: 32c5595f524684fcbb6f214bb2fb2e61, type: 3}
+  - {fileID: 2800000, guid: b49d550e8b6a44df7ba2dd5e4265bc80, type: 3}
+  - {fileID: 2800000, guid: 16aa0ff36e5224efcac8e8236345381f, type: 3}
+  - {fileID: 2800000, guid: 436f07e7a8e6c440b9883d3201d306fc, type: 3}
+  - {fileID: 2800000, guid: a7cc7af1e6fc84c2680d895de3b18209, type: 3}
+  - {fileID: 2800000, guid: 06fce578f24224cb7abbc2802c7327cd, type: 3}
+  normalMaps:
+  - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
+  - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
+  - {fileID: 2800000, guid: 4779621bb69a34f9eb72899312d6d2e4, type: 3}
+  - {fileID: 2800000, guid: ffaa6824a70bd41f0902702749c29ab6, type: 3}
+  - {fileID: 2800000, guid: cf30a2f23d6c248d3a47d4dfb35e63ab, type: 3}
+  - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
+  numDropsInfo: {fileID: 1183226755}
+  matTypeInfo: {fileID: 1144232629}
+  lastMatName: 
+  lightBGColor: {r: 0.93, g: 0.93, b: 0.88, a: 1}
+  UIobjects:
+  - {fileID: 7233368660640454738}
+  - {fileID: 1408944330}
+  confirmButton: {fileID: 1918562087}
+  genMessage: {fileID: 932091713}
 --- !u!1 &651559645
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: SetTexture
         m_Mode: 3
         m_Arguments:
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: SetTexture
         m_Mode: 3
         m_Arguments:
@@ -1004,7 +1004,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: ConfirmGenerate
         m_Mode: 6
         m_Arguments:
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 932091714}
   - component: {fileID: 932091713}
   m_Layer: 5
-  m_Name: Genereted
+  m_Name: Message
   m_TagString: GenMessage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2095,7 +2095,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: ConfirmGenerate
         m_Mode: 6
         m_Arguments:
@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: SetTexture
         m_Mode: 3
         m_Arguments:
@@ -2776,7 +2776,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803338965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c834823de3f5c454996bfbba6c93ccba, type: 3}
+  m_Script: {fileID: 11500000, guid: 60891a08da91a4cd590b4401e4322207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PageWidth: 397
@@ -2810,7 +2810,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a1b8f056abd497f874131f5b17e08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: patternData
+  fileNames:
+  - patternData
+  - archiveData
   csvInitLines: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   archivedPatterns: []
   pageTemplate: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
@@ -2897,7 +2899,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: SetTexture
         m_Mode: 3
         m_Arguments:
@@ -3048,7 +3050,7 @@ GameObject:
   - component: {fileID: 1918562087}
   - component: {fileID: 1918562088}
   m_Layer: 0
-  m_Name: genButtonPressed
+  m_Name: Confirm Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3193,7 +3195,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 534669906}
+      - m_Target: {fileID: 534669907}
         m_MethodName: Generate
         m_Mode: 1
         m_Arguments:
@@ -3580,7 +3582,7 @@ MonoBehaviour:
   slider: {fileID: 7233368662205970224}
   fill: {fileID: 7233368662231648370}
   csvReader: {fileID: 1803338971}
-  info: {fileID: 1183226755}
+  numDropInfo: {fileID: 1183226755}
   audioManager: {fileID: 1127697122}
 --- !u!224 &7233368662231648368
 RectTransform:

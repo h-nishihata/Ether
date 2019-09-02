@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SwipeGesture), typeof(HorizontalLayoutGroup))]
-public class TurnPage : MonoBehaviour
+public class PageSwitcher : MonoBehaviour
 {
     public float PageWidth = 1080;
 
@@ -34,7 +34,7 @@ public class TurnPage : MonoBehaviour
             .OnSwipeLeft
             .Where(_ => currentPage < pageCount) // 最大ページ以前である場合のみ進める.
             .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying()) // アニメーション実行中ではない.
-            .Where(_ => !SetMatTexure.genButtonPressed) // パターン決定後でない.
+            .Where(_ => !MatTexSetter.genButtonPressed) // パターン決定後でない.
             .Subscribe(_ =>
             {
                 this.currentPage++;
@@ -49,7 +49,7 @@ public class TurnPage : MonoBehaviour
             .OnSwipeRight
             .Where(_ => currentPage > 1) // 1ページ目以降である場合のみ戻れる.
             .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying())
-            .Where(_ => !SetMatTexure.genButtonPressed)
+            .Where(_ => !MatTexSetter.genButtonPressed)
             .Subscribe(_ =>
             {
                 this.currentPage--;
@@ -64,7 +64,7 @@ public class TurnPage : MonoBehaviour
             .OnSwipeLeft
             .Where(_ => currentPage == pageCount) // これ以上は進めない.
             .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying())
-            .Where(_ => !SetMatTexure.genButtonPressed)
+            .Where(_ => !MatTexSetter.genButtonPressed)
             .Subscribe(_ =>
             {
                 this.moveAnimation = this.rectTransform
@@ -78,7 +78,7 @@ public class TurnPage : MonoBehaviour
             .OnSwipeRight
             .Where(_ => currentPage == 1) // これ以上は戻れない.
             .Where(_ => this.moveAnimation == null || !this.moveAnimation.IsPlaying())
-            .Where(_ => !SetMatTexure.genButtonPressed)
+            .Where(_ => !MatTexSetter.genButtonPressed)
             .Subscribe(_ =>
             {
                 this.moveAnimation = this.rectTransform

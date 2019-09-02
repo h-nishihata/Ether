@@ -2,12 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpinLogic : MonoBehaviour
+/// <summary>
+/// モデルの回転など，表示中のページの動作に関するスクリプト.
+/// </summary>
+public class ActivePageBehaviour : MonoBehaviour
 {
-    public TurnPage pageSwitcher;
+    public PageSwitcher pageSwitcher;
     private int pageID;
-    public SetDropModels modelSetter;
-    private SetMatTexure materialSetter;
+    public DropModelSetter modelSetter;
+    private MatTexSetter matTexSetter;
     private StringBuilder lotNumber = new StringBuilder();
 
     private bool userHasTouched;
@@ -29,9 +32,9 @@ public class SpinLogic : MonoBehaviour
     private void Start()
     {
         pageID = modelSetter.pageID;
-        pageSwitcher = GameObject.FindWithTag("List").GetComponent<TurnPage>();
-        materialSetter = Camera.main.GetComponent<SetMatTexure>();
-        patternInfo = modelSetter.info;
+        pageSwitcher = GameObject.FindWithTag("List").GetComponent<PageSwitcher>();
+        matTexSetter = Camera.main.GetComponent<MatTexSetter>();
+        patternInfo = modelSetter.patternInfo;
         csvWriter = GameObject.FindWithTag("CSVWriter").GetComponent<CSVWriter>();
         genMessage = GameObject.FindWithTag("GenMessage").GetComponent<Text>();
     }
@@ -48,22 +51,22 @@ public class SpinLogic : MonoBehaviour
             if (modelSetter.isExistentInArchive)
             {
                 var matType = modelSetter.fixedMat;
-                materialSetter.ChangeBGToWhite(matType); // 背景色を白に変える.
+                matTexSetter.ChangeBGToWhite(matType); // 背景色を白に変える.
             }
             else if (!modelSetter.isExistentInArchive)
             {
-                if (SetMatTexure.genButtonPressed)
+                if (MatTexSetter.genButtonPressed)
                 {
                     patternInfo.color = Color.black;
                 }
                 else
                 {
                     patternInfo.color = Color.white;
-                    materialSetter.ChangeBGToBlack(); // 通常は黒を使用する.
+                    matTexSetter.ChangeBGToBlack(); // 通常は黒を使用する.
                 }
             }
 
-            if(SetMatTexure.genConfirmed)
+            if(MatTexSetter.genConfirmed)
                 this.GenerateNewPattern();
 
             // タッチで3Dモデルを回転.
@@ -121,6 +124,7 @@ public class SpinLogic : MonoBehaviour
     }
 
     /// <summary>
+    /// 生成したパターンをCSVファイルに登録する.
     /// https://stackoverflow.com/questions/14370757/editing-saving-a-row-in-a-csv-file
     /// </summary>
     void GenerateNewPattern()
@@ -133,9 +137,9 @@ public class SpinLogic : MonoBehaviour
             lotNumber.Append("\n");
             lotNumber.Append(modelSetter.lotNumber4CSV);
             lotNumber.Append(",");
-            lotNumber.Append(materialSetter.lastMatName);
+            lotNumber.Append(matTexSetter.lastMatName);
             lotNumber.Append(",#,,,");
-            csvWriter.Save(lotNumber.ToString(), "archivedData");
+            csvWriter.Save(lotNumber.ToString(), "archiveData");
             isSaved = true;
         }
 
@@ -146,7 +150,7 @@ public class SpinLogic : MonoBehaviour
         else
         {
             counterToGoBack = 0;
-            materialSetter.Reset();
+            matTexSetter.Reset();
         }
 
     }

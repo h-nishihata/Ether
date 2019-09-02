@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SetSculptureScale : MonoBehaviour
+public class SculptureScaleSetter : MonoBehaviour
 {
     public RectTransform sculpture;
     float scale;
@@ -9,9 +9,9 @@ public class SetSculptureScale : MonoBehaviour
     {
         this.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
         sculpture.sizeDelta = new Vector2(Screen.width, Screen.height);
-        if (Screen.width != SetScreenResolution.defaultWidth)
+        if (Screen.width != ScreenResolutionSetter.defaultWidth)
         {
-            scale = (float)Screen.width / (float)SetScreenResolution.defaultWidth;
+            scale = (float)Screen.width / (float)ScreenResolutionSetter.defaultWidth;
             sculpture.localScale = new Vector3(scale, scale, scale);
         }
     }

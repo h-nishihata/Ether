@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SetMatTexure : MonoBehaviour {
+/// <summary>
+/// Scene内の任意の場所(MainCamera)にアタッチされた，マテリアル管理のためのスクリプト.
+/// </summary>
+public class MatTexSetter : MonoBehaviour {
 
     public Material textureMat;
     public Texture[] textures;
@@ -12,9 +15,9 @@ public class SetMatTexure : MonoBehaviour {
     private int lastMat;
     public string lastMatName;
 
-    public Color targetColor = new Color(0.93f, 0.93f, 0.88f, 1f);
-    private float colTransToWhite;
-    private float colTransToBlack;
+    public Color lightBGColor = new Color(0.93f, 0.93f, 0.88f, 1f);
+    private float colTransToLight;
+    private float colTransToDark;
     public Transform[] UIobjects;
 
     public static bool genButtonPressed;
@@ -52,7 +55,7 @@ public class SetMatTexure : MonoBehaviour {
 
     public void ChangeBGToWhite(string matType)
     {
-        if (Camera.main.backgroundColor == targetColor)
+        if (Camera.main.backgroundColor == lightBGColor)
             return;
 
         for (int i = 0; i < UIobjects.Length; i++)
@@ -64,29 +67,32 @@ public class SetMatTexure : MonoBehaviour {
         {
             switch (matType)
             {
-                case "Gold":
+                case "gold":
                     this.SetTexture(0, true);
                     break;
                 case "platinum":
                     this.SetTexture(1, true);
                     break;
-                case "MicroBeads":
+                case "micro_beads":
                     this.SetTexture(2, true);
                     break;
-                case "Alumina":
+                case "alumina":
                     this.SetTexture(3, true);
                     break;
-                case "Particle":
+                case "particle":
                     this.SetTexture(4, true);
+                    break;
+                default:
+                    this.SetTexture(5, true);
                     break;
             }
         }
 
         numDropsInfo.color = matTypeInfo.color = Color.black;
-        colTransToBlack = 0f;
-        if (colTransToWhite < 1f)
-            colTransToWhite += Time.deltaTime;
-        Camera.main.backgroundColor = Color.Lerp(Color.black, targetColor, colTransToWhite);
+        colTransToDark = 0f;
+        if (colTransToLight < 1f)
+            colTransToLight += Time.deltaTime;
+        Camera.main.backgroundColor = Color.Lerp(Color.black, lightBGColor, colTransToLight);
     }
 
     public void ChangeBGToBlack()
@@ -101,10 +107,10 @@ public class SetMatTexure : MonoBehaviour {
         this.SetTexture(lastMat);
 
         numDropsInfo.color = matTypeInfo.color = Color.white;
-        colTransToWhite = 0f;
-        if (colTransToBlack < 1f)
-            colTransToBlack += Time.deltaTime;
-        Camera.main.backgroundColor = Color.Lerp(targetColor, Color.black, colTransToBlack);
+        colTransToLight = 0f;
+        if (colTransToDark < 1f)
+            colTransToDark += Time.deltaTime;
+        Camera.main.backgroundColor = Color.Lerp(lightBGColor, Color.black, colTransToDark);
     }
 
     public void ConfirmGenerate(bool isGenerateMode)
@@ -116,7 +122,7 @@ public class SetMatTexure : MonoBehaviour {
         }
         numDropsInfo.color = matTypeInfo.color = isGenerateMode ? Color.black : Color.white;
         confirmButton.transform.gameObject.SetActive(isGenerateMode); // 確認用ボタンを表示.
-        Camera.main.backgroundColor = isGenerateMode ? targetColor : Color.black;
+        Camera.main.backgroundColor = isGenerateMode ? lightBGColor : Color.black;
 
         genMessage.text = "Generate this pattern ?";
         genMessage.color = isGenerateMode ? Color.black : new Color(0, 0, 0, 0);
@@ -137,7 +143,7 @@ public class SetMatTexure : MonoBehaviour {
     public void Reset()
     {
         csvReader.OnValueChanged(0);
-        SetMatTexure.genButtonPressed = SetMatTexure.genConfirmed = false;
+        MatTexSetter.genButtonPressed = MatTexSetter.genConfirmed = false;
         genMessage.color = new Color(0, 0, 0, 0);
         for (int i = 0; i < UIobjects.Length; i++)
         {

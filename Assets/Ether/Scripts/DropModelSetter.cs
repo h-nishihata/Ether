@@ -6,34 +6,34 @@ using UnityEngine.UI;
 /// <summary>
 /// 各ページの子オブジェクトに付いている，必要分のBoxを有効にするスクリプト. 
 /// </summary>
-public class SetDropModels : MonoBehaviour
+public class DropModelSetter : MonoBehaviour
 {
     private CSVReader csvReader; // シーン内にある，モデル設定のスクリプト.
     private int csvInitLine;
     public int pageID; // 自分のページ番号.
 
     public Transform[] boxes; // 各ページの，粒を入れるBox.
-    private SwitchActiveDrop[] switchActiveDrops; // 各Boxに付いている，どの粒を有効化するかを決めるスクリプト.
+    private ActiveDropSwitcher[] switchActiveDrops; // 各Boxに付いている，どの粒を有効化するかを決めるスクリプト.
     public Vector3[] offsetPositions; // 3Dモデルをインポートした時点で付いていたオフセットを相殺するための値.
 
-    public Text info;
-    private StringBuilder infoText = new StringBuilder();
-    private StringBuilder lotNumber = new StringBuilder();
+    public bool isExistentInArchive; // すでに制作されているかどうか.
+    public string fixedMat; //　(制作済の場合)使用された素材.
+
+    public Text patternInfo;
+    private StringBuilder lotNumber = new StringBuilder(); // 生成されたパターンの文字列.
+    private StringBuilder infoText = new StringBuilder(); // (制作済の場合)展示情報などを追加した最終の文字列.
     // CSVファイル書き込み用の，カンマで区切られたロット番号を作成する.
     string[] lotNumArray = new string[13];
     public string lotNumber4CSV;
-
-    public bool isExistentInArchive;
-    public string fixedMat;
 
 
     public void ManualStart()
     {
         csvReader = GameObject.FindWithTag("List").GetComponent<CSVReader>();
-        switchActiveDrops = new SwitchActiveDrop[boxes.Length];
+        switchActiveDrops = new ActiveDropSwitcher[boxes.Length];
         for (int i = 0; i < boxes.Length; i++)
         {
-            switchActiveDrops[i] = boxes[i].GetComponent<SwitchActiveDrop>();
+            switchActiveDrops[i] = boxes[i].GetComponent<ActiveDropSwitcher>();
         }
     }
 
@@ -43,9 +43,10 @@ public class SetDropModels : MonoBehaviour
     /// <param name="initLine">粒数のグループの始まりの行番号.</param>
     public void SetDrops(int initLine)
     {
-        isExistentInArchive = false;
         csvInitLine = initLine + 1;
-        lotNumber.Clear(); // 番号をクリア.
+        // リセット.
+        isExistentInArchive = false;
+        lotNumber.Clear();
         infoText.Clear();
 
         for (int i = 0; i < boxes.Length; i++)
@@ -58,9 +59,9 @@ public class SetDropModels : MonoBehaviour
             else
                 continue;
 
+            switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
             lotNumArray[i] = modelID;
             lotNumber.Append(modelID); // 番号を生成.
-            switchActiveDrops[i].Trigger(Int32.Parse(modelID) - 1); // それぞれのBoxに，使用する粒のモデルを伝える.
         }
 
         CheckExistence(csvInitLine + pageID);
@@ -70,25 +71,14 @@ public class SetDropModels : MonoBehaviour
 
     void CheckExistence(int lineNum)
     {
-        var matType = csvReader.csvData[csvInitLine + pageID][13];
-        if (matType != "")
+        for (int i = 0; i < csvReader.archivedPatterns.Length; i++)
         {
-            isExistentInArchive = true; // すでに制作されたことがある.
-            fixedMat = matType; // SetMatTexture.csで制作された素材を適用.
-        }
-        //else if(matType == "")
-        //{
-            for (int i = 0; i < csvReader.archivedPatterns.Length; i++)
-            {
-                //Debug.Log(csvReader.archivedPatterns[i]);
             if (csvReader.archivedPatterns[i] == lotNumber.ToString())
-                {
-                    isExistentInArchive = true;
-                    fixedMat = csvReader.archiveData[i][13];
-                    
+            {
+                isExistentInArchive = true;
+                fixedMat = csvReader.archiveData[i][13];
             }
-            }
-        //}
+        }
     }
 
     void SetInfo(string lotNumber)
@@ -108,8 +98,8 @@ public class SetDropModels : MonoBehaviour
             infoText.Append("Exhibition : " + "\n" + exhibition + "\n");
         }
 
-        info.fontSize = (int)(Screen.width * 0.03f);
-        info.color = isExistentInArchive ? Color.black : Color.white;
-        info.text = infoText.ToString();
+        patternInfo.fontSize = (int)(Screen.width * 0.03f);
+        patternInfo.color = isExistentInArchive ? Color.black : Color.white;
+        patternInfo.text = infoText.ToString();
     }
 }

@@ -15,7 +15,7 @@ public class SliderAssist : MonoBehaviour
     private Vector2 currentPos;
 
     public CSVReader csvReader;
-    public Text info;
+    public Text numDropInfo;
     public AudioManager audioManager;
 
 
@@ -61,6 +61,6 @@ public class SliderAssist : MonoBehaviour
     void SetInfo(float nearestValue)
     {
         var numDrops = (int)(nearestValue * 10 + 3);
-        info.text = "num drops: " + numDrops.ToString();
+        numDropInfo.text = "num drops: " + numDrops.ToString();
     }
 }

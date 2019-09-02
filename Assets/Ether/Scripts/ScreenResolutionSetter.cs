@@ -5,13 +5,13 @@
 /// おそらくProjectSettings.assetに前回起動時の情報が残っているせいで反映されない.
 /// 仕方ないので，Game画面で設定した解像度に基づいて，強制的に解像度を変更する.
 /// </summary>
-public class SetScreenResolution : MonoBehaviour
+public class ScreenResolutionSetter : MonoBehaviour
 {
     private int screenWidth;
     private int screenHeight;
     public static int defaultWidth = 1242;
 
-    public TurnPage pageSwitcher;
+    public PageSwitcher pageSwitcher;
 
     void Awake()
     {
