@@ -19,7 +19,7 @@ public class SliderAssist : MonoBehaviour
     public AudioManager audioManager;
 
 
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < fixedPos.Length; i++)
         {
@@ -48,19 +48,19 @@ public class SliderAssist : MonoBehaviour
 
     void ToNearest()
     {
-        var nearest = fixedPos.OrderBy(x => Mathf.Abs(x.x - currentPos.x)).First();
-        csvReader.OnValueChanged(nearest.x); // 粒数を変更することを伝える.
+        //var nearest = fixedPos.OrderBy(x => Mathf.Abs(x.x - currentPos.x)).First();
+        csvReader.OnValueChanged((int)slider.value); // 粒数を変更することを伝える.
         // ハンドル位置を変更する.
-        handlePosition.anchorMax = fill.anchorMax = nearest;
-        handlePosition.anchorMin = nearest * Vector2.right; // yの値だけ0にして使用する.
+        //handlePosition.anchorMax = fill.anchorMax = nearest;
+        //handlePosition.anchorMin = nearest * Vector2.right; // yの値だけ0にして使用する.
 
-        SetInfo(nearest.x);
+        SetInfo(slider.value);
         audioManager.Play(0);
     }
 
-    void SetInfo(float nearestValue)
+    void SetInfo(float sliderValue)
     {
-        var numDrops = (int)(nearestValue * 10 + 3);
+        var numDrops = (int)sliderValue;
         numDropInfo.text = "num drops: " + numDrops.ToString();
     }
 }

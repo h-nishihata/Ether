@@ -20,6 +20,7 @@ public class ActiveDropSwitcher : MonoBehaviour
         }
         if (drops[id] == null)
             return;
+
         drops[id].gameObject.SetActive(true);
 
         offset = modelSetter.offsetPositions[id];

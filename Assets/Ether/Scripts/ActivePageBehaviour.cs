@@ -66,8 +66,8 @@ public class ActivePageBehaviour : MonoBehaviour
                 }
             }
 
-            if(MatTexSetter.genConfirmed)
-                this.GenerateNewPattern();
+            //if(MatTexSetter.genConfirmed)
+                //this.GenerateNewPattern();
 
             // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))
@@ -123,10 +123,7 @@ public class ActivePageBehaviour : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 生成したパターンをCSVファイルに登録する.
-    /// https://stackoverflow.com/questions/14370757/editing-saving-a-row-in-a-csv-file
-    /// </summary>
+    /*
     void GenerateNewPattern()
     {
         genMessage.text = "Generated !";
@@ -153,5 +150,5 @@ public class ActivePageBehaviour : MonoBehaviour
             matTexSetter.Reset();
         }
 
-    }
+    }*/
 }
