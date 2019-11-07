@@ -1,5 +1,4 @@
-﻿using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -11,9 +10,10 @@ public class ActivePageBehaviour : MonoBehaviour
     private int pageID;
     public DropModelSetter modelSetter;
     private MatTexSetter matTexSetter;
-    private StringBuilder lotNumber = new StringBuilder();
 
     private bool userHasTouched;
+    private float timeToHapticMode;
+    private float timeToNormalMode;
 
     private float lastX, lastY;
     private float diffX, diffY = 0.5f;
@@ -22,12 +22,7 @@ public class ActivePageBehaviour : MonoBehaviour
 
     private Text patternInfo;
     private CSVWriter csvWriter;
-
-    private bool isSaved;
     private Text genMessage;
-
-    private float counterToGoBack;
-
 
     private void Start()
     {
@@ -47,7 +42,7 @@ public class ActivePageBehaviour : MonoBehaviour
         }
         else if (pageSwitcher.currentPage - 1 == pageID) // 自分のページが表示されたら...
         {
-            // すでに制作されたことがある場合，自分のページが表示されたら(MainCameraに映ったら)カメラの背景色を徐々に変える. 
+            /* すでに制作されたことがある場合，自分のページが表示されたら(MainCameraに映ったら)カメラの背景色を徐々に変える. 
             if (modelSetter.isExistentInArchive)
             {
                 var matType = modelSetter.fixedMat;
@@ -65,62 +60,90 @@ public class ActivePageBehaviour : MonoBehaviour
                     matTexSetter.ChangeBGToBlack(); // 通常は黒を使用する.
                 }
             }
+            */
 
-            //if(MatTexSetter.genConfirmed)
-                //this.GenerateNewPattern();
-
-            // タッチで3Dモデルを回転.
             if (Input.GetMouseButton(0))
             {
-                diffX = Mathf.Abs(lastX - Input.GetAxis("Mouse X"));
-                diffY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
-                // X軸方向.
-                if (lastX < Input.GetAxis("Mouse X"))
+                if (timeToHapticMode < 2f)
                 {
-                    directionX = -1;
-                    transform.Rotate(Vector3.up, -diffX * 0.8f);
+                    timeToHapticMode += Time.deltaTime;
                 }
-                else if (lastX > Input.GetAxis("Mouse X"))
+                else
                 {
-                    directionX = 1;
-                    transform.Rotate(Vector3.up, diffX * 0.8f);
+                    timeToNormalMode = 0f;
+                    userHasTouched = true;
                 }
-                // Y軸方向.
-                if (lastY < Input.GetAxis("Mouse Y"))
-                {
-                    directionY = -1;
-                    transform.Rotate(Vector3.right, -diffY * 3f);
-                }
-                else if (lastY > Input.GetAxis("Mouse Y"))
-                {
-                    directionY = 1;
-                    transform.Rotate(Vector3.right, diffY * 3f);
-                }
-
-                lastX = -Input.GetAxis("Mouse X");
-                lastY = -Input.GetAxis("Mouse Y");
-
-                userHasTouched = true;
+                if (userHasTouched)
+                    RotateSculpture();
             }
             else
             {
-                if (!userHasTouched)
-                    return;
-                // マウスボタンを離した後も惰性で回転を続け，徐々に減衰する.
-                if (diffX < 0f)
-                    diffX += decayLevel;
-                else if (diffX > 0f)
-                    diffX -= decayLevel;
-
-                if (diffY > 0f)
-                    diffY -= decayLevel;
-                else if (diffY < 0f)
-                    diffY += decayLevel;
-
-                transform.Rotate(Vector3.up, diffX * directionX);
-                transform.Rotate(Vector3.right, diffY * directionY);
+                InertialRotation();
             }
         }
+    }
+
+    /// <summary>
+    /// タッチで3Dモデルを回転.
+    /// </summary>
+    private void RotateSculpture()
+    {
+        diffX = Mathf.Abs(lastX - Input.GetAxis("Mouse X"));
+        diffY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
+        // X軸方向.
+        if (lastX < Input.GetAxis("Mouse X"))
+        {
+            directionX = -1;
+            transform.Rotate(Vector3.up, -diffX * 0.8f);
+        }
+        else if (lastX > Input.GetAxis("Mouse X"))
+        {
+            directionX = 1;
+            transform.Rotate(Vector3.up, diffX * 0.8f);
+        }
+        // Y軸方向.
+        if (lastY < Input.GetAxis("Mouse Y"))
+        {
+            directionY = -1;
+            transform.Rotate(Vector3.right, -diffY * 3f);
+        }
+        else if (lastY > Input.GetAxis("Mouse Y"))
+        {
+            directionY = 1;
+            transform.Rotate(Vector3.right, diffY * 3f);
+        }
+
+        lastX = -Input.GetAxis("Mouse X");
+        lastY = -Input.GetAxis("Mouse Y");
+    }
+
+    /// <summary>
+    /// マウスボタンを離した後も惰性で回転を続け，徐々に減衰する.
+    /// </summary>
+    private void InertialRotation()
+    {
+        if (timeToNormalMode < 2f)
+        {
+            timeToNormalMode += Time.deltaTime;
+        }
+        else
+        {
+            timeToHapticMode = 0f;
+            userHasTouched = false;
+        }
+
+        if (diffX < 0f)
+            diffX += decayLevel;
+        else if (diffX > 0f)
+            diffX -= decayLevel;
+
+        if (diffY > 0f)
+            diffY -= decayLevel;
+        else if (diffY < 0f)
+            diffY += decayLevel;
+
+        transform.Rotate(Vector3.up, diffX * directionX);
+        transform.Rotate(Vector3.right, diffY * directionY);
     }
 
     /*

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   associatedSheet: 195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE
   associatedWorksheet: Waffles
-  pattern: f2060000cc040000e806000000000000000000000000000000000000
+  pattern: cc04000044050000e806000000000000000000000000000000000000
   health: 100
   attack: 2
   defence: 100
