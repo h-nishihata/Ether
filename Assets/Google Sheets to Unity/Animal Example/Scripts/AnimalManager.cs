@@ -17,12 +17,10 @@ public class AnimalManager : MonoBehaviour
     }
     public SheetStatus sheetStatus;
 
-    //[HideInInspector]
-    public string associatedSheet = "195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE";
-    [HideInInspector]
-    public string associatedWorksheet = "Stats";
 
-    public List<AnimalObject> animalObjects = new List<AnimalObject>();
+    public string associatedSheet = "195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE";
+    public string associatedWorksheet = "3 Drops";
+
     public AnimalContainer container;
     
 
@@ -36,7 +34,7 @@ public class AnimalManager : MonoBehaviour
         }
     }
 
-    void UpdateStats()
+    public void UpdateStats()
     {
         if (sheetStatus == SheetStatus.PRIVATE)
         {
@@ -53,11 +51,6 @@ public class AnimalManager : MonoBehaviour
         foreach (Animal animal in container.allAnimals)
         {
             animal.UpdateStats(ss);
-        }
-
-        foreach(AnimalObject animalObject in animalObjects)
-        {
-            animalObject.BuildAnimalInfo();
         }
     }
 

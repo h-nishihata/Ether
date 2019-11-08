@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GoogleSheetsToUnity;
 
 /// <summary>
 /// Canvasに付いている，データ読込〜粒の設定までを行うスクリプト.
@@ -12,7 +13,7 @@ public class CSVReader : MonoBehaviour
     private GameObject[] pages;
 
     private DropModelSetter[] modelSetters; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
-    private float lastHandlePos;
+    private int lastHandlePos;
 
 
     void Start()

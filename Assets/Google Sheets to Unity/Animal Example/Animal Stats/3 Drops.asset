@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: 3 Drops
   m_EditorClassIdentifier: 
   associatedSheet: 195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE
-  associatedWorksheet: Stats
-  pattern: 8a00000094000000b200000000000000000000000000000000000000
+  associatedWorksheet: 3 Drops
+  pattern:
+  - 128
+  - 138
+  - 178
+  - 
+  - 
+  - 
+  - 
   health: 128
   attack: 138
   defence: 148
-  items:
-  - A
+  items: []

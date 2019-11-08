@@ -64,7 +64,7 @@ public class ActivePageBehaviour : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                if (timeToHapticMode < 2f)
+                if (timeToHapticMode < 1f)
                 {
                     timeToHapticMode += Time.deltaTime;
                 }
@@ -122,7 +122,7 @@ public class ActivePageBehaviour : MonoBehaviour
     /// </summary>
     private void InertialRotation()
     {
-        if (timeToNormalMode < 2f)
+        if (timeToNormalMode < 1f)
         {
             timeToNormalMode += Time.deltaTime;
         }

@@ -113,6 +113,9 @@ public class MatTexSetter : MonoBehaviour {
         Camera.main.backgroundColor = Color.Lerp(lightBGColor, Color.black, colTransToDark);
     }
 
+    /// <summary>
+    /// このパターンを登録してよいかどうか，確認のメッセージを表示する.
+    /// </summary>
     public void ConfirmGenerate(bool isGenerateMode)
     {
         genButtonPressed = isGenerateMode;
@@ -128,6 +131,9 @@ public class MatTexSetter : MonoBehaviour {
         genMessage.color = isGenerateMode ? Color.black : new Color(0, 0, 0, 0);
     }
 
+    /// <summary>
+    /// パターンが登録されたことを伝える.
+    /// </summary>
     public void Generate()
     {
         genConfirmed = true;
@@ -135,11 +141,14 @@ public class MatTexSetter : MonoBehaviour {
         Camera.main.backgroundColor = Color.black;
     }
 
+    /// <summary>
+    /// 現在選択中のマテリアル名を表示する.
+    /// </summary>
     void SetInfo(string matName)
     {
         matTypeInfo.text = "material type: " + matName;
     }
-
+    /*
     public void Reset()
     {
         csvReader.OnValueChanged(0);
@@ -151,4 +160,5 @@ public class MatTexSetter : MonoBehaviour {
         }
         this.SetTexture(0);
     }
+    */
 }

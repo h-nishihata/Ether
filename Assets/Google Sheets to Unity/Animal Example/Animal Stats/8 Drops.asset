@@ -10,12 +10,63 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cd5ad776f921664895987a23a4fa517, type: 3}
-  m_Name: Dog
+  m_Name: 8 Drops
   m_EditorClassIdentifier: 
   associatedSheet: 195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE
-  associatedWorksheet: Stats
-  pattern: 
-  health: 150
-  attack: 50
-  defence: 10
-  items: []
+  associatedWorksheet: 8 Drops
+  pattern:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  health: 100
+  attack: 2
+  defence: 100
+  items:
+  - F

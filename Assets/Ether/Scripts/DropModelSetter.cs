@@ -39,15 +39,7 @@ public class DropModelSetter : MonoBehaviour
     /// </summary>
     public void SetDrops(int numDrops)
     {
-        switch (numDrops)
-        {
-            case 3:
-                animal = container.allAnimals[0];
-                break;
-            case 4:
-                animal = container.allAnimals[1];
-                break;
-        }
+        animal = container.allAnimals[numDrops - 3];
 
         // リセット.
         isExistentInArchive = false;
@@ -58,7 +50,7 @@ public class DropModelSetter : MonoBehaviour
             boxes[i].transform.gameObject.SetActive(false);
         }
 
-        string rawNumber = animal.pattern[pageID].ToString(); // セルに入っている文字列. ex.「13458」
+        string rawNumber = animal.pattern[pageID]; // セルに入っている文字列. ex.「13458」
         // 一文字ずつにしてモデル番号として渡す.
         for (int i = 0; i < rawNumber.Length; i++)
         {

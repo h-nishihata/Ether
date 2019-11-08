@@ -354,55 +354,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241930609}
   m_CullTransparentMesh: 0
---- !u!1 &393977421
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 393977423}
-  - component: {fileID: 393977422}
-  m_Layer: 0
-  m_Name: Animal Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &393977422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393977421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb49ad85934a661489a56aa3dbe8630c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sheetStatus: 1
-  associatedSheet: 195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE
-  associatedWorksheet: Stats
-  animalObjects: []
-  container: {fileID: 11400000, guid: 2ad8294343866534f834dcaa61dfb17d, type: 2}
-  updateOnPlay: 1
---- !u!4 &393977423
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393977421}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,14 +2796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a1b8f056abd497f874131f5b17e08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileNames:
-  - patternData
-  - archiveData
-  csvInitLines: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  archivedPatterns: []
   pageTemplate: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
     type: 3}
-  animal: {fileID: 11400000, guid: 00f5617256bc924489c008e940fca4d6, type: 2}
+  manager: {fileID: 0}
 --- !u!1 &1848983884
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,7 +3562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 7233368662205970224}
-  fill: {fileID: 7233368662231648370}
   csvReader: {fileID: 1803338971}
   numDropInfo: {fileID: 1183226755}
   audioManager: {fileID: 1127697122}
