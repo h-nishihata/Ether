@@ -21,8 +21,8 @@ public class DropModelSetter : MonoBehaviour
     private StringBuilder lotNumber = new StringBuilder(); // 生成されたパターンの文字列.
     private StringBuilder infoText = new StringBuilder(); // (制作済の場合)展示情報などを追加した最終の文字列.
 
-    public AnimalContainer container;
-    private Animal animal;
+    public DropsContainer container;
+    private Drops drops;
 
 
     public void ManualStart()
@@ -39,7 +39,7 @@ public class DropModelSetter : MonoBehaviour
     /// </summary>
     public void SetDrops(int numDrops)
     {
-        animal = container.allAnimals[numDrops - 3];
+        drops = container.allNumDrops[numDrops - 3];
 
         // リセット.
         isExistentInArchive = false;
@@ -50,7 +50,7 @@ public class DropModelSetter : MonoBehaviour
             boxes[i].transform.gameObject.SetActive(false);
         }
 
-        string rawNumber = animal.pattern[pageID]; // セルに入っている文字列. ex.「13458」
+        string rawNumber = drops.pattern[pageID]; // セルに入っている文字列. ex.「13458」
         // 一文字ずつにしてモデル番号として渡す.
         for (int i = 0; i < rawNumber.Length; i++)
         {

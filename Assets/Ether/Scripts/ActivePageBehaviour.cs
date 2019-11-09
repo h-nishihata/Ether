@@ -30,7 +30,7 @@ public class ActivePageBehaviour : MonoBehaviour
         pageSwitcher = GameObject.FindWithTag("List").GetComponent<PageSwitcher>();
         matTexSetter = Camera.main.GetComponent<MatTexSetter>();
         patternInfo = modelSetter.patternInfo;
-        csvWriter = GameObject.FindWithTag("CSVWriter").GetComponent<CSVWriter>();
+        //csvWriter = GameObject.FindWithTag("CSVWriter").GetComponent<CSVWriter>();
         genMessage = GameObject.FindWithTag("GenMessage").GetComponent<Text>();
     }
 

@@ -9,12 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd5ad776f921664895987a23a4fa517, type: 3}
+  m_Script: {fileID: 11500000, guid: faeb53878f8434d71b47661155c0d96e, type: 3}
   m_Name: 7 Drops
   m_EditorClassIdentifier: 
   associatedSheet: 195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE
   associatedWorksheet: 7 Drops
   pattern:
+  - 1323258
+  - 1323268
+  - 1323278
+  - 1323428
+  - 1323438
+  - 1323458
+  - 1323468
+  - 1323478
+  - 1323528
+  - 1323538
   - 
   - 
   - 
@@ -65,7 +75,148 @@ MonoBehaviour:
   - 
   - 
   - 
-  health: 100
-  attack: 2
-  defence: 100
-  items: []
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  health: 0
+  attack: 0
+  defence: 0
+  items:
+  - E

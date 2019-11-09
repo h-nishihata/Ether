@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using GoogleSheetsToUnity;
 
 /// <summary>
 /// Canvasに付いている，データ読込〜粒の設定までを行うスクリプト.

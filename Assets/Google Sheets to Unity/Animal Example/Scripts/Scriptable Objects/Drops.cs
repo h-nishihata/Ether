@@ -8,10 +8,10 @@ using GoogleSheetsToUnity;
 using UnityEditor;
 #endif
 
-public class Animal : ScriptableObject
+public class Drops : ScriptableObject
 {
     public string associatedSheet = "195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE";
-    public string associatedWorksheet = "3 Drops";
+    public string associatedWorksheet;
 
     public string[] pattern;
     public int health;
@@ -34,7 +34,7 @@ public class Animal : ScriptableObject
     internal void UpdateStats(GstuSpreadSheet ss)
     {
         items.Clear();
-        for (int i = 0; i < pattern.Length; i++)
+        for (int i = 0; i < 10; i++)
         {
             pattern[i] = ss[i.ToString(), name].value;
         }
@@ -45,14 +45,14 @@ public class Animal : ScriptableObject
 
 //Custom editior to provide additional features
 #if UNITY_EDITOR
-[CustomEditor(typeof(Animal))]
+[CustomEditor(typeof(Drops))]
 public class AnimalEditor : Editor
 {
-    Animal animal;
+    Drops drops;
 
     void OnEnable()
     {
-        animal = (Animal)target;
+        drops = (Drops)target;
     }
 
     public override void OnInspectorGUI()
@@ -71,7 +71,7 @@ public class AnimalEditor : Editor
         GUILayout.Label("Write Data");
         GUILayout.Label("Update the existing data");
         if (GUILayout.Button("Update sheet information"))
-            UpdateAnimalInformationOnSheet();
+            UpdateInformationOnSheet();
 
         GUILayout.Label("Add New Data");
         if (GUILayout.Button("Add Data to Archive"))
@@ -80,19 +80,19 @@ public class AnimalEditor : Editor
 
     public void UpdateStats(UnityAction<GstuSpreadSheet> callback, bool mergedCells = false)
     {
-        SpreadsheetManager.Read(new GSTU_Search(animal.associatedSheet, animal.associatedWorksheet), callback, mergedCells);
+        SpreadsheetManager.Read(new GSTU_Search(drops.associatedSheet, drops.associatedWorksheet), callback, mergedCells);
     }
 
     public void UpdateMethodOne(GstuSpreadSheet ss)
     {
-        animal.UpdateStats(ss.rows[animal.name]);
+        drops.UpdateStats(ss.rows[drops.name]);
 
         EditorUtility.SetDirty(target);
     }
 
     void UpdateMethodTwo(GstuSpreadSheet ss)
     {
-        animal.UpdateStats(ss);
+        drops.UpdateStats(ss);
 
         EditorUtility.SetDirty(target);
     }
@@ -104,29 +104,29 @@ public class AnimalEditor : Editor
     {
         List<string> list = new List<string>();
 
-        list.Add(animal.name);
-        list.Add(animal.health.ToString());
-        list.Add(animal.attack.ToString());
-        list.Add(animal.defence.ToString());
+        list.Add(drops.name);
+        list.Add(drops.health.ToString());
+        list.Add(drops.attack.ToString());
+        list.Add(drops.defence.ToString());
 
-        SpreadsheetManager.Write(new GSTU_Search(animal.associatedSheet, "archive", "G10"), new ValueRange(list), null);
+        SpreadsheetManager.Write(new GSTU_Search(drops.associatedSheet, "archive", "G10"), new ValueRange(list), null);
     }
 
     /// <summary>
     /// Finds and updates the rows data based on an entry row data, in this example i am using the name as the unique id to find the starting cell for the row
     /// If the spreadsheet is cashed then no need to do the read and can just pass into the update
     /// </summary>
-    void UpdateAnimalInformationOnSheet()
+    void UpdateInformationOnSheet()
     {
-        SpreadsheetManager.Read(new GSTU_Search(animal.associatedSheet, animal.associatedWorksheet), UpdateAnimalInformation);
+        SpreadsheetManager.Read(new GSTU_Search(drops.associatedSheet, drops.associatedWorksheet), this.UpdateInformation);
     }
-    private void UpdateAnimalInformation(GstuSpreadSheet ss)
+    private void UpdateInformation(GstuSpreadSheet ss)
     {
         BatchRequestBody updateRequest = new BatchRequestBody();
-        updateRequest.Add(ss["0", animal.name].AddCellToBatchUpdate(animal.associatedSheet, animal.associatedWorksheet, animal.pattern[0]));
-        updateRequest.Add(ss["1", animal.name].AddCellToBatchUpdate(animal.associatedSheet, animal.associatedWorksheet, animal.pattern[1]));
-        updateRequest.Add(ss["2", animal.name].AddCellToBatchUpdate(animal.associatedSheet, animal.associatedWorksheet, animal.pattern[2]));
-        updateRequest.Send(animal.associatedSheet, animal.associatedWorksheet, null);
+        updateRequest.Add(ss["0", drops.name].AddCellToBatchUpdate(drops.associatedSheet, drops.associatedWorksheet, drops.pattern[0]));
+        updateRequest.Add(ss["1", drops.name].AddCellToBatchUpdate(drops.associatedSheet, drops.associatedWorksheet, drops.pattern[1]));
+        updateRequest.Add(ss["2", drops.name].AddCellToBatchUpdate(drops.associatedSheet, drops.associatedWorksheet, drops.pattern[2]));
+        updateRequest.Send(drops.associatedSheet, drops.associatedWorksheet, null);
     }
 }
 #endif
