@@ -193,7 +193,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4.59179e-40}
+  m_BoundingSphereOverride: {x: 1.4e-44, y: 2.0025796e-19, z: 6.7422043e+22, w: 4.1406e-41}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2815,6 +2815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pageTemplate: {fileID: 6043725410511205083, guid: a2ecb224715e549c0b8c2c5708328aec,
     type: 3}
+  manager: {fileID: 1445655080}
 --- !u!1 &1848983884
 GameObject:
   m_ObjectHideFlags: 0

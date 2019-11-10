@@ -39,7 +39,7 @@ public class DropModelSetter : MonoBehaviour
     /// </summary>
     public void SetDrops(int numDrops)
     {
-        drops = container.allNumDrops[numDrops - 3];
+        drops = container.allNumDrops[numDrops];
 
         // リセット.
         isExistentInArchive = false;
@@ -49,6 +49,9 @@ public class DropModelSetter : MonoBehaviour
         {
             boxes[i].transform.gameObject.SetActive(false);
         }
+
+        if (pageID > 3)
+            return;
 
         string rawNumber = drops.pattern[pageID]; // セルに入っている文字列. ex.「13458」
         // 一文字ずつにしてモデル番号として渡す.

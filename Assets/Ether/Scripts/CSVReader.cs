@@ -14,6 +14,8 @@ public class CSVReader : MonoBehaviour
     private DropModelSetter[] modelSetters; //各ページの子オブジェクトについている，モデル設定のためのスクリプト.
     private int lastHandlePos;
 
+    public SheetInfoManager manager;
+
 
     void Start()
     {
@@ -37,8 +39,7 @@ public class CSVReader : MonoBehaviour
             modelSetters[i] = pages[i].GetComponentInChildren<DropModelSetter>();
             modelSetters[i].ManualStart();
         }
-
-        SetPages(3, 3);
+        SetPages(0, 3);
     }
 
     /// <summary>
@@ -61,7 +62,7 @@ public class CSVReader : MonoBehaviour
     {
         pageSwitcher.pageCount = activePages; // ページの端の位置を伝える.
 
-        for (int i = 0; i < activePages; i++)
+        for (int i = 0; i < numMaxPages; i++)
         {
             modelSetters[i].pageID = i;
             modelSetters[i].SetDrops(numDrops);

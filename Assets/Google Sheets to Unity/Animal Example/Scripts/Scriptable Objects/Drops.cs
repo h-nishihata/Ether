@@ -34,7 +34,7 @@ public class Drops : ScriptableObject
     internal void UpdateStats(GstuSpreadSheet ss)
     {
         items.Clear();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 3; i++)
         {
             pattern[i] = ss[i.ToString(), name].value;
         }

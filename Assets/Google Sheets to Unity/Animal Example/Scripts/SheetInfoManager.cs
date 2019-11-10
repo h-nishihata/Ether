@@ -14,35 +14,30 @@ public class SheetInfoManager : MonoBehaviour
     public SheetStatus sheetStatus;
 
     public string associatedSheet = "195Si2_NVi9xt67DwPIXRzGe8Cfn5rOnJgrK9vRWWgFE";
-    public string[] associatedWorksheets;// = "3 Drops";
+    //public string associatedWorksheets = "Ether";
 
     public DropsContainer container;
-    public CSVReader reader;
-    private int iter;
 
-    // 起動時に一括でpullできないので，粒数を変更した時にそれぞれの粒数の情報をアップデートするようにする.
+
     void Awake()
     {
-        //for (int i = 0; i < associatedWorksheets[i].Length; i++)
-        //{
-            SpreadsheetManager.Read(new GSTU_Search(associatedSheet, associatedWorksheets[7]), this.UpdateAllDrops);
-            //iter = i;
-        //}
-
-        //reader.ManualStart();
+        this.UpdateStats();
     }
 
     public void UpdateStats()
     {
         if (sheetStatus == SheetStatus.PRIVATE)
         {
-
+            SpreadsheetManager.Read(new GSTU_Search(associatedSheet, "Ether"), this.UpdateAllDrops);
         }
     }
 
     void UpdateAllDrops(GstuSpreadSheet ss)
     {
-        container.allNumDrops[7].UpdateStats(ss);
+        foreach (Drops drops in container.allNumDrops)
+        {
+            drops.UpdateStats(ss);
+        }
     }
 
 }

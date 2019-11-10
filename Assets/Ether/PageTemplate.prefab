@@ -115,7 +115,6 @@ MonoBehaviour:
   isExistentInArchive: 0
   fixedMat: 
   patternInfo: {fileID: 6043725410442965864}
-  lotNumber4CSV: 
   container: {fileID: 11400000, guid: 2ad8294343866534f834dcaa61dfb17d, type: 2}
 --- !u!114 &4932538295514956427
 MonoBehaviour:
