@@ -18,7 +18,7 @@ public class PatternGenerator : MonoBehaviour
     {
         isLineColor = true;
     }
-
+    /*
     void Update()
     {
         // パターン作成.
@@ -36,7 +36,7 @@ public class PatternGenerator : MonoBehaviour
             mats[i].SetColor("_BGColor", bgColor);
         }
     }
-
+    */
     public void switchLineAndBG(bool lineButtonPressed)
     {
         buttons[0].interactable = !lineButtonPressed;

@@ -6,6 +6,7 @@ public class DropNumSwitcher : MonoBehaviour
     public Transform ether;
     public Transform[] drops;
     public Slider slider;
+    public Text value;
     public static int numDrops;
     private int prevNumDrops;
     private float unit = 0.5f;
@@ -28,6 +29,7 @@ public class DropNumSwitcher : MonoBehaviour
             return;
 
         this.SwitchActiveDrops();
+        value.text = numDrops.ToString();
         prevNumDrops = numDrops;
     }
 
