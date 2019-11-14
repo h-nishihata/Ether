@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// (1) 親オブジェクトに付いている，粒の数を変更するスクリプト.
+/// 親オブジェクトに付いている，粒の数を変更するスクリプト.
 /// </summary>
 public class DropNumSwitcher : MonoBehaviour
 {

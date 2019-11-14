@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// (2) 粒が入る枠一つ一つに付いている，粒モデル設定のスクリプト.
+/// 粒が入る枠一つ一つに付いている，粒モデル設定のスクリプト.
 /// </summary>
 public class ModelSetter : MonoBehaviour
 {
