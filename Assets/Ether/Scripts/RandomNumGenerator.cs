@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Text;
+using UnityEngine.UI;
+
 /// <summary>
 /// (0) 親オブジェクトに付いている，パターンを生成するスクリプト.
 /// </summary>
@@ -11,21 +14,31 @@ public class RandomNumGenerator : MonoBehaviour
     private string num;
     public ModelSetter[] modelSetters;
 
+    public Text patternInfo;
+    private StringBuilder pattern = new StringBuilder(); // 生成されたパターンの文字列.
+
 
     public void Generate()
     {
+        pattern.Append("Pattern: 0");
+
         for (int i = 0; i < DropNumSwitcher.numDrops; i++)
         {
             num = numList[UnityEngine.Random.Range(0, numList.Count)];
             //numList.Remove(num);
 
             modelSetters[i].SetModel(Int32.Parse(num)-1);
+            pattern.Append(num);
         }
+        pattern.Append("0");
+        patternInfo.text = pattern.ToString();
+
         // リセット.
         for (int i = 1; i < 7; i++)
         {
             numList.Add(i.ToString());
         }
+        pattern.Clear();
     }
 
 

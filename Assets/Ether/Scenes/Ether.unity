@@ -261,7 +261,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 11
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &63818210
 MonoBehaviour:
@@ -507,12 +507,12 @@ GameObject:
   - component: {fileID: 156903150}
   - component: {fileID: 156903149}
   m_Layer: 0
-  m_Name: Top Drop
+  m_Name: Bottom Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &156903148
 Transform:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156903147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
@@ -585,12 +585,12 @@ GameObject:
   - component: {fileID: 212294529}
   - component: {fileID: 212294528}
   m_Layer: 5
-  m_Name: Mask Fill
+  m_Name: Pattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &212294527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Text
+  m_Text: Pattern
 --- !u!222 &212294529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -681,7 +681,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 2
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &286019673
 MeshRenderer:
@@ -978,7 +978,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 1
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &437360668
 MeshRenderer:
@@ -1057,12 +1057,12 @@ GameObject:
   - component: {fileID: 452623511}
   - component: {fileID: 452623510}
   m_Layer: 0
-  m_Name: Bottom Drop
+  m_Name: Top Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &452623509
 Transform:
   m_ObjectHideFlags: 0
@@ -1071,7 +1071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452623508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
@@ -1154,7 +1154,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &455261350
 MonoBehaviour:
@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 502514314}
   - component: {fileID: 502514313}
   m_Layer: 5
-  m_Name: Pattern Fill
+  m_Name: Material
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1289,7 +1289,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Text
+  m_Text: Material
 --- !u!222 &502514314
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1478,7 +1478,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &678831855
 MonoBehaviour:
@@ -1807,7 +1807,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &773282116
 MonoBehaviour:
@@ -2006,7 +2006,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895968226
 GameObject:
@@ -2262,7 +2262,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &982218443
 MonoBehaviour:
@@ -2477,17 +2477,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452623509}
-  - {fileID: 437360667}
-  - {fileID: 286019672}
-  - {fileID: 861976500}
-  - {fileID: 773282115}
-  - {fileID: 982218442}
-  - {fileID: 2130279477}
-  - {fileID: 678831854}
-  - {fileID: 1067524220}
-  - {fileID: 455261349}
-  - {fileID: 1411868137}
   - {fileID: 63818209}
+  - {fileID: 1411868137}
+  - {fileID: 455261349}
+  - {fileID: 1067524220}
+  - {fileID: 678831854}
+  - {fileID: 2130279477}
+  - {fileID: 982218442}
+  - {fileID: 773282115}
+  - {fileID: 861976500}
+  - {fileID: 286019672}
+  - {fileID: 437360667}
   - {fileID: 156903148}
   m_Father: {fileID: 24349802}
   m_RootOrder: 2
@@ -2517,9 +2517,10 @@ MonoBehaviour:
   - {fileID: 455261349}
   - {fileID: 1411868137}
   - {fileID: 63818209}
+  topDrop: {fileID: 452623509}
+  bottomDrop: {fileID: 156903148}
   slider: {fileID: 356248749}
   value: {fileID: 686046464}
-  generator: {fileID: 0}
 --- !u!114 &1042428921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2544,6 +2545,7 @@ MonoBehaviour:
   - {fileID: 455261350}
   - {fileID: 1411868138}
   - {fileID: 63818210}
+  patternInfo: {fileID: 212294528}
 --- !u!1 &1067524219
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,7 +2577,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1067524221
 MonoBehaviour:
@@ -3155,7 +3157,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1411868138
 MonoBehaviour:
@@ -3988,7 +3990,7 @@ GameObject:
   - component: {fileID: 1813591485}
   - component: {fileID: 1813591486}
   m_Layer: 5
-  m_Name: Pattern Fill Slider
+  m_Name: Material Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4500,7 +4502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1905166758
 RectTransform:
   m_ObjectHideFlags: 0

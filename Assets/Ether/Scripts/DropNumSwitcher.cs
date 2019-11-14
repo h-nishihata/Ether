@@ -8,6 +8,8 @@ public class DropNumSwitcher : MonoBehaviour
 {
     public Transform ether;
     public Transform[] drops;
+    public Transform topDrop;
+    public Transform bottomDrop;
 
     public Slider slider;
     public Text value;
@@ -18,7 +20,7 @@ public class DropNumSwitcher : MonoBehaviour
     private Vector3[] defaultPositions; // 粒数が最大になったときの，それぞれの粒の位置.
     private float dropHeight = 0.5f;
 
-    public RandomNumGenerator generator;
+    private RandomNumGenerator generator;
 
 
     private void Start()
@@ -52,14 +54,17 @@ public class DropNumSwitcher : MonoBehaviour
         // リセット.
         for (int i = 0; i < drops.Length; i++)
         {
+            drops[i].localPosition = defaultPositions[i];
             drops[i].gameObject.SetActive(false);
         }
+
         // 粒数が減っても中心が保たれるように粒を配置する.
         for (int i = 0; i < numDrops; i++)
         {
             drops[i].gameObject.SetActive(true);
             drops[i].localPosition = new Vector3(0f, defaultPositions[i].y + (dropHeight * (maxDrops - numDrops) * 0.5f), 0f);
         }
-
+        topDrop.localPosition = new Vector3(0f, drops[numDrops - 1].localPosition.y + dropHeight, 0f);
+        bottomDrop.localPosition = new Vector3(0f, drops[0].localPosition.y - dropHeight, 0f);
     }
 }
