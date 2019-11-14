@@ -1,50 +1,64 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
+/// <summary>
+/// (1) 親オブジェクトに付いている，粒の数を変更するスクリプト.
+/// </summary>
 public class DropNumSwitcher : MonoBehaviour
 {
     public Transform ether;
     public Transform[] drops;
+
     public Slider slider;
     public Text value;
+    public static int maxDrops = 11;
     public static int numDrops;
     private int prevNumDrops;
-    private float unit = 0.5f;
-    private Vector3[] initPositions;
+
+    private Vector3[] defaultPositions; // 粒数が最大になったときの，それぞれの粒の位置.
+    private float dropHeight = 0.5f;
+
+    public RandomNumGenerator generator;
 
 
     private void Start()
     {
-        initPositions = new Vector3[drops.Length];
+        generator = this.gameObject.GetComponent<RandomNumGenerator>();
+        defaultPositions = new Vector3[drops.Length];
         for (int i = 0; i < drops.Length; i++)
         {
-            initPositions[i] = drops[i].transform.localPosition;
+            defaultPositions[i] = drops[i].transform.localPosition;
         }
     }
 
     void Update()
     {
         numDrops = (int)slider.value;
-        if (prevNumDrops == numDrops)
-            return;
 
+        if (prevNumDrops != numDrops)
+            this.ChangeNumDrops();
+    }
+
+    void ChangeNumDrops()
+    {
         this.SwitchActiveDrops();
-        value.text = numDrops.ToString();
+        value.text = (numDrops + 2).ToString();
         prevNumDrops = numDrops;
+        generator.Generate();
     }
 
     void SwitchActiveDrops()
     {
+        // リセット.
         for (int i = 0; i < drops.Length; i++)
         {
-            drops[i].localPosition = Vector3.zero;
             drops[i].gameObject.SetActive(false);
         }
-
+        // 粒数が減っても中心が保たれるように粒を配置する.
         for (int i = 0; i < numDrops; i++)
         {
             drops[i].gameObject.SetActive(true);
-            drops[i].localPosition = new Vector3(0f, initPositions[i].y + (unit * (11 - numDrops) * 0.5f), 0f);
+            drops[i].localPosition = new Vector3(0f, defaultPositions[i].y + (dropHeight * (maxDrops - numDrops) * 0.5f), 0f);
         }
 
     }
