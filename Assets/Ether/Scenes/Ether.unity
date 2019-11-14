@@ -2458,6 +2458,7 @@ GameObject:
   - component: {fileID: 1042428919}
   - component: {fileID: 1042428921}
   - component: {fileID: 1042428920}
+  - component: {fileID: 1042428922}
   m_Layer: 0
   m_Name: Ether
   m_TagString: Untagged
@@ -2533,6 +2534,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7e536e27059447fbba31d1bd5a496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numList:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
   modelSetters:
   - {fileID: 437360670}
   - {fileID: 286019675}
@@ -2546,6 +2554,19 @@ MonoBehaviour:
   - {fileID: 1411868138}
   - {fileID: 63818210}
   patternInfo: {fileID: 212294528}
+--- !u!114 &1042428922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042428918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c155ecb2592948adb7ada7d840fb9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI: {fileID: 1354925647}
 --- !u!1 &1067524219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,6 +3039,7 @@ GameObject:
   - component: {fileID: 1354925646}
   - component: {fileID: 1354925645}
   - component: {fileID: 1354925644}
+  - component: {fileID: 1354925647}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3090,6 +3112,20 @@ Transform:
   m_Father: {fileID: 24349802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1354925647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354925643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982148f380eb84b5a8fbb0ea9649e031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIPanel: {fileID: 541361121}
+  isActive: 1
 --- !u!1 &1361286925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,7 +4484,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1888924113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1354925647}
+        m_MethodName: switchUIPanel
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1888924113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4502,7 +4549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1905166758
 RectTransform:
   m_ObjectHideFlags: 0
