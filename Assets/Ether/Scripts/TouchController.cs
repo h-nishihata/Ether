@@ -5,7 +5,6 @@
 /// </summary>
 public class TouchController : MonoBehaviour
 {
-    //public UIController UI;
     private bool userHasTouched;
     private float countToRotation;
     private float countToDefault;
