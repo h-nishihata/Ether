@@ -20,8 +20,7 @@ public class MatTexSetter : MonoBehaviour {
     public void SetTexture(int matType)
     {
         if (matType < 0)
-            matType = (int)slider.value;
-    
+            matType = (int)slider.value;    
 
         textureMat.SetTexture("_MainTex", textures[matType]);
         textureMat.SetTexture("_BumpMap", normalMaps[matType]);
