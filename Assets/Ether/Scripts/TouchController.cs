@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// モデルの回転.
@@ -11,15 +12,15 @@ public class TouchController : MonoBehaviour
     private float transitionTime = 1f;
 
     private float lastX, lastY;
-    private float diffX, diffY = 0.5f;
-    private int directionX, directionY = 1;
+    private float diffX, diffY;
+    private int directionX, directionY;
     private float decayLevel = 0.03f;
+
+    public Button resetButton;
 
 
     void Update()
     {
-        //transform.rotation = Quaternion.identity; // 回転をリセット.
-
         if (Input.GetMouseButton(0))
         {
             if (countToRotation < transitionTime)
@@ -45,6 +46,8 @@ public class TouchController : MonoBehaviour
     /// </summary>
     private void RotateSculpture()
     {
+        resetButton.interactable = true;
+
         diffX = Mathf.Abs(lastX - Input.GetAxis("Mouse X"));
         diffY = Mathf.Abs(lastY - Input.GetAxis("Mouse Y"));
         // X軸方向.
@@ -101,5 +104,14 @@ public class TouchController : MonoBehaviour
 
         transform.Rotate(Vector3.up, diffX * directionX);
         transform.Rotate(Vector3.right, diffY * directionY);
+    }
+
+    /// <summary>
+    /// 回転をリセット.
+    /// </summary>
+    public void Reset()
+    {
+        transform.rotation = Quaternion.identity;
+        resetButton.interactable = false;
     }
 }
