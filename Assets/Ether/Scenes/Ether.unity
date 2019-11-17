@@ -259,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63818208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1042428919}
@@ -2461,9 +2461,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1042428919}
   - component: {fileID: 1042428921}
+  - component: {fileID: 1042428924}
   - component: {fileID: 1042428920}
-  - component: {fileID: 1042428922}
   - component: {fileID: 1042428923}
+  - component: {fileID: 1042428922}
   m_Layer: 0
   m_Name: Ether
   m_TagString: Untagged
@@ -2601,6 +2602,21 @@ MonoBehaviour:
   - {fileID: 2800000, guid: cf30a2f23d6c248d3a47d4dfb35e63ab, type: 3}
   - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
   matTypeInfo: {fileID: 698938184}
+--- !u!114 &1042428924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042428918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bd3129e68dd4dd8a59c827344343a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileNames: archiveData
+  csvData: []
+  archivedPatterns: []
 --- !u!1 &1067524219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,7 +3089,6 @@ GameObject:
   - component: {fileID: 1354925646}
   - component: {fileID: 1354925645}
   - component: {fileID: 1354925644}
-  - component: {fileID: 1354925647}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3146,20 +3161,6 @@ Transform:
   m_Father: {fileID: 24349802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1354925647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354925643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982148f380eb84b5a8fbb0ea9649e031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIPanel: {fileID: 541361121}
-  isActive: 1
 --- !u!1 &1361286925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,7 +3570,6 @@ GameObject:
   - component: {fileID: 1495387149}
   - component: {fileID: 1495387148}
   - component: {fileID: 1495387147}
-  - component: {fileID: 1495387151}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -3657,30 +3657,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1495387151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495387146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 922a4014b7b2b4d8eb60a8b18a94f116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mats: []
-  sliders:
-  - {fileID: 356248749}
-  - {fileID: 1813591486}
-  - {fileID: 1334204846}
-  - {fileID: 145667543}
-  buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  lineColor: {r: 0, g: 0, b: 0, a: 1}
-  bgColor: {r: 1, g: 1, b: 1, a: 1}
-  isLineColor: 0
 --- !u!1 &1514754433
 GameObject:
   m_ObjectHideFlags: 0

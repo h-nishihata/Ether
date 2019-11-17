@@ -10,7 +10,7 @@ using UnityEngine.UI;
 /// </summary>
 public class RandomNumGenerator : MonoBehaviour
 {
-    public List<string> numList = new List<string> {"1", "2", "3", "4", "5", "6"}; // 上下のパーツは同じもので，番号を0とする.間のパーツが6種類ある.
+    private List<string> numList = new List<string> {"2", "3", "4", "5", "6", "7"}; // 上下のパーツは同じもので，番号を0とする.間のパーツが6種類ある.
     private string num;
     private string prevNum;
     public ModelSetter[] modelSetters;
@@ -18,10 +18,17 @@ public class RandomNumGenerator : MonoBehaviour
     public Text patternInfo;
     private StringBuilder pattern = new StringBuilder(); // 生成されたパターンの文字列.
 
+    private CSVReader csvReader;
+
+
+    private void Start()
+    {
+        csvReader = this.GetComponent<CSVReader>();
+    }
 
     public void Generate()
     {
-        pattern.Append("Pattern: 0");
+        pattern.Append("1");
 
         for (int i = 0; i < DropNumSwitcher.numDrops; i++)
         {
@@ -39,19 +46,38 @@ public class RandomNumGenerator : MonoBehaviour
                 prevNum = num;
             }
 
-            modelSetters[i].SetModel(Int32.Parse(num)-1);
+            modelSetters[i].SetModel(Int32.Parse(num) - 2);
             pattern.Append(num);
         }
 
-        pattern.Append("0");
-        patternInfo.text = pattern.ToString();
+        pattern.Append("8");
+
+        var result = this.CheckExistence();
+        if (result)
+            Debug.Log("<color='red'>The pattern already exists in the Archive: </color>" + pattern);
+        else
+            patternInfo.text = pattern.ToString();
+
         this.Reset();
+    }
+
+    private bool CheckExistence()
+    {
+        var isExistent = false;
+        for (int i = 0; i < csvReader.csvData.Count; i++)
+        {
+            if (pattern.ToString() == csvReader.csvData[i])
+            {
+                isExistent = true;
+            }
+        }
+        return isExistent;
     }
 
     private void Reset()
     {
         numList.Clear();
-        for (int i = 1; i < 7; i++)
+        for (int i = 2; i < 8; i++)
         {
             numList.Add(i.ToString());
         }

@@ -14,7 +14,7 @@ public class TouchController : MonoBehaviour
     private float lastX, lastY;
     private float diffX, diffY;
     private int directionX, directionY;
-    private float decayLevel = 0.03f;
+    private float decayLevel = 0.01f;
 
     public Button resetButton;
 
