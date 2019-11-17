@@ -10,15 +10,16 @@ using UnityEngine.UI;
 /// </summary>
 public class RandomNumGenerator : MonoBehaviour
 {
-    private List<string> numList = new List<string> {"2", "3", "4", "5", "6", "7"}; // 上下のパーツは同じもので，番号を0とする.間のパーツが6種類ある.
+    private List<string> numList = new List<string> {"2", "3", "4", "5", "6", "7"}; // 上下を除いた6種類のパーツ.
     private string num;
     private string prevNum;
+
+    private List<int> tempList = new List<int>(); // 重複していないか確認する間，生成した数字を逃しておくためのリスト.
+    private CSVReader csvReader;
     public ModelSetter[] modelSetters;
 
-    public Text patternInfo;
     private StringBuilder pattern = new StringBuilder(); // 生成されたパターンの文字列.
-
-    private CSVReader csvReader;
+    public Text patternInfo;
 
 
     private void Start()
@@ -46,19 +47,26 @@ public class RandomNumGenerator : MonoBehaviour
                 prevNum = num;
             }
 
-            modelSetters[i].SetModel(Int32.Parse(num) - 2);
+            tempList.Add(Int32.Parse(num) - 2);
             pattern.Append(num);
         }
 
         pattern.Append("8");
 
         var result = this.CheckExistence();
-        if (result)
+        if (result == true)
+        {
             Debug.Log("<color='red'>The pattern already exists in the Archive: </color>" + pattern);
+            this.Reset();
+            this.Generate();
+        }
         else
-            patternInfo.text = pattern.ToString();
-
-        this.Reset();
+        {
+            patternInfo.text = "Pattern: " + pattern;
+            for (int i = 0; i < DropNumSwitcher.numDrops; i++)
+                modelSetters[i].SetModel(tempList[i]);
+            this.Reset();
+        }
     }
 
     private bool CheckExistence()
@@ -78,9 +86,9 @@ public class RandomNumGenerator : MonoBehaviour
     {
         numList.Clear();
         for (int i = 2; i < 8; i++)
-        {
             numList.Add(i.ToString());
-        }
+
         pattern.Clear();
+        tempList.Clear();
     }
 }
