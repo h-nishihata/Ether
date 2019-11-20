@@ -56,7 +56,7 @@ public class RandomNumGenerator : MonoBehaviour
         var result = this.CheckExistence();
         if (result == true)
         {
-            Debug.Log("<color='red'>The pattern already exists in the Archive: </color>" + pattern);
+            //Debug.Log("<color='red'>The pattern already exists in the Archive: </color>" + pattern);
             this.Reset();
             this.Generate();
         }

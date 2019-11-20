@@ -65,12 +65,12 @@ public class TouchController : MonoBehaviour
         if (lastY < Input.GetAxis("Mouse Y"))
         {
             directionY = -1;
-            transform.Rotate(Vector3.right, -diffY * 3f);
+            transform.Rotate(Vector3.right, -diffY * 2f);
         }
         else if (lastY > Input.GetAxis("Mouse Y"))
         {
             directionY = 1;
-            transform.Rotate(Vector3.right, diffY * 3f);
+            transform.Rotate(Vector3.right, diffY * 2f);
         }
 
         lastX = -Input.GetAxis("Mouse X");
