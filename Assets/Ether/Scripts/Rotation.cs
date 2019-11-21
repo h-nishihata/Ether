@@ -10,16 +10,15 @@ public class Rotation : MonoBehaviour
     public float velocity = 3f;
 
     public Button resetButton;
-    public Slider numDropsSlider;
     private Vector3 camPosition = new Vector3(-1f, 2f, -10f);
     private DropNumSwitcher dropNumSwitcher;
-    private MatTexSetter matTexSetter;
+    public Slider numDropsSlider;
+    public Slider materialSlider;
 
 
     private void Start()
     {
         dropNumSwitcher = this.gameObject.GetComponent<DropNumSwitcher>();
-        matTexSetter = this.gameObject.GetComponent<MatTexSetter>();
     }
 
     void Update ()
@@ -60,7 +59,7 @@ public class Rotation : MonoBehaviour
         if (!isCamera)
         {
             dropNumSwitcher.SetPedestal(0);
-            matTexSetter.SetTexture(0);
+            materialSlider.value = 0;
             numDropsSlider.value = 1;
             resetButton.interactable = false;
         }
