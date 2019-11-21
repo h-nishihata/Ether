@@ -2528,7 +2528,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 601098571}
   - {fileID: 1859667881}
-  slider: {fileID: 356248749}
+  numDropsSlider: {fileID: 356248749}
   value: {fileID: 686046464}
   pedestalButtons:
   - {fileID: 1860660497}
@@ -2620,6 +2620,8 @@ MonoBehaviour:
   resetButton: {fileID: 1888924112}
   numDropsSlider: {fileID: 356248749}
   materialSlider: {fileID: 1813591486}
+  pedestalSizeSlider: {fileID: 1771578195}
+  pedestalHeightSlider: {fileID: 1782588764}
 --- !u!1 &1053943610
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,6 +3322,8 @@ MonoBehaviour:
   resetButton: {fileID: 1888924112}
   numDropsSlider: {fileID: 0}
   materialSlider: {fileID: 0}
+  pedestalSizeSlider: {fileID: 0}
+  pedestalHeightSlider: {fileID: 0}
 --- !u!1 &1411868136
 GameObject:
   m_ObjectHideFlags: 0
@@ -4194,7 +4198,7 @@ MonoBehaviour:
   m_MinValue: 0.5
   m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4306,7 +4310,7 @@ MonoBehaviour:
   m_MinValue: 0.25
   m_MaxValue: 1.5
   m_WholeNumbers: 0
-  m_Value: 0.25
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

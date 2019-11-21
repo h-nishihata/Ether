@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 各土台に付いている，サイズ変更用スクリプト.
+/// </summary>
 public class PedestalSizeSetter : MonoBehaviour
 {
     public Slider sizeSlider;

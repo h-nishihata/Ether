@@ -14,6 +14,8 @@ public class Rotation : MonoBehaviour
     private DropNumSwitcher dropNumSwitcher;
     public Slider numDropsSlider;
     public Slider materialSlider;
+    public Slider pedestalSizeSlider;
+    public Slider pedestalHeightSlider;
 
 
     private void Start()
@@ -59,8 +61,9 @@ public class Rotation : MonoBehaviour
         if (!isCamera)
         {
             dropNumSwitcher.SetPedestal(0);
-            materialSlider.value = 0;
-            numDropsSlider.value = 1;
+            materialSlider.value = 0f;
+            numDropsSlider.value = pedestalSizeSlider.value = 1f;
+            pedestalHeightSlider.value = 0.5f;
             resetButton.interactable = false;
         }
     }
