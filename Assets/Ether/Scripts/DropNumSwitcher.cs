@@ -68,6 +68,12 @@ public class DropNumSwitcher : MonoBehaviour
         }
         topDrop.localPosition = new Vector3(0f, drops[numDrops - 1].localPosition.y + dropHeight, 0f);
         bottomDrop.localPosition = new Vector3(0f, drops[0].localPosition.y - dropHeight, 0f);
+
+        for (int i = 1; i < pedestals.Length; i++)
+        {
+            if (pedestals[i].gameObject.activeSelf)
+                pedestals[i].localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.33f, 0f);
+        }
     }
 
     public void SetPedestal(int id)
@@ -84,7 +90,7 @@ public class DropNumSwitcher : MonoBehaviour
         if (id > 0)
         {
             pedestals[id].gameObject.SetActive(true);
-            pedestals[id].localPosition = new Vector3(0f, bottomDrop.localPosition.y, 0f);
+            pedestals[id].localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.33f, 0f);
         }
     }
 }
