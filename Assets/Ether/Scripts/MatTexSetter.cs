@@ -24,6 +24,6 @@ public class MatTexSetter : MonoBehaviour {
 
         textureMat.SetTexture("_MainTex", textures[matType]);
         textureMat.SetTexture("_BumpMap", normalMaps[matType]);
-        matTypeInfo.text = textures[matType].name;
+        matTypeInfo.text = "Material:" + "\n" + textures[matType].name;
     }
 }

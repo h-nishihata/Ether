@@ -10,12 +10,14 @@ public class DropNumSwitcher : MonoBehaviour
     public Transform[] drops;
     public Transform topDrop;
     public Transform bottomDrop;
+    public Transform[] pedestals;
 
     public Slider slider;
     public Text value;
     public static int maxDrops = 11;
     public static int numDrops;
     private int prevNumDrops;
+    public Button[] pedestalButtons;
 
     private Vector3[] defaultPositions; // 粒数が最大になったときの，それぞれの粒の位置.
     private float dropHeight = 0.5f;
@@ -44,7 +46,7 @@ public class DropNumSwitcher : MonoBehaviour
     void ChangeNumDrops()
     {
         this.SwitchActiveDrops();
-        value.text = (numDrops + 2).ToString();
+        value.text = "Num drops: " + "\n" + (numDrops + 2).ToString();
         prevNumDrops = numDrops;
         generator.Generate();
     }
@@ -66,5 +68,23 @@ public class DropNumSwitcher : MonoBehaviour
         }
         topDrop.localPosition = new Vector3(0f, drops[numDrops - 1].localPosition.y + dropHeight, 0f);
         bottomDrop.localPosition = new Vector3(0f, drops[0].localPosition.y - dropHeight, 0f);
+    }
+
+    public void SetPedestal(int id)
+    {
+        // リセット.
+        for (int i = 0; i < pedestalButtons.Length; i++)
+        {
+            pedestalButtons[i].interactable = true;
+            if (i > 0)
+                pedestals[i].gameObject.SetActive(false);
+        }
+
+        pedestalButtons[id].interactable = false;
+        if (id > 0)
+        {
+            pedestals[id].gameObject.SetActive(true);
+            pedestals[id].localPosition = new Vector3(0f, bottomDrop.localPosition.y, 0f);
+        }
     }
 }
