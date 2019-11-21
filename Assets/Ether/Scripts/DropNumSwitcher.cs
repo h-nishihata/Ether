@@ -48,6 +48,7 @@ public class DropNumSwitcher : MonoBehaviour
 
     void ChangeNumDrops()
     {
+        rotation.resetButton.interactable = true;
         this.SwitchActiveDrops();
         value.text = "Num drops: " + "\n" + (numDrops + 2).ToString();
         prevNumDrops = numDrops;
