@@ -23,11 +23,14 @@ public class DropNumSwitcher : MonoBehaviour
     private float dropHeight = 0.5f;
 
     private RandomNumGenerator generator;
+    private Rotation rotation;
 
 
     private void Start()
     {
         generator = this.gameObject.GetComponent<RandomNumGenerator>();
+        rotation = this.gameObject.GetComponent<Rotation>();
+
         defaultPositions = new Vector3[drops.Length];
         for (int i = 0; i < drops.Length; i++)
         {
@@ -89,6 +92,7 @@ public class DropNumSwitcher : MonoBehaviour
         pedestalButtons[id].interactable = false;
         if (id > 0)
         {
+            rotation.resetButton.interactable = true;
             pedestals[id].gameObject.SetActive(true);
             pedestals[id].localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.33f, 0f);
         }

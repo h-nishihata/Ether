@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// オブジェクトの回転.X軸方向転はMainCamera，Y軸方向はEtherにアタッチされている.
+/// </summary>
 public class Rotation : MonoBehaviour
 {
     public bool isCamera;
     public float velocity = 3f;
-    public Button resetButton;
 
+    public Button resetButton;
+    private Vector3 camPosition = new Vector3(-1f, -0.1f, -10f);
+    private DropNumSwitcher switcher;
+
+
+    private void Start()
+    {
+        switcher = this.gameObject.GetComponent<DropNumSwitcher>();
+    }
 
     void Update ()
 	{
@@ -38,12 +49,12 @@ public class Rotation : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 回転をリセット.
-    /// </summary>
     public void Reset()
     {
-        transform.rotation = Quaternion.identity;
+        transform.localRotation = Quaternion.identity;
+        transform.localPosition = isCamera ? camPosition : Vector3.zero;
+        if (switcher != null)
+            switcher.SetPedestal(0);
         resetButton.interactable = false;
     }
 }
