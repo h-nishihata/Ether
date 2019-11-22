@@ -22,6 +22,7 @@ public class DropNumSwitcher : MonoBehaviour
     private float dropHeight = 0.5f;
     private RandomNumGenerator generator;
 
+    public BodyController bodyController;
     public Button[] pedestalButtons;
     private Rotation rotation;
 
@@ -72,11 +73,15 @@ public class DropNumSwitcher : MonoBehaviour
         topDrop.localPosition = new Vector3(0f, drops[numDrops - 1].localPosition.y + dropHeight, 0f);
         bottomDrop.localPosition = new Vector3(0f, drops[0].localPosition.y - dropHeight, 0f);
 
+        // 土台の位置調整.
         for (int i = 1; i < pedestals.Length; i++)
         {
             if (pedestals[i].gameObject.activeSelf)
                 pedestals[i].localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.33f, 0f);
         }
+
+        // 人の位置調整.
+        bodyController.AdjustGroundLevel();
     }
 
     /// <summary>
@@ -93,6 +98,8 @@ public class DropNumSwitcher : MonoBehaviour
         }
 
         pedestalButtons[id].interactable = false;
+        bodyController.activePedestalID = id;
+        bodyController.AdjustGroundLevel();
         if (id > 0)
         {
             rotation.resetButton.interactable = true;

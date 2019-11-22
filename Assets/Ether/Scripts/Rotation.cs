@@ -9,7 +9,7 @@ public class Rotation : MonoBehaviour
     public VariableJoystick variableJoystick;
 
     public bool isCamera;
-    public float velocity = 1f;
+    private float velocity = 1f;
 
     public Button resetButton;
     private Vector3 camPosition = new Vector3(-1f, 2f, -10f);
@@ -18,6 +18,7 @@ public class Rotation : MonoBehaviour
     public Slider materialSlider;
     public Slider pedestalSizeSlider;
     public Slider pedestalHeightSlider;
+    public Toggle bodyToggle;
 
 
     private void Start()
@@ -67,6 +68,7 @@ public class Rotation : MonoBehaviour
             numDropsSlider.value = pedestalSizeSlider.value = 1f;
             pedestalHeightSlider.value = 0.5f;
             resetButton.interactable = false;
+            bodyToggle.isOn = false;
         }
     }
 }
