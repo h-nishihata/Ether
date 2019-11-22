@@ -77,7 +77,7 @@ public class DropNumSwitcher : MonoBehaviour
         for (int i = 1; i < pedestals.Length; i++)
         {
             if (pedestals[i].gameObject.activeSelf)
-                pedestals[i].localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.33f, 0f);
+                pedestals[i].GetComponent<PedestalSizeSetter>().Rescale();
         }
 
         // 人の位置調整.
