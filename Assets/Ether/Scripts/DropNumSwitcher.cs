@@ -23,8 +23,6 @@ public class DropNumSwitcher : MonoBehaviour
     private RandomNumGenerator generator;
 
     public Button[] pedestalButtons;
-    //public Slider pedestalSizeSlider;
-    //public Slider pedestalHeightSlider;
     private Rotation rotation;
 
 
@@ -90,8 +88,6 @@ public class DropNumSwitcher : MonoBehaviour
         for (int i = 0; i < pedestalButtons.Length; i++)
         {
             pedestalButtons[i].interactable = true;
-            //pedestalSizeSlider.gameObject.SetActive(false);
-            //pedestalHeightSlider.gameObject.SetActive(false);
             if (i > 0)
                 pedestals[i].gameObject.SetActive(false);
         }
@@ -101,11 +97,7 @@ public class DropNumSwitcher : MonoBehaviour
         {
             rotation.resetButton.interactable = true;
             pedestals[id].gameObject.SetActive(true);
-            //pedestals[id].localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.33f, 0f);
             pedestals[id].GetComponent<PedestalSizeSetter>().Rescale();
-            //pedestalSizeSlider.gameObject.SetActive(true);
-            //if (id == 1)
-                //pedestalHeightSlider.gameObject.SetActive(true);
         }
     }
 }

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class Rotation : MonoBehaviour
 {
+    public VariableJoystick variableJoystick;
+
     public bool isCamera;
-    public float velocity = 3f;
+    public float velocity = 1f;
 
     public Button resetButton;
     private Vector3 camPosition = new Vector3(-1f, 2f, -10f);
@@ -27,12 +29,12 @@ public class Rotation : MonoBehaviour
 	{
         if (isCamera)
         {
-            if (Input.GetKey(KeyCode.W) && (transform.rotation.x < 0.5f))
+            if (variableJoystick.Direction.y > 0f && (transform.rotation.x < 0.5f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, velocity);
                 resetButton.interactable = true;
             }
-            else if (Input.GetKey(KeyCode.S) && (transform.rotation.x > -0f))
+            else if (variableJoystick.Direction.y < 0f && (transform.rotation.x > -0f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, -velocity);
                 resetButton.interactable = true;
@@ -40,14 +42,14 @@ public class Rotation : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(Vector3.up, -velocity);
-                resetButton.interactable = true;
-            }
-            else if (Input.GetKey(KeyCode.D))
+            if (variableJoystick.Direction.x < 0f)
             {
                 transform.Rotate(Vector3.up, velocity);
+                resetButton.interactable = true;
+            }
+            else if (variableJoystick.Direction.x > 0f)
+            {
+                transform.Rotate(Vector3.up, -velocity);
                 resetButton.interactable = true;
             }
         }
