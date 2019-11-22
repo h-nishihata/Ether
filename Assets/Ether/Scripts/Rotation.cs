@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Rotation : MonoBehaviour
 {
     public VariableJoystick variableJoystick;
-
     public bool isCamera;
     private float velocity = 1f;
 
@@ -18,6 +17,7 @@ public class Rotation : MonoBehaviour
     public Slider materialSlider;
     public Slider pedestalSizeSlider;
     public Slider pedestalHeightSlider;
+    public Slider bodySizeSlider;
     public Toggle bodyToggle;
 
 
@@ -67,8 +67,10 @@ public class Rotation : MonoBehaviour
             materialSlider.value = 0f;
             numDropsSlider.value = pedestalSizeSlider.value = 1f;
             pedestalHeightSlider.value = 0.5f;
-            resetButton.interactable = false;
+            bodySizeSlider.value = 1.75f;
             bodyToggle.isOn = false;
+
+            resetButton.interactable = false;
         }
     }
 }
