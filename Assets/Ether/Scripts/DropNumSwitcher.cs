@@ -75,10 +75,7 @@ public class DropNumSwitcher : MonoBehaviour
 
         // 土台の位置調整.
         for (int i = 1; i < pedestals.Length; i++)
-        {
-            if (pedestals[i].gameObject.activeSelf)
-                pedestals[i].GetComponent<PedestalSizeSetter>().Rescale();
-        }
+            pedestals[i].GetComponent<PedestalSizeSetter>().Rescale();
 
         // 人の位置調整.
         bodyController.AdjustGroundLevel();
@@ -97,14 +94,17 @@ public class DropNumSwitcher : MonoBehaviour
                 pedestals[i].gameObject.SetActive(false);
         }
 
+        // 選択した土台を有効にする.
         pedestalButtons[id].interactable = false;
-        bodyController.activePedestalID = id;
-        bodyController.AdjustGroundLevel();
         if (id > 0)
         {
             rotation.resetButton.interactable = true;
             pedestals[id].gameObject.SetActive(true);
             pedestals[id].GetComponent<PedestalSizeSetter>().Rescale();
         }
+
+        // 人の位置調整.
+        bodyController.activePedestalID = id;
+        bodyController.AdjustGroundLevel();
     }
 }
