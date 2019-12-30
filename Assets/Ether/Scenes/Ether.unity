@@ -2134,9 +2134,9 @@ MonoBehaviour:
   - {fileID: 1259806265}
   - {fileID: 1053943611}
   activePedestalID: 0
-  bodySizeSlider: {fileID: 1296094981}
+  etherSizeSlider: {fileID: 1296094981}
   bodyHeight: 1800
-  totalHeight: 0
+  etherHeight: 0
   pedestalSizes:
   - {fileID: 601098574}
   - {fileID: 1859667882}
@@ -3990,7 +3990,7 @@ GameObject:
   - component: {fileID: 1296094980}
   - component: {fileID: 1296094981}
   m_Layer: 5
-  m_Name: Body Size Slider
+  m_Name: Ether Size Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5392,7 +5392,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 691576935}
   m_Direction: 0
   m_MinValue: 100
-  m_MaxValue: 800
+  m_MaxValue: 500
   m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:

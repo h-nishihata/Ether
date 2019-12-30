@@ -18,22 +18,25 @@ public class PedestalSizeSetter : MonoBehaviour
 
     public void Rescale()
     {
-        // 台座サイズも50mm刻みで変わる.
+        // 台座の幅と奥行. 50mm刻みで変わる.
         var width = (int)widthSlider.value;
         var wSurplus = width % 50;
         if (wSurplus > 0)
             width = width - wSurplus;
 
-        var etherHeight = Mathf.Max(minEtherSize, bodyController.totalHeight);
-        // 設定したい台座幅からオブジェクトのScaleを算出する.
-        // 166mm : 2.32 = 希望の台座サイズ : X
+        // 設定したい台座幅と，現在の設定で想定されている彫刻の高さからオブジェクトのScaleを算出する.
+        // 画面上でのEtherの大きさは変わらないが，人の大きさを変えることによって，それに準じた高さだとみなしている.
+        var etherHeight = Mathf.Max(minEtherSize, bodyController.etherHeight);
+        // 基準となる3段のEtherの高さ : 台座の幅をそれに揃えたときのScale = 希望の台座サイズ : 求めたいScale.
         var widthScale = (width * defaultScaleXZ) / etherHeight;
 
+        // 台座の高さ.
         var height = (int)heightSlider.value;
         var hSurplus = height % 50;
         if (hSurplus > 0)
         height = height - hSurplus;
 
+        // 台座の高さのScale設定.
         var heightScale = ignoreHeight ? 1f : (height * defaultScaleXZ) / etherHeight;
         var offset = ignoreHeight ? 0f : heightScale - 0.5f;
 
