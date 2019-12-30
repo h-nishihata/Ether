@@ -13,6 +13,7 @@ public class BodyController : MonoBehaviour
     public Slider bodySizeSlider;
     public int bodyHeight = 1800;
     private float defaultScale = 1.3f;
+    public float totalHeight;
 
 
     private void Start()
@@ -41,7 +42,10 @@ public class BodyController : MonoBehaviour
             unitHeight = unitHeight - surplus;
 
         // 彫刻全体の高さを割り出す.
-        var totalHeight = (unitHeight * DropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
+        totalHeight = (unitHeight * DropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
+        Debug.Log("Sculpture height: " + totalHeight + " mm");
+
+        // 彫刻の高さに合わせて人型の大きさを設定する.
         var multiplyRate = bodyHeight / totalHeight;
         var scale = defaultScale * multiplyRate;
         body.transform.localScale = new Vector3(scale, scale, scale);
