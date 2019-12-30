@@ -1541,6 +1541,7 @@ MonoBehaviour:
   heightSlider: {fileID: 1782588764}
   bottomDrop: {fileID: 156903148}
   ignoreHeight: 0
+  bodyController: {fileID: 735575086}
 --- !u!1 &668223566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2136,10 @@ MonoBehaviour:
   activePedestalID: 0
   bodySizeSlider: {fileID: 1296094981}
   bodyHeight: 1800
+  totalHeight: 0
+  pedestalSizes:
+  - {fileID: 601098574}
+  - {fileID: 1859667882}
 --- !u!1 &771846438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,7 +3809,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.288e-42, y: 1.02e-43, z: 1e-45, w: 0}
+  m_BoundingSphereOverride: {x: 10, y: 8, z: -12, w: 5.921875}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5386,10 +5391,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 440500460}
   m_HandleRect: {fileID: 691576935}
   m_Direction: 0
-  m_MinValue: 0.25
-  m_MaxValue: 1.5
+  m_MinValue: 100
+  m_MaxValue: 800
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5759,7 +5764,7 @@ Transform:
   m_GameObject: {fileID: 1859667880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.32, y: 2.32, z: 2.32}
   m_Children:
   - {fileID: 1053943611}
   m_Father: {fileID: 1042428919}
@@ -5781,6 +5786,7 @@ MonoBehaviour:
   heightSlider: {fileID: 1782588764}
   bottomDrop: {fileID: 156903148}
   ignoreHeight: 1
+  bodyController: {fileID: 735575086}
 --- !u!1 &1860660496
 GameObject:
   m_ObjectHideFlags: 0
