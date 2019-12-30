@@ -5,21 +5,22 @@ public class BodyController : MonoBehaviour
 {
     public Transform body;
     private Toggle toggle;
-
     public Button resetButton;
-    public Transform[] pedestals;
-    public int activePedestalID;
 
     public Slider etherSizeSlider;
     public int bodyHeight = 1800;
     public float etherHeight;
     private float defaultScale = 1.3f;
+
+    public Transform[] pedestals;
+    public int activePedestalID;
     public PedestalSizeSetter[] pedestalSizes;
 
 
     private void Start()
     {
         toggle = this.gameObject.GetComponent<Toggle>();
+        this.Rescale();
     }
 
     public void EnableBody()
@@ -31,7 +32,7 @@ public class BodyController : MonoBehaviour
     public void AdjustGroundLevel()
     {
         var yPos = pedestals[activePedestalID].transform.position.y;
-        //body.transform.localPosition = new Vector3(-2f, yPos, 1.8f);
+        body.transform.localPosition = new Vector3(-2f, yPos, 0f);
     }
 
     public void Rescale()
@@ -54,5 +55,7 @@ public class BodyController : MonoBehaviour
         // 彫刻に合わせて土台の大きさを変更.
         for (int i = 0; i < pedestalSizes.Length; i++)
             pedestalSizes[i].Rescale();
+
+        this.AdjustGroundLevel();
     }
 }

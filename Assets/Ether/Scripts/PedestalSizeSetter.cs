@@ -8,12 +8,13 @@ public class PedestalSizeSetter : MonoBehaviour
 {
     public Slider widthSlider;
     public Slider heightSlider;
-    public Transform bottomDrop;
-    public bool ignoreHeight;
+    public bool ignoreHeight; // Quad型の土台は高さを考慮しなくて良い.
 
+    public BodyController bodyController;
     private float minEtherSize = 116f; // 粒サイズの最小を50mmとした場合の，3段のEtherの高さ116mmを基準とする.
     private float defaultScaleXZ = 2.32f; // その場合の台座幅のScale.
-    public BodyController bodyController;
+
+    public Transform bottomDrop;
 
 
     public void Rescale()
@@ -38,9 +39,9 @@ public class PedestalSizeSetter : MonoBehaviour
 
         // 台座の高さのScale設定.
         var heightScale = ignoreHeight ? 1f : (height * defaultScaleXZ) / etherHeight;
-        var offset = ignoreHeight ? 0f : heightScale - 0.5f;
+        var offset = ignoreHeight ? -0.3f : heightScale -0.32f;
 
         gameObject.transform.localScale = new Vector3(widthScale, heightScale, widthScale);
-        gameObject.transform.localPosition = new Vector3(0f, bottomDrop.localPosition.y - 0.18f - offset, 0f);
+        gameObject.transform.localPosition = new Vector3(0f, bottomDrop.localPosition.y - offset, 0f);
     }
 }
