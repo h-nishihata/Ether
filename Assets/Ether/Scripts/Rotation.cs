@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 /// <summary>
-/// オブジェクトの回転.X軸方向転はMainCamera，Y軸方向はEtherにアタッチされている.
+/// オブジェクトの回転用スクリプト.X軸方向はMainCamera，Y軸方向はEtherにアタッチされている.
 /// </summary>
 public class Rotation : MonoBehaviour
 {
@@ -30,12 +30,13 @@ public class Rotation : MonoBehaviour
 	{
         if (isCamera)
         {
+            // X軸.
             if (variableJoystick.Direction.y > 0f && (transform.rotation.x < 0.5f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, velocity);
                 resetButton.interactable = true;
             }
-            else if (variableJoystick.Direction.y < 0f && (transform.rotation.x > -0f))
+            else if (variableJoystick.Direction.y < 0f && (transform.rotation.x > -0.5f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, -velocity);
                 resetButton.interactable = true;
@@ -43,6 +44,7 @@ public class Rotation : MonoBehaviour
         }
         else
         {
+            // Y軸.
             if (variableJoystick.Direction.x < 0f)
             {
                 transform.Rotate(Vector3.up, velocity);

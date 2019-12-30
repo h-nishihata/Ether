@@ -19,7 +19,7 @@ public class DropNumSwitcher : MonoBehaviour
     private int prevNumDrops;
 
     private Vector3[] defaultPositions; // 粒数が最大になったときの，それぞれの粒の位置.
-    private float dropHeight = 0.5f;
+    private float dropHeight = 1f;
     private RandomNumGenerator generator;
 
     public BodyController bodyController;
@@ -37,6 +37,8 @@ public class DropNumSwitcher : MonoBehaviour
         {
             defaultPositions[i] = drops[i].transform.localPosition;
         }
+
+        numDrops = (int)numDropsSlider.value;
     }
 
     void Update()
