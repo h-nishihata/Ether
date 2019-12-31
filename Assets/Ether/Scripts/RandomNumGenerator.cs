@@ -62,7 +62,7 @@ public class RandomNumGenerator : MonoBehaviour
         }
         else
         {
-            patternInfo.text = "Pattern: " + pattern;
+            patternInfo.text = "Pattern: " + "\n" + pattern;
             for (int i = 0; i < DropNumSwitcher.numDrops; i++)
                 modelSetters[i].SetModel(tempList[i]);
             this.Reset();
