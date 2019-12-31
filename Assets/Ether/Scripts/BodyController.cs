@@ -32,7 +32,7 @@ public class BodyController : MonoBehaviour
     public void AdjustGroundLevel()
     {
         var yPos = pedestals[activePedestalID].transform.position.y;
-        body.transform.localPosition = new Vector3(-2f, yPos, 0f);
+        body.transform.localPosition = new Vector3(-3f, yPos, 0f);
     }
 
     public void Rescale()
