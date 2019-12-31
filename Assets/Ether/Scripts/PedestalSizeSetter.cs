@@ -39,7 +39,7 @@ public class PedestalSizeSetter : MonoBehaviour
 
         // 台座の高さのScale設定.
         var heightScale = ignoreHeight ? 1f : (height * defaultScaleXZ) / etherHeight;
-        var offset = ignoreHeight ? -0.3f : (heightScale - 0.5f) - 0.18f;
+        var offset = ignoreHeight ? -0.3f : (heightScale - 0.5f) + 0.18f;
 
         gameObject.transform.localScale = new Vector3(widthScale, heightScale, widthScale);
         gameObject.transform.localPosition = new Vector3(0f, bottomDrop.localPosition.y - offset, 0f);
