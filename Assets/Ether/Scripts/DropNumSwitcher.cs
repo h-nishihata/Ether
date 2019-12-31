@@ -13,7 +13,7 @@ public class DropNumSwitcher : MonoBehaviour
     public Transform[] pedestals;
 
     public Slider numDropsSlider;
-    public Text value;
+    public Text numDropsInfo;
     public static int maxDrops = 11;
     public static int numDrops;
     private int prevNumDrops;
@@ -52,7 +52,7 @@ public class DropNumSwitcher : MonoBehaviour
     void ChangeNumDrops()
     {
         this.SwitchActiveDrops();
-        value.text = "Num drops: " + "\n" + (numDrops + 2).ToString();
+        numDropsInfo.text = "Num drops: " + "\n" + (numDrops + 2).ToString();
         prevNumDrops = numDrops;
         generator.Generate();
     }

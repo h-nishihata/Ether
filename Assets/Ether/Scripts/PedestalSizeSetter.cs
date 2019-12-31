@@ -13,6 +13,7 @@ public class PedestalSizeSetter : MonoBehaviour
     public BodyController bodyController;
     private float minEtherSize = 116f; // 粒サイズの最小を50mmとした場合の，3段のEtherの高さ116mmを基準とする.
     private float defaultScaleXZ = 2.32f; // その場合の台座幅のScale.
+    public Text pedestalSizeInfo;
 
     public Transform bottomDrop;
 
@@ -43,5 +44,8 @@ public class PedestalSizeSetter : MonoBehaviour
 
         gameObject.transform.localScale = new Vector3(widthScale, heightScale, widthScale);
         gameObject.transform.localPosition = new Vector3(0f, bottomDrop.localPosition.y - offset, 0f);
+        pedestalSizeInfo.text = "Pedestal Size: " + "\n"
+                              + "W " + width.ToString() + " mm" + "\n"
+                              + "H " + height.ToString() + " mm";
     }
 }

@@ -1541,6 +1541,7 @@ MonoBehaviour:
   heightSlider: {fileID: 1782588764}
   ignoreHeight: 0
   bodyController: {fileID: 735575086}
+  pedestalSizeInfo: {fileID: 326795697}
   bottomDrop: {fileID: 156903148}
 --- !u!1 &668223566
 GameObject:
@@ -1731,7 +1732,7 @@ GameObject:
   - component: {fileID: 686046467}
   - component: {fileID: 686046464}
   m_Layer: 5
-  m_Name: 'ValueText '
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1881,7 +1882,7 @@ GameObject:
   - component: {fileID: 698938187}
   - component: {fileID: 698938184}
   m_Layer: 5
-  m_Name: ValueText
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2134,6 +2135,7 @@ MonoBehaviour:
   etherSizeSlider: {fileID: 1296094981}
   bodyHeight: 1800
   etherHeight: 0
+  etherHeightInfo: {fileID: 865381383}
   pedestals:
   - {fileID: 1742125284}
   - {fileID: 1783964477}
@@ -3088,7 +3090,7 @@ GameObject:
   - component: {fileID: 987741945}
   - component: {fileID: 987741944}
   m_Layer: 5
-  m_Name: 'ValueText '
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3365,7 +3367,7 @@ MonoBehaviour:
   - {fileID: 601098571}
   - {fileID: 1742125284}
   numDropsSlider: {fileID: 356248749}
-  value: {fileID: 686046464}
+  numDropsInfo: {fileID: 853157407}
   bodyController: {fileID: 735575086}
   pedestalButtons:
   - {fileID: 1860660497}
@@ -3424,7 +3426,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 9c38ae31cba8946509fb870ee82564ff, type: 3}
   - {fileID: 2800000, guid: 37f5c52bcbe204fdfb248ed79692285b, type: 3}
   - {fileID: 2800000, guid: 1b736a053961a4ea081de09258f0afb9, type: 3}
-  matTypeInfo: {fileID: 698938184}
+  materialInfo: {fileID: 935192536}
 --- !u!114 &1042428924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5248,6 +5250,7 @@ MonoBehaviour:
   heightSlider: {fileID: 1782588764}
   ignoreHeight: 1
   bodyController: {fileID: 735575086}
+  pedestalSizeInfo: {fileID: 326795697}
   bottomDrop: {fileID: 156903148}
 --- !u!1 &1757156224
 GameObject:

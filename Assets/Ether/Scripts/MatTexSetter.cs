@@ -10,7 +10,7 @@ public class MatTexSetter : MonoBehaviour {
     public Material textureMat;
     public Texture[] textures;
     public Texture[] normalMaps;
-    public Text matTypeInfo;
+    public Text materialInfo;
 
 
     void Start () {
@@ -24,6 +24,6 @@ public class MatTexSetter : MonoBehaviour {
 
         textureMat.SetTexture("_MainTex", textures[matType]);
         textureMat.SetTexture("_BumpMap", normalMaps[matType]);
-        matTypeInfo.text = "Material:" + "\n" + textures[matType].name;
+        materialInfo.text = "Material:" + "\n" + textures[matType].name;
     }
 }
