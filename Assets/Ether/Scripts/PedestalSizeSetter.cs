@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Text;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -6,22 +8,23 @@ using UnityEngine.UI;
 /// </summary>
 public class PedestalSizeSetter : MonoBehaviour
 {
-    public Slider widthSlider;
-    public Slider heightSlider;
+    public Slider widthSlider, heightSlider;
+    private int width, height;
     public bool ignoreHeight; // Quad型の土台は高さを考慮しなくて良い.
 
     public BodyController bodyController;
     private float minEtherSize = 116f; // 粒サイズの最小を50mmとした場合の，3段のEtherの高さ116mmを基準とする.
     private float defaultScaleXZ = 2.32f; // その場合の台座幅のScale.
-    public Text pedestalSizeInfo;
-
     public Transform bottomDrop;
+
+    public StringBuilder infoText = new StringBuilder();
+    public Text pedestalSizeInfo;
 
 
     public void Rescale()
     {
         // 台座の幅と奥行. 50mm刻みで変わる.
-        var width = (int)widthSlider.value;
+        width = (int)widthSlider.value;
         var wSurplus = width % 50;
         if (wSurplus > 0)
             width = width - wSurplus;
@@ -33,7 +36,7 @@ public class PedestalSizeSetter : MonoBehaviour
         var widthScale = (width * defaultScaleXZ) / etherHeight;
 
         // 台座の高さ.
-        var height = (int)heightSlider.value;
+        height = (int)heightSlider.value;
         var hSurplus = height % 50;
         if (hSurplus > 0)
         height = height - hSurplus;
@@ -44,8 +47,19 @@ public class PedestalSizeSetter : MonoBehaviour
 
         gameObject.transform.localScale = new Vector3(widthScale, heightScale, widthScale);
         gameObject.transform.localPosition = new Vector3(0f, bottomDrop.localPosition.y - offset, 0f);
-        pedestalSizeInfo.text = "Pedestal Size: " + "\n"
-                              + "W " + width.ToString() + " mm" + "\n"
-                              + "H " + height.ToString() + " mm";
+
+        this.UpdateInfo();
+    }
+
+    public void UpdateInfo()
+    {
+        infoText.Append("Pedestal Size: " + "\n");
+        if (BodyController.activePedestalID > 0) // いずれかの台座が表示されていれば.
+            infoText.Append("W " + width.ToString() + " mm" + "\n");
+        if (BodyController.activePedestalID == 1) // Cylinder型の場合は高さも表示する.
+            infoText.Append("H " + height.ToString() + " mm");
+
+        pedestalSizeInfo.text = infoText.ToString();
+        infoText.Clear();
     }
 }

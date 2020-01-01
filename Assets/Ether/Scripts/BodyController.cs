@@ -14,7 +14,7 @@ public class BodyController : MonoBehaviour
     public Text etherHeightInfo;
 
     public Transform[] pedestals;
-    public int activePedestalID;
+    public static int activePedestalID;
     public PedestalSizeSetter[] pedestalSizes;
 
 

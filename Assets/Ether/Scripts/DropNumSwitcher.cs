@@ -84,29 +84,30 @@ public class DropNumSwitcher : MonoBehaviour
     }
 
     /// <summary>
-    /// 土台の有無を切り替える.
+    /// 土台の有無と種類を切り替える.UIパネル上のボタンから直接呼ばれる.
     /// </summary>
     public void SetPedestal(int id)
     {
+        BodyController.activePedestalID = id;
+
         // リセット.
         for (int i = 0; i < pedestalButtons.Length; i++)
         {
             pedestalButtons[i].interactable = true;
-            if (i > 0)
-                pedestals[i].gameObject.SetActive(false);
+            //if (i > 0)
+            pedestals[i].gameObject.SetActive(false);
         }
 
         // 選択した土台を有効にする.
         pedestalButtons[id].interactable = false;
-        if (id > 0)
-        {
+        //if (id > 0)
+        //{
             rotation.resetButton.interactable = true;
             pedestals[id].gameObject.SetActive(true);
             pedestals[id].GetComponent<PedestalSizeSetter>().Rescale();
-        }
+        //}
 
         // 人の位置調整.
-        bodyController.activePedestalID = id;
         bodyController.AdjustGroundLevel();
     }
 }
