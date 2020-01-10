@@ -11,7 +11,7 @@ public class Rotation : MonoBehaviour
     private float velocity = 1f;
 
     public Button resetButton;
-    private Vector3 camPosition = new Vector3(-1f, 2f, -10f);
+    private Vector3 camPosition = new Vector3(-2f, 1f, -13f);
     private DropNumSwitcher dropNumSwitcher;
     public Slider numDropsSlider;
     public Slider materialSlider;
