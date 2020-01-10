@@ -36,7 +36,7 @@ public class Rotation : MonoBehaviour
                 transform.RotateAround(Vector3.zero, Vector3.right, velocity);
                 resetButton.interactable = true;
             }
-            else if (variableJoystick.Direction.y < 0f && (transform.rotation.x > -0.5f))
+            else if (variableJoystick.Direction.y < 0f && (transform.rotation.x > -0.2f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, -velocity);
                 resetButton.interactable = true;

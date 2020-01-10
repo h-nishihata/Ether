@@ -11,6 +11,7 @@ public class BodyController : MonoBehaviour
     public int unitHeight;
     public int bodyHeight = 1800;
     public float etherHeight;
+    private int zPos;
     private float defaultScale = 1.3f;
     public Text etherHeightInfo;
 
@@ -34,7 +35,7 @@ public class BodyController : MonoBehaviour
     public void AdjustGroundLevel()
     {
         var yPos = pedestals[activePedestalID].transform.position.y;
-        body.transform.localPosition = new Vector3(-3f, yPos, 0f);
+        body.transform.localPosition = new Vector3(-3f, yPos, zPos);
     }
 
     public void Rescale()
@@ -50,6 +51,7 @@ public class BodyController : MonoBehaviour
         // 彫刻の高さに合わせて人型の大きさを設定する.
         var multiplyRate = bodyHeight / etherHeight;
         var scale = defaultScale * multiplyRate;
+        zPos = (int)scale; // scaleが大きくなると土台にめり込んでしまうので，奥に移動する.
         body.transform.localScale = new Vector3(scale, scale, scale);
 
         // 彫刻のサイズに合わせて土台の大きさを変更.
