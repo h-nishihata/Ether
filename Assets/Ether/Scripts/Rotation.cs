@@ -15,9 +15,9 @@ public class Rotation : MonoBehaviour
     private DropNumSwitcher dropNumSwitcher;
     public Slider numDropsSlider;
     public Slider materialSlider;
-    public Slider pedestalSizeSlider;
+    public Slider pedestalWidthSlider;
     public Slider pedestalHeightSlider;
-    public Slider bodySizeSlider;
+    public Slider etherSizeSlider;
     public Toggle bodyToggle;
 
 
@@ -66,10 +66,11 @@ public class Rotation : MonoBehaviour
         if (!isCamera)
         {
             dropNumSwitcher.SetPedestal(0);
+            numDropsSlider.value = 1f;
+            etherSizeSlider.value = 300f;
             materialSlider.value = 0f;
-            numDropsSlider.value = pedestalSizeSlider.value = 1f;
-            pedestalHeightSlider.value = 0.5f;
-            bodySizeSlider.value = 1.75f;
+            pedestalWidthSlider.value = 300f;
+            pedestalHeightSlider.value = 100f;
             bodyToggle.isOn = false;
 
             resetButton.interactable = false;

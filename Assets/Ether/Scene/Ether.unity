@@ -3568,9 +3568,9 @@ MonoBehaviour:
   resetButton: {fileID: 1888924112}
   numDropsSlider: {fileID: 356248749}
   materialSlider: {fileID: 1813591486}
-  pedestalSizeSlider: {fileID: 1771578195}
+  pedestalWidthSlider: {fileID: 1771578195}
   pedestalHeightSlider: {fileID: 1782588764}
-  bodySizeSlider: {fileID: 1296094981}
+  etherSizeSlider: {fileID: 1296094981}
   bodyToggle: {fileID: 735575085}
 --- !u!1 &1067524219
 GameObject:
@@ -4645,9 +4645,9 @@ MonoBehaviour:
   resetButton: {fileID: 1888924112}
   numDropsSlider: {fileID: 0}
   materialSlider: {fileID: 0}
-  pedestalSizeSlider: {fileID: 0}
+  pedestalWidthSlider: {fileID: 0}
   pedestalHeightSlider: {fileID: 0}
-  bodySizeSlider: {fileID: 0}
+  etherSizeSlider: {fileID: 0}
   bodyToggle: {fileID: 0}
 --- !u!114 &1354925648
 MonoBehaviour:
@@ -5431,7 +5431,7 @@ GameObject:
   - component: {fileID: 1684129526}
   - component: {fileID: 1684129525}
   m_Layer: 5
-  m_Name: 'ValueText '
+  m_Name: 'Text '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6883,7 +6883,7 @@ GameObject:
   - component: {fileID: 2015646463}
   - component: {fileID: 2015646462}
   m_Layer: 5
-  m_Name: 'ValueText '
+  m_Name: 'Text '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6939,7 +6939,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Size
+  m_Text: Width
 --- !u!222 &2015646463
 CanvasRenderer:
   m_ObjectHideFlags: 0
