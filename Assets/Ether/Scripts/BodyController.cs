@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// UIのBody Toggleに付いている，人型の有無を切り替えるスクリプト. 
+/// 画面上でのEtherの大きさは変えず，想定された彫刻の高さに準じて人の側のスケールを変更している.
+/// </summary>
 public class BodyController : MonoBehaviour
 {
     public Transform body;
     private Toggle toggle;
     public Button resetButton;
 
-    public Slider etherSizeSlider;
-    public int unitHeight;
-    private int bodyHeight = 1740;
-    public float etherHeight;
+    public Slider etherSizeSlider; // 粒の高さを変更するスライダー.
+    private float maxDropHeight = 1000f;
+    public int unitHeight; // 一粒の高さ.
+    public float etherHeight; // 土台を含まない，彫刻全体の高さ.
     private int zPos;
-    private float defaultScale = 1f; // 3段のEtherと高さを揃えたときのscale.一粒が750mmの計算になる.
     public Text etherHeightInfo;
 
     public Transform[] pedestals;
@@ -26,12 +29,18 @@ public class BodyController : MonoBehaviour
         this.Rescale();
     }
 
+    /// <summary>
+    /// 人型の有無を切り替える.
+    /// </summary>
     public void EnableBody()
     {
         body.gameObject.SetActive(toggle.isOn);
         resetButton.interactable = true;
     }
 
+    /// <summary>
+    /// 接地面の位置を調整する.
+    /// </summary>
     public void AdjustGroundLevel()
     {
         var yPos = pedestals[activePedestalID].transform.position.y;
@@ -48,13 +57,9 @@ public class BodyController : MonoBehaviour
 
         this.UpdateInfo();
 
-        // 粒の高さに合わせて人型の大きさを設定する.
-        // MEMO: 段数が変わるだけなら，積み上がっていくだけで粒の高さは変わらないので，人の大きさは変える必要はない.
-        // だからetherHeight = 全体の高さを使ってスケールを求めているのがおかしい.
-        //var multiplyRate = bodyHeight / etherHeight;
-        //Debug.Log("bodyHeight: " + bodyHeight + ", etherHeight: " + etherHeight + ", multiplyRate: " + multiplyRate);
-        //var scale = defaultScale * multiplyRate;
-        var scale = 1000f / unitHeight;
+        // 【粒の高さに合わせて】人型の大きさを設定する.
+        // N.B. 段数が変わるだけなら，ただ積み上がっていくだけで粒の高さは変わらないので，人の大きさは変える必要はない.
+        var scale = maxDropHeight / unitHeight;
         zPos = (int)scale; // scaleが大きくなると土台にめり込んでしまうので，奥に移動する.
         body.transform.localScale = new Vector3(scale, scale, scale);
 
@@ -70,7 +75,6 @@ public class BodyController : MonoBehaviour
     {
         // 彫刻全体の高さを割り出す.
         etherHeight = (unitHeight * DropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
-        //Debug.Log("etherHeight: " + etherHeight);
         etherHeightInfo.text = "Ether Height: " + "\n" + etherHeight.ToString() + " mm";
     }
 }
