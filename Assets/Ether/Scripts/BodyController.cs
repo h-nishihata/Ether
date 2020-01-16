@@ -18,7 +18,7 @@ public class BodyController : MonoBehaviour
     private int zPos;
     public Text etherHeightInfo;
 
-    public Transform[] pedestals;
+    public Transform[] grounds;
     public static int activePedestalID;
     public PedestalSizeSetter[] pedestalSizes;
 
@@ -43,7 +43,7 @@ public class BodyController : MonoBehaviour
     /// </summary>
     public void AdjustGroundLevel()
     {
-        var yPos = pedestals[activePedestalID].transform.position.y;
+        var yPos = grounds[activePedestalID].transform.position.y;
         body.transform.localPosition = new Vector3(-3f, yPos, zPos);
     }
 

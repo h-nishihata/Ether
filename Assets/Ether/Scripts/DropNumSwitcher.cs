@@ -77,7 +77,7 @@ public class DropNumSwitcher : MonoBehaviour
         bottomDrop.localPosition = new Vector3(0f, drops[0].localPosition.y - dropHeight, 0f);
 
         // 土台の位置調整.
-        for (int i = 1; i < pedestals.Length; i++)
+        for (int i = 0; i < pedestals.Length; i++)
             pedestals[i].GetComponent<PedestalSizeSetter>().Rescale();
 
         // 人の位置調整.
@@ -85,7 +85,7 @@ public class DropNumSwitcher : MonoBehaviour
     }
 
     /// <summary>
-    /// 土台の有無と種類を切り替える.UIパネル上のボタンから直接呼ばれる.
+    /// 土台の有無と種類を切り替える. UIパネル上のボタンから直接呼ばれる.
     /// </summary>
     public void SetPedestal(int id)
     {

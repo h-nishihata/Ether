@@ -30,10 +30,12 @@ public class PedestalSizeSetter : MonoBehaviour
             width = width - wSurplus;
 
         // 設定したい台座幅と，現在の設定で想定されている彫刻の高さからオブジェクトのScaleを算出する.
-        // 画面上でのEtherの大きさは変わらないが，人の大きさを変えることによって，それに準じた高さだとみなしている.
-        var etherHeight = Mathf.Max(minEtherSize, bodyController.etherHeight);
+        //var etherHeight = Mathf.Max(minEtherSize, bodyController.etherHeight);
+        var unitHeight = bodyController.unitHeight;
         // 基準となる3段のEtherの高さ : 台座の幅をそれに揃えたときのScale = 希望の台座サイズ : 求めたいScale.
-        var widthScale = (width * defaultScaleXZ) / etherHeight;
+        //var widthScale = (width * defaultScaleXZ) / etherHeight;
+        var widthScale = (float)width / unitHeight;
+
 
         // 台座の高さ.
         height = (int)heightSlider.value;
@@ -42,7 +44,8 @@ public class PedestalSizeSetter : MonoBehaviour
         height = height - hSurplus;
 
         // 台座の高さのScale設定.
-        var heightScale = ignoreHeight ? 1f : (height * defaultScaleXZ) / etherHeight;
+        //var heightScale = ignoreHeight ? 1f : (height * defaultScaleXZ) / etherHeight;
+        var heightScale = ignoreHeight ? 1f : (float)height / unitHeight;
         var offset = ignoreHeight ? -0.3f : (heightScale - 0.5f) + 0.18f;
 
         gameObject.transform.localScale = new Vector3(widthScale, heightScale, widthScale);
