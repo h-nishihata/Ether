@@ -23,32 +23,33 @@ public class PedestalSizeSetter : MonoBehaviour
 
     public void Rescale()
     {
-        // 台座の幅と奥行. 50mm刻みで変わる.
+        // 現在設定されている一粒の高さ.
+        var unitHeight = bodyController.unitHeight;
+
+        // 設定したい台座の幅と奥行. 50mm刻みで変わる.
         width = (int)widthSlider.value;
         var wSurplus = width % 50;
         if (wSurplus > 0)
             width = width - wSurplus;
 
-        // 設定したい台座幅と，現在の設定で想定されている彫刻の高さからオブジェクトのScaleを算出する.
-        //var etherHeight = Mathf.Max(minEtherSize, bodyController.etherHeight);
-        var unitHeight = bodyController.unitHeight;
-        // 基準となる3段のEtherの高さ : 台座の幅をそれに揃えたときのScale = 希望の台座サイズ : 求めたいScale.
-        //var widthScale = (width * defaultScaleXZ) / etherHeight;
+        // 台座オブジェクトのScaleを算出する.
+        // Quad・Cylinderともに，スケールが1のときにSceneビュー上でEther一粒の高さと同じ幅・奥行になる.
+        // よって，現在の一粒の高さ : 1 = 希望の台座幅 : 求めたいScale.
         var widthScale = (float)width / unitHeight;
 
-
-        // 台座の高さ.
+        // 設定したい台座の高さ.
         height = (int)heightSlider.value;
         var hSurplus = height % 50;
         if (hSurplus > 0)
         height = height - hSurplus;
 
-        // 台座の高さのScale設定.
-        //var heightScale = ignoreHeight ? 1f : (height * defaultScaleXZ) / etherHeight;
-        var heightScale = ignoreHeight ? 1f : (float)height / unitHeight;
-        var offset = ignoreHeight ? -0.3f : (heightScale - 0.5f) + 0.18f;
-
+        // 同様に，台座の高さのScaleも設定する.
+        // Cylinderはスケール1のときの高さがグリッド２個分なので注意.
+        var heightScale = ignoreHeight ? 1f : (float)height / (unitHeight * 2f);
         gameObject.transform.localScale = new Vector3(widthScale, heightScale, widthScale);
+
+        // 位置調整.
+        var offset = ignoreHeight ? -0.3f : (heightScale - 0.5f) + 0.18f; // TO DO: マジックナンバーどうにかしたい.
         gameObject.transform.localPosition = new Vector3(0f, bottomDrop.localPosition.y - offset, 0f);
 
         this.UpdateInfo();

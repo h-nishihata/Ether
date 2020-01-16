@@ -14,7 +14,6 @@ public class BodyController : MonoBehaviour
     public Slider etherSizeSlider; // 粒の高さを変更するスライダー.
     private float maxDropHeight = 1000f;
     public int unitHeight; // 一粒の高さ.
-    public float etherHeight; // 土台を含まない，彫刻全体の高さ.
     private int zPos;
     public Text etherHeightInfo;
 
@@ -74,7 +73,7 @@ public class BodyController : MonoBehaviour
     public void UpdateInfo()
     {
         // 彫刻全体の高さを割り出す.
-        etherHeight = (unitHeight * DropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
+        var etherHeight = (unitHeight * DropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
         etherHeightInfo.text = "Ether Height: " + "\n" + etherHeight.ToString() + " mm";
     }
 }
