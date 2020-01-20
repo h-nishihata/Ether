@@ -24,6 +24,7 @@ public class DropNumSwitcher : MonoBehaviour
 
     public BodyController bodyController;
     public Button[] pedestalButtons;
+    public Button resetButton;
     private Rotation rotation;
 
 
@@ -52,9 +53,11 @@ public class DropNumSwitcher : MonoBehaviour
     void ChangeNumDrops()
     {
         this.SwitchActiveDrops();
+
         numDropsInfo.text = "Num drops: " + "\n" + (numDrops + 2).ToString();
         bodyController.UpdateInfo();
         prevNumDrops = numDrops;
+
         generator.Generate();
     }
 
@@ -100,7 +103,6 @@ public class DropNumSwitcher : MonoBehaviour
 
         // 選択した土台を有効にする.
         pedestalButtons[id].interactable = false;
-        rotation.resetButton.interactable = true;
         pedestals[id].gameObject.SetActive(true);
         pedestals[id].GetComponent<PedestalSizeSetter>().Rescale();
 

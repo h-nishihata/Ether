@@ -11,7 +11,7 @@ public class Rotation : MonoBehaviour
     private float velocity = 1f;
 
     public Button resetButton;
-    private Vector3 camPosition = new Vector3(-2f, 1f, -13f);
+    private Vector3 camPosition = new Vector3(-2f, 0f, -13f);
     private DropNumSwitcher dropNumSwitcher;
     public Slider numDropsSlider;
     public Slider materialSlider;
@@ -34,12 +34,10 @@ public class Rotation : MonoBehaviour
             if (variableJoystick.Direction.y > 0f && (transform.rotation.x < 0.5f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, velocity);
-                resetButton.interactable = true;
             }
             else if (variableJoystick.Direction.y < 0f && (transform.rotation.x > -0.2f))
             {
                 transform.RotateAround(Vector3.zero, Vector3.right, -velocity);
-                resetButton.interactable = true;
             }
         }
         else
@@ -48,32 +46,28 @@ public class Rotation : MonoBehaviour
             if (variableJoystick.Direction.x < 0f)
             {
                 transform.Rotate(Vector3.up, velocity);
-                resetButton.interactable = true;
             }
             else if (variableJoystick.Direction.x > 0f)
             {
                 transform.Rotate(Vector3.up, -velocity);
-                resetButton.interactable = true;
             }
         }
     }
 
     public void Reset()
     {
-        transform.localRotation = isCamera ? Quaternion.Euler(12, 0, 0) : Quaternion.identity;
+        transform.localRotation = Quaternion.identity;
         transform.localPosition = isCamera ? camPosition : Vector3.zero;
 
         if (!isCamera)
         {
             dropNumSwitcher.SetPedestal(0);
             numDropsSlider.value = 1f;
-            etherSizeSlider.value = 300f;
+            etherSizeSlider.value = 350f;
             materialSlider.value = 0f;
             pedestalWidthSlider.value = 300f;
             pedestalHeightSlider.value = 100f;
             bodyToggle.isOn = false;
-
-            resetButton.interactable = false;
         }
     }
 }

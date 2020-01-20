@@ -34,7 +34,6 @@ public class BodyController : MonoBehaviour
     public void EnableBody()
     {
         body.gameObject.SetActive(toggle.isOn);
-        resetButton.interactable = true;
     }
 
     /// <summary>

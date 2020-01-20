@@ -2213,7 +2213,6 @@ MonoBehaviour:
   resetButton: {fileID: 1888924112}
   etherSizeSlider: {fileID: 1296094981}
   unitHeight: 0
-  etherHeight: 0
   etherHeightInfo: {fileID: 865381383}
   grounds:
   - {fileID: 1423767817}
@@ -3450,6 +3449,7 @@ MonoBehaviour:
   - {fileID: 1860660497}
   - {fileID: 1838098558}
   - {fileID: 1018420288}
+  resetButton: {fileID: 1888924112}
 --- !u!114 &1042428921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6588,7 +6588,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1888924113}
   m_OnClick:
     m_PersistentCalls:
