@@ -13,8 +13,6 @@ public class PedestalSizeSetter : MonoBehaviour
     public bool ignoreHeight; // Quad型の土台は高さを考慮しなくて良い.
 
     public BodyController bodyController;
-    private float minEtherSize = 116f; // 粒サイズの最小を50mmとした場合の，3段のEtherの高さ116mmを基準とする.
-    private float defaultScaleXZ = 2.32f; // その場合の台座幅のScale.
     public Transform bottomDrop;
 
     public StringBuilder infoText = new StringBuilder();

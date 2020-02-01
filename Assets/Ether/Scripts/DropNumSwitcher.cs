@@ -24,7 +24,6 @@ public class DropNumSwitcher : MonoBehaviour
 
     public BodyController bodyController;
     public Button[] pedestalButtons;
-    public Button resetButton;
     private Rotation rotation;
 
 

@@ -10,7 +10,6 @@ public class Rotation : MonoBehaviour
     public bool isCamera;
     private float velocity = 1f;
 
-    public Button resetButton;
     private Vector3 camPosition = new Vector3(-2f, 0f, -13f);
     private DropNumSwitcher dropNumSwitcher;
     public Slider numDropsSlider;

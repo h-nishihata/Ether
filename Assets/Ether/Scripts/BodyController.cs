@@ -9,7 +9,6 @@ public class BodyController : MonoBehaviour
 {
     public Transform body;
     private Toggle toggle;
-    public Button resetButton;
 
     public Slider etherSizeSlider; // 粒の高さを変更するスライダー.
     private float maxDropHeight = 1000f;
@@ -34,6 +33,7 @@ public class BodyController : MonoBehaviour
     public void EnableBody()
     {
         body.gameObject.SetActive(toggle.isOn);
+        toggle.targetGraphic.color = toggle.isOn ? Color.cyan : Color.white;
     }
 
     /// <summary>
