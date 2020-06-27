@@ -20,6 +20,8 @@ public class BodyController : MonoBehaviour
     public static int activePedestalID;
     public PedestalSizeSetter[] pedestalSizes;
 
+    public DropNumSwitcher dropNumSwitcher;
+
 
     private void Start()
     {
@@ -72,7 +74,7 @@ public class BodyController : MonoBehaviour
     public void UpdateInfo()
     {
         // 彫刻全体の高さを割り出す.
-        var etherHeight = (unitHeight * DropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
+        var etherHeight = (unitHeight * dropNumSwitcher.numDrops) + (unitHeight * 0.66f * 2); // 上下二つの粒は他の粒より低い.
         etherHeightInfo.text = "Ether Height: " + "\n" + etherHeight.ToString() + " mm";
     }
 }

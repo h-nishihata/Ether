@@ -21,24 +21,36 @@ public class RandomNumGenerator : MonoBehaviour
     private StringBuilder pattern = new StringBuilder(); // 生成されたパターンの文字列.
     public Text patternInfo;
 
+    public static bool isArchiveMode = true;
+    private int archiveIterator;
+    public Slider numDropsSlider;
+    private DropNumSwitcher dropNumSwitcher;
+
 
     private void Start()
     {
         csvReader = this.GetComponent<CSVReader>();
+        dropNumSwitcher = this.GetComponent<DropNumSwitcher>();
     }
 
     public void Generate()
     {
+        if (isArchiveMode)
+        {
+            this.ShowArchiveModels();
+            return;
+        }
+
         pattern.Append("1");
 
-        for (int i = 0; i < DropNumSwitcher.numDrops; i++)
+        for (int i = 0; i < dropNumSwitcher.numDrops; i++)
         {
             num = numList[UnityEngine.Random.Range(0, numList.Count)];
-            if (DropNumSwitcher.numDrops < 7) // 上下も入れて8粒までなら，形が被らないようにできる.
+            if (dropNumSwitcher.numDrops < 7) // 上下も入れて8粒までなら，形が被らないようにできる.
             {
                 numList.Remove(num);
             }
-            else if (DropNumSwitcher.numDrops >= 7) // それ以上の段数になったときには，同じ数字が続かないようにさえしていれば，同じ粒を繰り返し使えるようにする.
+            else if (dropNumSwitcher.numDrops >= 7) // それ以上の段数になったときには，同じ数字が続かないようにさえしていれば，同じ粒を繰り返し使えるようにする.
             {
                 do
                 {
@@ -63,7 +75,7 @@ public class RandomNumGenerator : MonoBehaviour
         else
         {
             patternInfo.text = "Pattern: " + "\n" + pattern;
-            for (int i = 0; i < DropNumSwitcher.numDrops; i++)
+            for (int i = 0; i < dropNumSwitcher.numDrops; i++)
                 modelSetters[i].SetModel(tempList[i]);
             this.Reset();
         }
@@ -80,6 +92,30 @@ public class RandomNumGenerator : MonoBehaviour
             }
         }
         return isExistent;
+    }
+
+    private void ShowArchiveModels()
+    {
+        dropNumSwitcher.numDrops = csvReader.csvData[archiveIterator].Length - 2;
+
+        for (int i = 0; i < csvReader.csvData[archiveIterator].Length; i++)
+        {
+            if((i > 0) && (i < csvReader.csvData[archiveIterator].Length - 1))
+            {
+                tempList.Add(Int32.Parse(csvReader.csvData[archiveIterator][i].ToString()) - 2);
+            }
+            pattern.Append(csvReader.csvData[archiveIterator][i]);
+        }
+
+        patternInfo.text = "Pattern: " + "\n" + pattern;
+        for (int i = 0; i < dropNumSwitcher.numDrops; i++)
+            modelSetters[i].SetModel(tempList[i]);
+
+        if (archiveIterator < csvReader.csvData.Count - 1)
+            archiveIterator++;
+        else
+            archiveIterator = 0;
+        this.Reset();
     }
 
     private void Reset()

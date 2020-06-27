@@ -15,7 +15,7 @@ public class DropNumSwitcher : MonoBehaviour
     public Slider numDropsSlider;
     public Text numDropsInfo;
     public static int maxDrops = 11;
-    public static int numDrops;
+    public int numDrops;
     private int prevNumDrops;
 
     private Vector3[] defaultPositions; // 粒数が最大になったときの，それぞれの粒の位置.
@@ -43,7 +43,8 @@ public class DropNumSwitcher : MonoBehaviour
 
     void Update()
     {
-        numDrops = (int)numDropsSlider.value;
+        if(!RandomNumGenerator.isArchiveMode)
+            numDrops = (int)numDropsSlider.value;
 
         if (prevNumDrops != numDrops)
             this.ChangeNumDrops();
@@ -57,7 +58,8 @@ public class DropNumSwitcher : MonoBehaviour
         bodyController.UpdateInfo();
         prevNumDrops = numDrops;
 
-        generator.Generate();
+        if (!RandomNumGenerator.isArchiveMode)
+            generator.Generate();
     }
 
     void SwitchActiveDrops()
