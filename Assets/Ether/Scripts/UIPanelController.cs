@@ -6,6 +6,7 @@ public class UIPanelController : MonoBehaviour
 {
     public Transform UIPanel;
     private Camera cam;
+    
 
     private void Start()
     {
@@ -23,8 +24,16 @@ public class UIPanelController : MonoBehaviour
             this.ShowUIPanel(true);
 
         this.TranslateCamPos();
+
+        if (RandomNumGenerator.isArchiveMode)
+            cam.backgroundColor = Color.gray;
+        else
+            cam.backgroundColor = Color.black;
     }
 
+    /// <summary>
+    /// UIパネルを非表示にしたとき，モデルを画面の中央に移動させる.
+    /// </summary>
     void TranslateCamPos()
     {
         if (!UIPanel.gameObject.activeSelf)

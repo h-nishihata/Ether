@@ -21,7 +21,7 @@ public class RandomNumGenerator : MonoBehaviour
     private StringBuilder pattern = new StringBuilder(); // 生成されたパターンの文字列.
     public Text patternInfo;
 
-    public static bool isArchiveMode = true;
+    public static bool isArchiveMode;
     private int archiveIterator;
     public Slider numDropsSlider;
     private DropNumSwitcher dropNumSwitcher;
@@ -31,6 +31,19 @@ public class RandomNumGenerator : MonoBehaviour
     {
         csvReader = this.GetComponent<CSVReader>();
         dropNumSwitcher = this.GetComponent<DropNumSwitcher>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isArchiveMode = !isArchiveMode;
+            if (isArchiveMode)
+            {
+                dropNumSwitcher.numDrops = 1;
+                archiveIterator = 0;
+            }
+            this.Generate();
+        }
     }
 
     public void Generate()
@@ -59,7 +72,7 @@ public class RandomNumGenerator : MonoBehaviour
                 prevNum = num;
             }
 
-            tempList.Add(Int32.Parse(num) - 2);
+            tempList.Add(Int32.Parse(num));
             pattern.Append(num);
         }
 
@@ -68,12 +81,13 @@ public class RandomNumGenerator : MonoBehaviour
         var result = this.CheckExistence();
         if (result == true)
         {
-            //Debug.Log("<color='red'>The pattern already exists in the Archive: </color>" + pattern);
+            // 今までに制作されたことのあるパターンなら，数列の生成を最初からやり直す.
             this.Reset();
             this.Generate();
         }
         else
         {
+            // 被っていなければ，モデルを設定する.
             patternInfo.text = "Pattern: " + "\n" + pattern;
             for (int i = 0; i < dropNumSwitcher.numDrops; i++)
                 modelSetters[i].SetModel(tempList[i]);
@@ -94,17 +108,19 @@ public class RandomNumGenerator : MonoBehaviour
         return isExistent;
     }
 
+    /// <summary>
+    /// 今までに制作されたパターンのみを表示する.
+    /// </summary>
     private void ShowArchiveModels()
     {
-        dropNumSwitcher.numDrops = csvReader.csvData[archiveIterator].Length - 2;
+        var curretLine = csvReader.csvData[archiveIterator];
+        dropNumSwitcher.numDrops = curretLine.Length - 2;
 
-        for (int i = 0; i < csvReader.csvData[archiveIterator].Length; i++)
+        for (int i = 0; i < curretLine.Length; i++)
         {
-            if((i > 0) && (i < csvReader.csvData[archiveIterator].Length - 1))
-            {
-                tempList.Add(Int32.Parse(csvReader.csvData[archiveIterator][i].ToString()) - 2);
-            }
-            pattern.Append(csvReader.csvData[archiveIterator][i]);
+            if((i > 0) && (i < curretLine.Length - 1)) // 可変の粒の番号のみリストに加えて，ModelSetter.csに渡す.
+                tempList.Add(Int32.Parse(curretLine[i].ToString()));
+            pattern.Append(curretLine[i]);
         }
 
         patternInfo.text = "Pattern: " + "\n" + pattern;

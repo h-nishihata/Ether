@@ -16,6 +16,6 @@ public class ModelSetter : MonoBehaviour
 
     public void SetModel(int modelID)
     {
-        filter.mesh = meshes[modelID];
+        filter.mesh = meshes[modelID - 2]; // 可変の2~7番の粒を配列の0番から順に格納しているため，2を引いて数字を合わせている.
     }
 }
