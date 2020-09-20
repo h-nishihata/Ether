@@ -23,7 +23,8 @@ public class RandomNumGenerator : MonoBehaviour
 
     public static bool isArchiveMode;
     private int archiveIterator;
-    public Slider numDropsSlider;
+    public Button[] buttons;
+
     private DropNumSwitcher dropNumSwitcher;
 
 
@@ -32,25 +33,35 @@ public class RandomNumGenerator : MonoBehaviour
         csvReader = this.GetComponent<CSVReader>();
         dropNumSwitcher = this.GetComponent<DropNumSwitcher>();
     }
-    private void Update()
+    public void EnableArchiveMode()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        isArchiveMode = !isArchiveMode;
+        if (isArchiveMode)
         {
-            isArchiveMode = !isArchiveMode;
-            if (isArchiveMode)
+            // 制作済パターンを最初から読み込む.
+            archiveIterator = -1;
+            dropNumSwitcher.numDrops = 1;
+
+            for (int i = 0; i < buttons.Length; i++)
             {
-                dropNumSwitcher.numDrops = 1;
-                archiveIterator = 0;
+                buttons[i].interactable = i < 2;
             }
-            this.Generate();
         }
+        else
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = i >= 2;
+            }
+        }
+        this.Generate();
     }
 
     public void Generate()
     {
         if (isArchiveMode)
         {
-            this.ShowArchiveModels();
+            this.ShowArchiveModels(true);
             return;
         }
 
@@ -111,10 +122,25 @@ public class RandomNumGenerator : MonoBehaviour
     /// <summary>
     /// 今までに制作されたパターンのみを表示する.
     /// </summary>
-    private void ShowArchiveModels()
+    public void ShowArchiveModels(bool isAscending)
     {
+        if (isAscending)
+        {
+            if (archiveIterator < csvReader.csvData.Count - 1)
+                archiveIterator++;
+            else
+                archiveIterator = 0;
+        }
+        else
+        {
+            if (archiveIterator > 0)
+                archiveIterator--;
+            else
+                archiveIterator = csvReader.csvData.Count - 1;
+        }
+
         var curretLine = csvReader.csvData[archiveIterator];
-        dropNumSwitcher.numDrops = curretLine.Length - 2;
+        dropNumSwitcher.numDrops = curretLine.Length - 2; // 読み込んだパターンに応じて，可変の粒数を変更.
 
         for (int i = 0; i < curretLine.Length; i++)
         {
@@ -127,10 +153,6 @@ public class RandomNumGenerator : MonoBehaviour
         for (int i = 0; i < dropNumSwitcher.numDrops; i++)
             modelSetters[i].SetModel(tempList[i]);
 
-        if (archiveIterator < csvReader.csvData.Count - 1)
-            archiveIterator++;
-        else
-            archiveIterator = 0;
         this.Reset();
     }
 
