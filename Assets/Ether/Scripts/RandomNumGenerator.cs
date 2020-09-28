@@ -16,6 +16,7 @@ public class RandomNumGenerator : MonoBehaviour
 
     private List<int> tempList = new List<int>(); // 重複していないか確認する間，生成した数字を逃しておくためのリスト.
     private CSVReader csvReader;
+    private DropNumSwitcher dropNumSwitcher;
     public ModelSetter[] modelSetters;
 
     private StringBuilder pattern = new StringBuilder(); // 生成されたパターンの文字列.
@@ -23,9 +24,9 @@ public class RandomNumGenerator : MonoBehaviour
 
     public static bool isArchiveMode;
     private int archiveIterator;
+    public Toggle toggle;
     public Button[] buttons;
-
-    private DropNumSwitcher dropNumSwitcher;
+    public Text[] texts;
 
 
     private void Start()
@@ -36,23 +37,17 @@ public class RandomNumGenerator : MonoBehaviour
     public void EnableArchiveMode()
     {
         isArchiveMode = !isArchiveMode;
+        toggle.targetGraphic.color = toggle.isOn ? Color.cyan : Color.white;
+        for (int i = 0; i < buttons.Length; i++)
+            buttons[i].interactable = !buttons[i].interactable;
+        for (int i = 0; i < texts.Length; i++)
+            texts[i].color = isArchiveMode ? Color.black : Color.white;
+
         if (isArchiveMode)
         {
             // 制作済パターンを最初から読み込む.
             archiveIterator = -1;
             dropNumSwitcher.numDrops = 1;
-
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                buttons[i].interactable = i < 2;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                buttons[i].interactable = i >= 2;
-            }
         }
         this.Generate();
     }

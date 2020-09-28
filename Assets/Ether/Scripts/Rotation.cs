@@ -8,7 +8,7 @@ public class Rotation : MonoBehaviour
 {
     public VariableJoystick variableJoystick;
     public bool isCamera;
-    private float velocity = 1f;
+    private float velocity = 0.25f;
 
     private Vector3 camPosition = new Vector3(-2f, 0f, -13f);
     private DropNumSwitcher dropNumSwitcher;
@@ -18,6 +18,7 @@ public class Rotation : MonoBehaviour
     public Slider pedestalHeightSlider;
     public Slider etherSizeSlider;
     public Toggle bodyToggle;
+    public Toggle archiveToggle;
 
 
     private void Start()
@@ -67,6 +68,7 @@ public class Rotation : MonoBehaviour
             pedestalWidthSlider.value = 300f;
             pedestalHeightSlider.value = 100f;
             bodyToggle.isOn = false;
+            archiveToggle.isOn = false;
         }
     }
 }

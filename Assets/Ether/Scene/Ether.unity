@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2833,7 +2833,7 @@ GameObject:
   - component: {fileID: 791795149}
   - component: {fileID: 791795151}
   m_Layer: 0
-  m_Name: Archives Toggle
+  m_Name: Archive Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4072,10 +4072,30 @@ MonoBehaviour:
   - {fileID: 1411868138}
   - {fileID: 63818210}
   patternInfo: {fileID: 212294528}
-  archiveButtons:
+  toggle: {fileID: 791795151}
+  buttons:
+  - {fileID: 2023998599}
   - {fileID: 246740730}
   - {fileID: 337077232}
-  - {fileID: 2023998599}
+  texts:
+  - {fileID: 686046464}
+  - {fileID: 987741944}
+  - {fileID: 698938184}
+  - {fileID: 2012294947}
+  - {fileID: 1234836554}
+  - {fileID: 1471358851}
+  - {fileID: 909305075}
+  - {fileID: 2015646462}
+  - {fileID: 1684129525}
+  - {fileID: 177998957}
+  - {fileID: 1580794206}
+  - {fileID: 723233562}
+  - {fileID: 771846440}
+  - {fileID: 212294528}
+  - {fileID: 853157407}
+  - {fileID: 935192536}
+  - {fileID: 865381383}
+  - {fileID: 326795697}
 --- !u!114 &1042428923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4140,6 +4160,7 @@ MonoBehaviour:
   pedestalHeightSlider: {fileID: 1782588764}
   etherSizeSlider: {fileID: 1296094981}
   bodyToggle: {fileID: 735575085}
+  archiveToggle: {fileID: 791795151}
 --- !u!1 &1067524219
 GameObject:
   m_ObjectHideFlags: 0
@@ -5218,6 +5239,7 @@ MonoBehaviour:
   pedestalHeightSlider: {fileID: 0}
   etherSizeSlider: {fileID: 0}
   bodyToggle: {fileID: 0}
+  archiveToggle: {fileID: 0}
 --- !u!114 &1354925648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7251,7 +7273,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7489,7 +7511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7806,9 +7828,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
